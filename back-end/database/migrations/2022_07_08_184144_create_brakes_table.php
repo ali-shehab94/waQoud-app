@@ -15,6 +15,9 @@ class CreateBrakesTable extends Migration
     {
         Schema::create('brakes', function (Blueprint $table) {
             $table->id();
+            $table->string('model_name');
+            $table->integer('lasts')->default(70000);
+            $table->integer('installed_at');
             $table->timestamps();
         });
     }
