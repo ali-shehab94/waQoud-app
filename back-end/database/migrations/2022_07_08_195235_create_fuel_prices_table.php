@@ -15,8 +15,8 @@ class CreateFuelPricesTable extends Migration
     {
         Schema::create('fuel_prices', function (Blueprint $table) {
             $table->id();
-            $table->integer('fuel_type');
-            $table->integer('price');
+            $table->integer('fuel_types_id');
+            $table->decimal('price');
             $table->timestamps();
         });
     }
