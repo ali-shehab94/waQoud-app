@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\FuelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,4 @@ use App\Http\Controllers\VehicleController;
 */
 
 Route::get('/user_vehicles/{id}', [VehicleController::class, 'getUserVehicles']);
+Route::get('/fuel_prices', [FuelController::class, 'getFuelPrices']);
