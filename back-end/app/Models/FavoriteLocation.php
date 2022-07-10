@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class FavoriteLocation extends Model
 {
     use HasFactory;
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

@@ -15,6 +15,7 @@ class CreateFavoriteLocationsTable extends Migration
     {
         Schema::create('favorite_locations', function (Blueprint $table) {
             $table->id();
+            $table->integer('users_id');
             $table->string('name');
             $table->decimal('latitude');
             $table->decimal('longitude');
