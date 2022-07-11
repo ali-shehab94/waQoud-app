@@ -24,6 +24,14 @@ class VehicleController extends Controller
     }
 
     public function addVehicle(Request $request) {
+        if (Vehicle::where('make', $request->make)
+        ->where('model', $request->model)
+        ->where('year', $request->year)
+        ->where('cylinders', $request->cylinders)->exists())
+            {
+                return $this->assignVehicle($request);
+            }
+
         $vehicle = new Vehicle;
         $vehicle->make = $request->make;
         $vehicle->model = $request->model;
@@ -40,4 +48,15 @@ class VehicleController extends Controller
         ], 200);
     }
     
+
+    public function assignVehicle(Request $request) 
+    {
+        $user_vehicle = new UserVehicle;
+        $user_vehicle->users_id = 1;
+        $user_vehicle->vehicles_id = Vehicle::where('make', $request->make)
+        ->where('model', $request->model)
+        ->where('year', $request->year)
+        ->where('cylinders', $request->cylinders)->pluck(id);
+        dd($user_vehicle->vehicles_id);
+    }
 }
