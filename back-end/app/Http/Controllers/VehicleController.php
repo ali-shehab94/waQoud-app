@@ -22,4 +22,14 @@ class VehicleController extends Controller
             "user_vehicles" => $vehicle,
         ], 200);
     }
+
+    public function addVehicle(Request $request) {
+        $vehicle = new Vehicle;
+        $vehicle->make
+        //now vehicle array has only vehicles with their info
+        return response()->json([
+            "status" => "success",
+            "user_vehicles" => $vehicle,
+        ], 200);
+    }
 }
