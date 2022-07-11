@@ -90,5 +90,4 @@ class FuelController extends Controller
         ], 200);
     }
 
-   
 }

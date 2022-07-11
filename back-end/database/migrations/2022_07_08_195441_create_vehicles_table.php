@@ -19,8 +19,8 @@ class CreateVehiclesTable extends Migration
             $table->string('model');
             $table->integer('year');
             $table->integer('cylinders');
-            $table->integer('highway_mileage');
-            $table->integer('city_mileage');
+            $table->decimal('highway_kmpl');
+            $table->decimal('city_kmpl');
             $table->timestamps();
         });
     }

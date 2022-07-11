@@ -25,11 +25,19 @@ class VehicleController extends Controller
 
     public function addVehicle(Request $request) {
         $vehicle = new Vehicle;
-        $vehicle->make
-        //now vehicle array has only vehicles with their info
+        $vehicle->make = $request->make;
+        $vehicle->model = $request->model;
+        $vehicle->year = $request->year;
+        $vehicle->cylinders = $request->cylinders;
+        $vehicle->highway_kmpl = $request->highway_mpg / 2.352;
+        $vehicle->city_kmpl = $request->city_mpg / 2.352;
+        $vehicle->save();
+
+
         return response()->json([
             "status" => "success",
-            "user_vehicles" => $vehicle,
+            "message" => "vehicle added successfully"
         ], 200);
     }
+    
 }
