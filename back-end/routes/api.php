@@ -19,3 +19,4 @@ use App\Http\Controllers\FuelController;
 Route::get('/user_vehicles/{id}', [VehicleController::class, 'getUserVehicles']);
 Route::get('/fuel_prices', [FuelController::class, 'getFuelPrices']);
 Route::get('/scrape_fuel_prices', [FuelController::class, 'scrapeFuelPrices']);
+
