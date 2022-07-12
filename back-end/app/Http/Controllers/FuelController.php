@@ -90,4 +90,11 @@ class FuelController extends Controller
         ], 200);
     }
 
+
+    // public function tripCost(Request $request)
+    // {
+    //     $distance = $request->distance;
+    //     $
+    // }
+
 }

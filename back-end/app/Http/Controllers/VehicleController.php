@@ -8,18 +8,40 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
-    public function getUserVehicles($id) {
+    public function getUserVehicles($id, Request $request) {
         //gets the user plus the vehicles
         $user_vehicles = UserVehicle::where('users_id', $id)->with('vehicle')->get();
+        $vehicle = Vehicle::where('id', $request["vehicle_id"])->first();
         //for each loop to have only vehicles for getUserVehicles' case
-        $vehicle = [];
+        $vehicles = [];
         foreach($user_vehicles as $user_vehicle) {
-            array_push($vehicle, $user_vehicle->vehicle);
+            array_push($vehicles, $user_vehicle->vehicle);
         }
-        //now vehicle array has only vehicles with their info
+        //now vehicle variable is an array that has all vehicles with their info
+
+        //if a vehicle _id is specified in the request, only that vehicle will be return, else all vehicles will be returned
+        if($request->has('vehicle_id')) {
+            return response()->json([
+                "status" => "success",
+                "specified" => $vehicle,
+            ], 200);
+        }else {
+            return response()->json([
+                "status" => "success",
+                "user_vehicles" => $vehicles,
+            ], 200);
+        };
+    }
+
+    public function getVehicleKmpl(Request $request)
+    {
+        $vehicle = Vehicle::where('id', $request["vehicle_id"])->first();
+        // $vehicle = $vehicle->highway_kmpl;
+        // dd($vehicle);
+        $vehicle_kmpl = ($vehicle->highway_kmpl + $vehicle->city_kmpl) / 2;
         return response()->json([
             "status" => "success",
-            "user_vehicles" => $vehicle,
+            "kmpl" => $vehicle_kmpl
         ], 200);
     }
 
@@ -59,4 +81,6 @@ class VehicleController extends Controller
         ->where('cylinders', $request->cylinders)->pluck(id);
         dd($user_vehicle->vehicles_id);
     }
+
+    
 }
