@@ -20,6 +20,8 @@ Route::get('/user_vehicles/{id}', [VehicleController::class, 'getUserVehicles'])
 Route::get('/vehicle_kpml', [VehicleController::class, 'getVehicleKmpl']);
 Route::post('/add_vehicle', [VehicleController::class, 'addVehicle']);
 
+
+Route::post('/trip_cost', [FuelController::class, 'calculateTripCost']);
 Route::get('/fuel_prices', [FuelController::class, 'getFuelPrices']);
 Route::get('/scrape_fuel_prices', [FuelController::class, 'scrapeFuelPrices']);
 

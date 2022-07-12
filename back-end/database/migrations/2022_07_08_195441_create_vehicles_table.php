@@ -19,8 +19,9 @@ class CreateVehiclesTable extends Migration
             $table->string('model');
             $table->integer('year');
             $table->integer('cylinders');
-            $table->decimal('highway_kmpl');
-            $table->decimal('city_kmpl');
+            //fueltype 1 is UNL 95, 2 is UNL 98, 3 is Diesel
+            $table->integer('fuel_type');
+            $table->decimal('kmpl');
             $table->timestamps();
         });
     }

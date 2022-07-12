@@ -38,7 +38,7 @@ class VehicleController extends Controller
         $vehicle = Vehicle::where('id', $request["vehicle_id"])->first();
         // $vehicle = $vehicle->highway_kmpl;
         // dd($vehicle);
-        $vehicle_kmpl = ($vehicle->highway_kmpl + $vehicle->city_kmpl) / 2;
+        $vehicle_kmpl = ($vehicle->kpml);
         return response()->json([
             "status" => "success",
             "kmpl" => $vehicle_kmpl
@@ -58,9 +58,9 @@ class VehicleController extends Controller
         $vehicle->make = $request->make;
         $vehicle->model = $request->model;
         $vehicle->year = $request->year;
+        $vehicle->fuel_type = $request->fuel_type;
         $vehicle->cylinders = $request->cylinders;
-        $vehicle->highway_kmpl = $request->highway_mpg / 2.352;
-        $vehicle->city_kmpl = $request->city_mpg / 2.352;
+        $vehicle->kmpl = $request->mpg / 2.352;
         $vehicle->save();
 
 
