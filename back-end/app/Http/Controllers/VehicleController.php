@@ -36,9 +36,8 @@ class VehicleController extends Controller
     public function getVehicleKmpl(Request $request)
     {
         $vehicle = Vehicle::where('id', $request["vehicle_id"])->first();
-        // $vehicle = $vehicle->highway_kmpl;
-        // dd($vehicle);
-        $vehicle_kmpl = ($vehicle->kpml);
+        dd($vehicle);
+        $vehicle_kmpl = $vehicle->kpml;
         return response()->json([
             "status" => "success",
             "kmpl" => $vehicle_kmpl

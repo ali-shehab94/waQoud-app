@@ -49,7 +49,8 @@ class FuelController extends Controller
 
 
         //if condition to check if there is a difference in price, if true, the new price is saved in database
-        if ($this->UNL95_price->price != $new_UNL95_price)
+        if (FuelPrice::exists()) {
+            if ($this->UNL95_price->price != $new_UNL95_price)
         {
             $UNL95_difference = $this->UNL95_price->price - $new_UNL95_price;
             $UNL95 = new FuelPrice;
@@ -75,6 +76,24 @@ class FuelController extends Controller
             $Diesel->price = $new_Diesel_price;
             $Diesel->save();
         }
+        } else {
+            $UNL95 = new FuelPrice;
+            $UNL95->fuel_types_id = 1;
+            $UNL95->price = $new_UNL95_price;
+            $UNL95->save();
+
+            $UNL98 = new FuelPrice;
+            $UNL98->fuel_types_id = 2;
+            $UNL98->price = $new_UNL98_price;
+            $UNL98->save();
+
+            $Diesel = new FuelPrice;
+            $Diesel->fuel_types_id = 3;
+            $Diesel->price = $new_Diesel_price;
+            $Diesel->save();
+        }
+
+        
 
         //display prices comes directly from scraping the website
         $display_prices = array(
