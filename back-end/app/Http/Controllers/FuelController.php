@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Goutte\Client;
 use App\Models\FuelType;
+use App\Models\Vehicle;
 use App\Models\FuelPrice;
 
 class FuelController extends Controller
@@ -113,13 +114,31 @@ class FuelController extends Controller
 
     public function calculateTripCost(Request $request)
     {
+        $vehicle = Vehicle::where('id', $request->vehicle_id)->first();
+        $price = 0;
+        if ($vehicle->fuel_type == 1)
+        {
+            $price = $this->UNL95_price->price;
+        }
+        else if ($vehicle->fuel_type == 2)
+        {
+            $price = $this->UNL98_price->price;
+        }
+        else if ($vehicle->fuel_type == 3)
+        {
+            $price = $this->Diesel_price->price;
+        }
+
+        $liter_price = $price / 20;
         $distance = $request->distance;
-        $kmpl = $request->kmpl;
+        $kmpl = $vehicle->kmpl;
         $amt_fuel_needed = $distance / $kmpl;
-        // $trip_cost = round($trip_cost, 2);
+        $total = $amt_fuel_needed * $liter_price;
+        $trip_cost = number_format($total);
+
         return response()->json([
             "status" => "success",
-            "trip cost" => $amt_fuel_needed,
+            "trip cost" => $trip_cost . ' LBP',
             "this variable" => $this->UNL95_price
         ]);
     }
