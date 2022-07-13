@@ -31,13 +31,14 @@ class FuelController extends Controller
     }
 
 
-    //this api is made to be called on refresh or useEffect
+    //this api will scrape IPT website for updates in gas price
+    //made to be called on refresh
     public function scrapeFuelPrices()
     {
         //create a goutte client
         $client = new Client();
         $url = 'https://www.iptgroup.com.lb/ipt/en/our-stations/fuel-prices';
-        //scrape url and filter data
+        //scrape page and filter data
         $page = $client->request('GET', $url);
         $rawData = $page->filter('.pricesTable')->text();
         $myArray = explode(' ', $rawData);
@@ -49,8 +50,9 @@ class FuelController extends Controller
         // dd($UNL95_price->price == $new_UNL95_price);
 
 
-        //if condition to check if there is a difference in price, if true, the new price is saved in database
+        //check if db is empty
         if (FuelPrice::exists()) {
+            //if condition to check if price changed, if true, the new price is saved in database
             if ($this->UNL95_price->price != $new_UNL95_price)
         {
             $UNL95_difference = $this->UNL95_price->price - $new_UNL95_price;
