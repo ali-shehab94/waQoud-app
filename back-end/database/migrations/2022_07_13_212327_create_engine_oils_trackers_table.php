@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWheelTrackersTable extends Migration
+class CreateEngineOilsTrackersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateWheelTrackersTable extends Migration
      */
     public function up()
     {
-        Schema::create('wheel_trackers', function (Blueprint $table) {
+        Schema::create('engine_oils_trackers', function (Blueprint $table) {
             $table->id();
+            $table->integer('users_vehicles_id');
+            $table->integer('engine_oils_id');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateWheelTrackersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wheel_trackers');
+        Schema::dropIfExists('engine_oil_trackers');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrakeTrackersTable extends Migration
+class CreateBrakesTrackersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateBrakeTrackersTable extends Migration
      */
     public function up()
     {
-        Schema::create('brake_trackers', function (Blueprint $table) {
+        Schema::create('brakes_trackers', function (Blueprint $table) {
             $table->id();
+            $table->integer('users_vehicles_id');
+            $table->integer('brakes_id');
             $table->timestamps();
         });
     }

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class EngineOilTracker extends Model
 {
     use HasFactory;
+    protected $table = 'engine_oils_trackers';
 }

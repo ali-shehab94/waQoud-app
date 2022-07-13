@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class WheelTracker extends Model
 {
     use HasFactory;
+    protected $table = 'wheels_trackers';
 }
