@@ -9,4 +9,9 @@ class EngineOilTracker extends Model
 {
     use HasFactory;
     protected $table = 'engine_oils_trackers';
+
+    public function engineOils()
+    {
+        return $this->hasMany(EngineOil::class);
+    }
 }

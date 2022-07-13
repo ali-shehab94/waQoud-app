@@ -9,5 +9,5 @@ class EngineOil extends Model
 {
     use HasFactory;
     protected $table = 'engine_oils';
-
+    
 }
