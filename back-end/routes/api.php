@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\FuelController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,8 @@ Route::post('/trip_cost', [FuelController::class, 'calculateTripCost']);
 Route::get('/fuel_prices', [FuelController::class, 'getFuelPrices']);
 Route::get('/scrape_fuel_prices', [FuelController::class, 'scrapeFuelPrices']);
 
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/refresh', [AuthController::class, 'refresh']);
+Route::post('/profile', [AuthController::class, 'profile']);
