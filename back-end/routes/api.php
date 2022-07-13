@@ -19,7 +19,7 @@ use App\Http\Controllers\FuelController;
 Route::get('/user_vehicles/{id}', [VehicleController::class, 'getUserVehicles']);
 Route::get('/vehicle_kpml', [VehicleController::class, 'getVehicleKmpl']);
 Route::post('/add_vehicle', [VehicleController::class, 'addVehicle']);
-
+Route::post('/assign_vehicle', [VehicleController::class, 'assignVehicle']);
 
 Route::post('/trip_cost', [FuelController::class, 'calculateTripCost']);
 Route::get('/fuel_prices', [FuelController::class, 'getFuelPrices']);

@@ -71,14 +71,29 @@ class VehicleController extends Controller
 
     public function assignVehicle(Request $request) 
     {
-        $user_vehicle = new UserVehicle;
-        $user_vehicle->users_id = 1;
-        $user_vehicle->vehicles_id = Vehicle::where('make', $request->make)
+        $vehicles_id = Vehicle::where('make', $request->make)
         ->where('model', $request->model)
         ->where('year', $request->year)
-        ->where('cylinders', $request->cylinders)->pluck(id);
-        dd($user_vehicle->vehicles_id);
+        ->where('cylinders', $request->cylinders)->pluck('id');
+        $vehicles_id = $vehicles_id[0];
+        if (UserVehicle::where('users_id', $request->users_id)
+        ->where('vehicles_id', $vehicles_id)->exists())
+        {
+            return response()->json([
+                "status" => "success",
+                "message" => "user already has this vehicle"
+            ], 200);
+        }
+
+        $user_vehicle = new UserVehicle;
+        $user_vehicle->users_id = $request->users_id;
+        $user_vehicle->vehicles_id = $vehicles_id;
+        $user_vehicle->save();
+        // dd($user_vehicle->vehicles_id[0]);
+        return response()->json([
+            "status" => "success",
+            "message" => "vehicle with id $vehicles_id successfully to user with id $user_vehicle->users_id"
+        ], 200);
     }
 
-    
 }

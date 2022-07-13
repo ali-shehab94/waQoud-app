@@ -11,7 +11,7 @@ use App\Models\FuelPrice;
 class FuelController extends Controller
 {
 
-
+    //setting global varaibles so I can use them in other functions
     public function __construct()
     {
         $this->UNL95_price = FuelPrice::where('fuel_types_id', 1)->latest()->first();
@@ -114,8 +114,11 @@ class FuelController extends Controller
 
     public function calculateTripCost(Request $request)
     {
+        //get vehicle by id
         $vehicle = Vehicle::where('id', $request->vehicle_id)->first();
+        //assign price variable to 0
         $price = 0;
+        //if conditions to determine what fuel type the vehicle uses 
         if ($vehicle->fuel_type == 1)
         {
             $price = $this->UNL95_price->price;
@@ -129,17 +132,18 @@ class FuelController extends Controller
             $price = $this->Diesel_price->price;
         }
 
+        //prices are for 20 L of each
         $liter_price = $price / 20;
         $distance = $request->distance;
         $kmpl = $vehicle->kmpl;
+        //amount of fuel needed is the distance divided by km per liter
         $amt_fuel_needed = $distance / $kmpl;
         $total = $amt_fuel_needed * $liter_price;
         $trip_cost = number_format($total);
 
         return response()->json([
             "status" => "success",
-            "trip cost" => $trip_cost . ' LBP',
-            "this variable" => $this->UNL95_price
+            "trip cost" => $trip_cost . ' LBP'
         ]);
     }
 
