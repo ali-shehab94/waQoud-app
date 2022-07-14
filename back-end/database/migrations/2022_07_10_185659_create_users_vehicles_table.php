@@ -17,6 +17,9 @@ class CreateUsersVehiclesTable extends Migration
             $table->id();
             $table->integer('users_id');
             $table->integer('vehicles_id');
+            $table->integer('brakes_id')->nullable();
+            $table->integer('wheels_id')->nullable();
+            $table->integer('engine_oils_id')->nullable();
             $table->timestamps();
         });
     }
