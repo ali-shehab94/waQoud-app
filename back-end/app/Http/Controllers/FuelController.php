@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Goutte\Client;
 use App\Models\FuelType;
-use App\Models\Vehicle;
+use App\Models\UserVehicle;
 use App\Models\FuelPrice;
 
 class FuelController extends Controller
@@ -121,19 +121,20 @@ class FuelController extends Controller
     public function calculateTripCost(Request $request)
     {
         //get vehicle by id
-        $vehicle = Vehicle::where('id', $request->vehicle_id)->first();
+        $vehicle = UserVehicle::where('id', $request->users_vehicles_id)->with('vehicle')->first();
+        $vehicle = $vehicle->vehicle;
         //assign price variable to 0
         $price = 0;
         //if conditions to determine what fuel type the vehicle uses 
-        if ($vehicle->fuel_type == 1)
+        if ($vehicle[0]->fuel_type == 1)
         {
             $price = $this->UNL95_price->price;
         }
-        else if ($vehicle->fuel_type == 2)
+        else if ($vehicle[0]->fuel_type == 2)
         {
             $price = $this->UNL98_price->price;
         }
-        else if ($vehicle->fuel_type == 3)
+        else if ($vehicle[0]->fuel_type == 3)
         {
             $price = $this->Diesel_price->price;
         }
@@ -142,7 +143,7 @@ class FuelController extends Controller
         $liter_price = $price / 20;
         //distance in km will e brought from google api and inserted in request body
         $distance = $request->distance;
-        $kmpl = $vehicle->kmpl;
+        $kmpl = $vehicle[0]->kmpl;
         //amount of fuel needed is the distance divided by km per liter
         $amt_fuel_needed = $distance / $kmpl;
         $total = $amt_fuel_needed * $liter_price;

@@ -67,6 +67,7 @@ class VehicleController extends Controller
         ->where('cylinders', $request->cylinders)->pluck('id');
         //get id from variable
         $vehicles_id = $vehicles_id[0];
+        //check if user already added same vehicle to prevent duplicates
         if (UserVehicle::where('users_id', $request->users_id)
         ->where('vehicles_id', $vehicles_id)->exists())
         {
