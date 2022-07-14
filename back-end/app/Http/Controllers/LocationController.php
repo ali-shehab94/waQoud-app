@@ -32,4 +32,16 @@ class LocationController extends Controller
             "favorite locations" => $user_locations
         ]);
     }
+
+    public function getLocation($id)
+    {
+        $location = FavoriteLocation::where('id', $id)->first();
+        $coordinates = array('lat' => $location->latitude, 'long' => $location->longitude);
+        return response()->json([
+            "status" => "success",
+            "location coordinates" => $coordinates
+        ]);
+    }
+
+   
 }

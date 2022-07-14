@@ -24,6 +24,10 @@ Route::post('/trip_cost', [FuelController::class, 'calculateTripCost']);
 Route::get('/fuel_prices', [FuelController::class, 'getFuelPrices']);
 Route::get('/scrape_fuel_prices', [FuelController::class, 'scrapeFuelPrices']);
 
+Route::post('/add_fav_location', [LocationController::class, 'addFavLocation']);
+Route::get('/get_fav_locations/{id}', [LocationController::class, 'getFavLocations']);
+Route::get('/get_location/{id}', [LocationController::class, 'getLocation']);
+
 Route::post('/add_brake_tracker', [VehicleTrackerController::class, 'addBrakeTracker']);
 
 
