@@ -57,4 +57,15 @@ class VehicleTrackerController extends Controller
         ]);
     }
 
+    public function getTrackers($id)
+    {
+        $vehicle = UserVehicle::where('id', $id)->with('brakes', 'wheels', 'engineOils')->first();
+        return response()->json([
+            "status" => "success",
+            "brakes" => $vehicle->brakes,
+            "wheels" => $vehicle->wheels,
+            "engine_oil" => $vehicle->engineOils
+        ]);
+    }
+
 }

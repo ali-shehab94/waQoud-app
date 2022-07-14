@@ -20,14 +20,14 @@ class UserVehicle extends Model
     }
     public function brakes()
     {
-        return $this->hasMany(Vehicle::class, 'id', 'brakes_id');
+        return $this->hasMany(Brake::class, 'id', 'brakes_id');
     }
     public function wheels()
     {
-        return $this->hasMany(Vehicle::class, 'id', 'wheels_id');
+        return $this->hasMany(Wheel::class, 'id', 'wheels_id');
     }
     public function engineOils()
     {
-        return $this->hasMany(Vehicle::class, 'id', 'engine_oils_id');
+        return $this->hasMany(EngineOil::class, 'id', 'engine_oils_id');
     }
 }
