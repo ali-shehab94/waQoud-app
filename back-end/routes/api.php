@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\FuelController;
 use App\Http\Controllers\VehicleTrackerController;
+use App\Http\Controllers\LocationController;
+
 use App\Http\Controllers\AuthController;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -23,3 +25,6 @@ Route::get('/fuel_prices', [FuelController::class, 'getFuelPrices']);
 Route::get('/scrape_fuel_prices', [FuelController::class, 'scrapeFuelPrices']);
 
 Route::post('/add_brake_tracker', [VehicleTrackerController::class, 'addBrakeTracker']);
+
+
+Route::post('/get_fav_location', [LocationController::class, 'getFavLocations']);
