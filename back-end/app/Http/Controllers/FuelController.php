@@ -50,7 +50,7 @@ class FuelController extends Controller
         // dd($UNL95_price->price == $new_UNL95_price);
 
 
-        //check if db is empty
+        //check if there are any fuel prices saved to compare
         if (FuelPrice::exists()) {
             //if condition to check if price changed, if true, the new price is saved in database
             if ($this->UNL95_price->price != $new_UNL95_price)
@@ -79,7 +79,9 @@ class FuelController extends Controller
             $Diesel->price = $new_Diesel_price;
             $Diesel->save();
         }
-        } else {
+        } 
+        //else if there are no prices in database to compare to we just save the new prices
+        else {
             $UNL95 = new FuelPrice;
             $UNL95->fuel_types_id = 1;
             $UNL95->price = $new_UNL95_price;
@@ -99,14 +101,16 @@ class FuelController extends Controller
         
 
         //display prices comes directly from scraping the website
-        $display_prices = array(
-            'UNL_95' => $myArray[2],
-            'UNL_95_difference' => $myArray[4],
-            'UNL_98' => $myArray[8],
-            'UNL_98_difference' => $myArray[10],
-            'Diesel' => $myArray[13],
-            'Diesel difference' => $myArray[15],
-        );
+        // $display_prices = array(
+        //     'UNL_95' => $myArray[2],
+        //     'UNL_95_difference' => $myArray[4],
+        //     'UNL_98' => $myArray[8],
+        //     'UNL_98_difference' => $myArray[10],
+        //     'Diesel' => $myArray[13],
+        //     'Diesel difference' => $myArray[15],
+        // );
+
+        
         return response()->json([
             "status" => "success",
             "prices" => $display_prices
@@ -134,8 +138,9 @@ class FuelController extends Controller
             $price = $this->Diesel_price->price;
         }
 
-        //prices are for 20 L of each
+        //prices are for 20 L of gas
         $liter_price = $price / 20;
+        //distance in km will e brought from google api and inserted in request body
         $distance = $request->distance;
         $kmpl = $vehicle->kmpl;
         //amount of fuel needed is the distance divided by km per liter
