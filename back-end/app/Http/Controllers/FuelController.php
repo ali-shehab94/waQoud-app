@@ -142,7 +142,7 @@ class FuelController extends Controller
         //prices are for 20 L of gas
         $liter_price = $price / 20;
         //distance in km will e brought from google api and inserted in request body
-        $distance = $request->distance;
+        $distance = $request->distance / 1000;
         $kmpl = $vehicle[0]->kmpl;
         //amount of fuel needed is the distance divided by km per liter
         $amt_fuel_needed = $distance / $kmpl;
