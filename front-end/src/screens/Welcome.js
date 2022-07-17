@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
-import { WelcomeLogo } from './src/components/WelcomeLogo';
-import { RoundedButton } from './src/components/RoundedButton';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Pressable } from 'react-native';
+import { WelcomeLogo } from '../components/WelcomeLogo';
+import { RoundedButton } from '../components/RoundedButton';
 
 export const Welcome = () => {
     return (
@@ -10,6 +10,9 @@ export const Welcome = () => {
                 <RoundedButton text='Login' />
                 <RoundedButton text='Register' />
             </View>
+            <Pressable>
+                <Text style={styles.skip}>Skip</Text>
+            </Pressable>
         </View>
     );
 };
@@ -45,5 +48,9 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 100,
         backgroundColor: '#ccc',
+    },
+    skip: {
+        color: 'blue',
+        textDecorationLine: 'underline',
     },
 });
