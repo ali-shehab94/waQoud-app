@@ -1,16 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
-// import { Login } from './src/screens/Login';
-import { Welcome } from './src/screens/Welcome';
-import { RoundedButton } from './src/screens/Welcome';
+import { WelcomeLogo } from './src/components/WelcomeLogo';
+import { RoundedButton } from './src/components/RoundedButton';
 
-export default function App() {
+export const Welcome = () => {
     return (
-        <View>
-            <Welcome />
+        <View style={styles.container}>
+            <WelcomeLogo />
+            <View style={styles.buttonsContainer}>
+                <RoundedButton text='Login' />
+                <RoundedButton text='Register' />
+            </View>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
