@@ -34,14 +34,14 @@ const styles = StyleSheet.create({
         fontSize: 40,
     },
     inputContainer: {
-        marginTop: 30,
-        marginBottom: 40,
+        marginTop: 33,
+        marginBottom: 65,
         alignItems: 'center',
     },
     textInput: {
         margin: 10,
         width: 250,
-        height: 52,
+        height: 54,
         backgroundColor: 'white',
         borderRadius: 5,
         borderColor: 'black',

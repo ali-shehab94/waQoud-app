@@ -4,7 +4,8 @@ import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 import { Login } from './src/screens/Login';
 import { Welcome } from './src/screens/Welcome';
 import { Register } from './src/screens/Register';
+import { Profile } from './src/screens/Profile';
 
 export default function App() {
-    return <Register />;
+    return <Profile />;
 }

@@ -12,7 +12,7 @@ export const Register = () => {
                 <TextInput placeholder='Email' style={styles.textInput}></TextInput>
                 <TextInput placeholder='Password' style={styles.textInput}></TextInput>
             </View>
-            <RoundedButton text='Go' />
+            <RoundedButton text='Register' />
         </View>
     );
 };
@@ -30,16 +30,16 @@ const styles = StyleSheet.create({
         fontSize: 40,
     },
     inputContainer: {
-        marginTop: 30,
+        marginTop: 18,
         marginBottom: 10,
         alignItems: 'center',
     },
     textInput: {
         margin: 10,
         width: 250,
-        height: 52,
+        height: 54,
         backgroundColor: 'white',
-        borderRadius: 5,
+        borderRadius: 10,
         borderColor: 'black',
         borderWidth: 1.5,
     },
