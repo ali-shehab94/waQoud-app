@@ -2,19 +2,15 @@ import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-nat
 import { AntDesign } from '@expo/vector-icons';
 import { RoundedButton } from '../components/RoundedButton';
 
-export const Login = () => {
+export const Register = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Sing in</Text>
+            <Text style={styles.title}>Register</Text>
             <View style={styles.inputContainer}>
+                <TextInput placeholder='First name' style={styles.textInput}></TextInput>
+                <TextInput placeholder='Last name' style={styles.textInput}></TextInput>
                 <TextInput placeholder='Email' style={styles.textInput}></TextInput>
                 <TextInput placeholder='Password' style={styles.textInput}></TextInput>
-                <TouchableHighlight style={styles.googleButton}>
-                    <Text>
-                        <AntDesign name='google' size={24} color='black' />
-                        Continue with google
-                    </Text>
-                </TouchableHighlight>
             </View>
             <RoundedButton text='Go' />
         </View>
@@ -35,22 +31,10 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         marginTop: 30,
-        marginBottom: 40,
+        marginBottom: 10,
         alignItems: 'center',
     },
     textInput: {
-        margin: 10,
-        width: 250,
-        height: 52,
-        backgroundColor: 'white',
-        borderRadius: 5,
-        borderColor: 'black',
-        borderWidth: 1.5,
-    },
-    googleButton: {
-        backgroundColor: 'blue',
-        alignItems: 'center',
-        justifyContent: 'center',
         margin: 10,
         width: 250,
         height: 52,
