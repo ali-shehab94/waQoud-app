@@ -21,7 +21,7 @@ export const Profile = () => {
                     <Text style={styles.infoItems}>
                         <Ionicons name='car' size={40} color='black' />
                         My Vehicles
-                        <MaterialIcons name='keyboard-arrow-down' size={24} color='black' onPress={} />
+                        <MaterialIcons name='keyboard-arrow-down' size={24} color='black' />
                     </Text>
                     <Text style={styles.infoItems}>
                         <Ionicons name='settings-sharp' size={40} color='black' /> Settings
