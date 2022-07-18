@@ -13,19 +13,21 @@ export const Profile = () => {
                 <View style={styles.profile}>
                     <Text style={styles.name}>Name</Text>
                     <TouchableOpacity>
-                        <MaterialIcons name='mode-edit' size={24} color='black' />
+                        <MaterialIcons name='mode-edit' size={24} color='black' style={{ position: 'relative', right: 20 }} />
                     </TouchableOpacity>
                     <Image source={require('../../assets/logos/3.png')} style={styles.image} />
                 </View>
                 <View style={styles.info}>
-                    <Text style={styles.profile}>
-                        <Ionicons name='car' size={40} color='black' /> My Vehicles
+                    <Text style={styles.infoItems}>
+                        <Ionicons name='car' size={40} color='black' />
+                        My Vehicles
+                        <MaterialIcons name='keyboard-arrow-down' size={24} color='black' onPress={} />
                     </Text>
-                    <Text style={styles.profile}>
-                        <Ionicons name='car' size={40} color='black' /> My Vehicles
+                    <Text style={styles.infoItems}>
+                        <Ionicons name='settings-sharp' size={40} color='black' /> Settings
                     </Text>
-                    <Text style={styles.profile}>
-                        <Ionicons name='car' size={40} color='black' /> My Vehicles
+                    <Text style={styles.infoItems}>
+                        <Ionicons name='information-circle' size={40} color='black' /> Info
                     </Text>
                 </View>
             </View>
@@ -50,6 +52,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        marginBottom: 20,
+    },
+    infoItems: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 40,
     },
     image: {
         flex: 0.3,
