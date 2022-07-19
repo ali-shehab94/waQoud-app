@@ -1,25 +1,36 @@
 import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
 import axios from 'axios';
-import { useState } from 'react';
+import { userContext } from '../../UserContext';
+import { useState, useEffect, useContext } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { RoundedButton } from '../components/RoundedButton';
 
 export const Login = () => {
+    const [user, setUser] = useContext(userContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        return () => {
+            setEmail(''), setPassword('');
+        };
+    }, []);
 
     const handleLogin = async () => {
         axios({
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/login',
+            url: 'http://10.0.2.2:8000/api/login',
             data: {
                 email: email,
                 password: password,
             },
         })
-        .then(function(response){
-
-        }
+            .then((response) => {
+                setUser(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
