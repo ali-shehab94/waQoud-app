@@ -11,12 +11,15 @@ export const Login = () => {
     const handleLogin = async () => {
         axios({
             method: 'post',
-            url: '/user/12345',
+            url: 'http://127.0.0.1:8000/api/login',
             data: {
-                firstName: 'Fred',
-                lastName: 'Flintstone',
+                email: email,
+                password: password,
             },
-        });
+        })
+        .then(function(response){
+
+        }
     };
 
     return (
