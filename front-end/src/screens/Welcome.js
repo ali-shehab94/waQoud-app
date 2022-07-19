@@ -2,16 +2,33 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, Pressable } from 'rea
 import { WelcomeLogo } from '../components/WelcomeLogo';
 import { RoundedButton } from '../components/RoundedButton';
 
-export const Welcome = () => {
+export const Welcome = (props) => {
     return (
         <View style={styles.container}>
             <WelcomeLogo />
             <View style={styles.buttonsContainer}>
-                <RoundedButton text='Login' />
-                <RoundedButton text='Register' />
+                <RoundedButton
+                    text='Login'
+                    onPress={() => {
+                        props.navigation.navigate('Login');
+                    }}
+                />
+                <RoundedButton
+                    text='Register'
+                    onPress={() => {
+                        props.navigation.navigate('Register');
+                    }}
+                />
             </View>
             <Pressable>
-                <Text style={styles.skip}>Skip</Text>
+                <Text
+                    style={styles.skip}
+                    onPress={() => {
+                        props.navigation.navigate('Home');
+                    }}
+                >
+                    Skip
+                </Text>
             </Pressable>
         </View>
     );
