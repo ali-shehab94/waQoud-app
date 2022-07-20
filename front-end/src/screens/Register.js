@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { RoundedButton } from '../components/RoundedButton';
@@ -18,18 +19,16 @@ export const Register = () => {
         try {
             const { data } = await axios({
                 method: 'post',
-                url: 'http://127.0.0.1:8000/api/register',
+                url: 'http://10.0.2.2:8000/api/register',
                 data: {
+                    first_name: firstName,
+                    last_name: lastName,
                     email: email,
                     password: password,
                 },
             }).then((response) => {
-                setUser(response.data);
+                console.log(response.data);
             });
-
-            // .catch((error) => {
-            //     console.log(error);
-            // });
         } catch (error) {
             console.log(error.response.data);
         }
