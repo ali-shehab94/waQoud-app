@@ -109,7 +109,11 @@ class FuelController extends Controller
         //     'Diesel' => $myArray[13],
         //     'Diesel difference' => $myArray[15],
         // );
-
+            $display_prices = array(
+                'UNL_95' => FuelPrice::where('fuel_types_id', 1)->latest()->take(4)->get(),
+                'UNL_98' => FuelPrice::where('fuel_types_id', 2)->latest()->take(4)->get(),
+                'Diesel' => FuelPrice::where('fuel_types_id', 3)->latest()->take(4)->get(),
+            );
         
         return response()->json([
             "status" => "success",
@@ -154,5 +158,4 @@ class FuelController extends Controller
             "trip cost" => $trip_cost . ' LBP'
         ]);
     }
-
 }

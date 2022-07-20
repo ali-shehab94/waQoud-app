@@ -49,6 +49,7 @@ class VehicleController extends Controller
         $vehicle_exists = Vehicle::where('make', $request->make)
         ->where('model', $request->model)
         ->where('year', $request->year)
+        ->where('fuel_type', $request->fuel_type)
         ->where('cylinders', $request->cylinders)->exists();
         if (!$vehicle_exists)
             {
@@ -64,6 +65,7 @@ class VehicleController extends Controller
         $vehicles_id = Vehicle::where('make', $request->make)
         ->where('model', $request->model)
         ->where('year', $request->year)
+        ->where('fuel_type', $request->fuel_type)
         ->where('cylinders', $request->cylinders)->pluck('id');
         //get id from variable
         $vehicles_id = $vehicles_id[0];
