@@ -2,6 +2,9 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'reac
 import { MaterialIcons } from '@expo/vector-icons';
 
 export const Home = () => {
+    const [user, setUser] = useContext(userContext);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     return (
         <View style={styles.container}>
             <View style={styles.header}>

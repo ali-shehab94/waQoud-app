@@ -17,20 +17,24 @@ export const Login = () => {
     }, []);
 
     const handleLogin = async () => {
-        axios({
-            method: 'post',
-            url: 'http://10.0.2.2:8000/api/login',
-            data: {
-                email: email,
-                password: password,
-            },
-        })
-            .then((response) => {
+        try {
+            const { data } = await axios({
+                method: 'post',
+                url: 'http://10.0.2.2:8000/api/login',
+                data: {
+                    email: email,
+                    password: password,
+                },
+            }).then((response) => {
                 setUser(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
             });
+
+            // .catch((error) => {
+            //     console.log(error);
+            // });
+        } catch (error) {
+            console.log(error.response.data);
+        }
     };
 
     return (

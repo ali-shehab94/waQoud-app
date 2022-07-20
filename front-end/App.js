@@ -22,17 +22,17 @@ export default function App() {
         <userContext.Provider value={[user, setUser]}>
             <NavigationContainer>
                 {!user ? (
-                    <Stack.Navigator
+                    <guestStack.Navigator
                         initialRouteName='Main'
                         screenOptions={{
                             headerShown: false,
                         }}
                     >
-                        <Stack.Screen name='Welcome' component={Welcome} />
-                        <Stack.Screen name='Login' component={Login} />
-                        <Stack.Screen name='Register' component={Register} />
-                        <Stack.Screen name='Home' component={Home} />
-                    </Stack.Navigator>
+                        <guestStack.Screen name='Welcome' component={Welcome} />
+                        <guestStack.Screen name='Login' component={Login} />
+                        <guestStack.Screen name='Register' component={Register} />
+                        <guestStack.Screen name='Home' component={Home} />
+                    </guestStack.Navigator>
                 ) : (
                     <Home />
                 )}

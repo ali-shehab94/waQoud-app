@@ -11,7 +11,7 @@ use App\Models\FuelPrice;
 class FuelController extends Controller
 {
 
-    //setting global varaibles so I can use them in other functions
+    //setting global variables so I can use them in other functions
     public function __construct()
     {
         $this->UNL95_price = FuelPrice::where('fuel_types_id', 1)->latest()->first();
