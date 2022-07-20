@@ -100,7 +100,7 @@ class FuelController extends Controller
 
         
 
-        //display prices comes directly from scraping the website
+        // display prices comes directly from scraping the website
         // $display_prices = array(
         //     'UNL_95' => $myArray[2],
         //     'UNL_95_difference' => $myArray[4],

@@ -30,6 +30,43 @@ export const Home = () => {
                         <Text>Price</Text>
                     </View>
                 </View>
+                <View style={styles.info}>
+                    <View>
+                        <Text>HHH</Text>
+                    </View>
+                    <View style={styles.difference}>
+                        <View>
+                            <Text>HHH</Text>
+                        </View>
+                        <View>
+                            <Text>HHH</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.info}>
+                    <View>
+                        <Text>HHH</Text>
+                    </View>
+                    <View>
+                        <Text>HHH</Text>
+                    </View>
+                </View>
+                <View style={styles.info}>
+                    <View>
+                        <Text>HHH</Text>
+                    </View>
+                    <View>
+                        <Text>HHH</Text>
+                    </View>
+                </View>
+                <View style={styles.info}>
+                    <View>
+                        <Text>HHH</Text>
+                    </View>
+                    <View>
+                        <Text>HHH</Text>
+                    </View>
+                </View>
             </View>
         </View>
     );
@@ -67,6 +104,7 @@ const styles = StyleSheet.create({
     },
     chartTop: {
         flexDirection: 'row',
+        borderBottomWidth: 1,
     },
     price: {
         alignItems: 'center',
@@ -74,6 +112,15 @@ const styles = StyleSheet.create({
     selectGas: {
         width: '18%',
         borderRightWidth: 1,
+    },
+    info: {
+        height: 30,
         borderBottomWidth: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    difference: {
+        flexDirection: 'row',
     },
 });
