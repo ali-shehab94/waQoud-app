@@ -24,7 +24,7 @@ export const Welcome = (props) => {
                 <Text
                     style={styles.skip}
                     onPress={() => {
-                        props.navigation.navigate('Home');
+                        props.navigation.navigate('BottomTab');
                     }}
                 >
                     Skip

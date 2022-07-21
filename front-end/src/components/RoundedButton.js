@@ -21,8 +21,9 @@ const styles = StyleSheet.create({
         shadowColor: 'black',
     },
     buttonText: {
-        fontSize: 24,
+        fontSize: 22,
         color: '#0F5F53',
+        justifyContent: 'center',
     },
     shadowProp: {
         shadowColor: 'black',

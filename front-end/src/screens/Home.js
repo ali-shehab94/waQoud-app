@@ -1,17 +1,25 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { useContext, useState } from 'react';
+import { userContext } from '../../context/UserContext';
+import { RoundedButton } from '../components/RoundedButton';
+
 import { MaterialIcons } from '@expo/vector-icons';
 
 export const Home = () => {
-    const [user, setUser] = useContext(userContext);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerContent}>
                     <View>
                         <Image source={require('../../assets/logos/3.png')} style={styles.profileImg} />
-                        <Text style={styles.headerText}>Name</Text>
+                        <Text
+                            style={styles.headerText}
+                            onPress={() => {
+                                props.navigation.navigate('Profile');
+                            }}
+                        >
+                            Name
+                        </Text>
                     </View>
                     <Image source={require('../../assets/logos/2.png')} style={styles.logoImg} />
                 </View>
@@ -71,6 +79,9 @@ export const Home = () => {
                     </View>
                 </View>
             </View>
+            <View style={{ alignItems: 'center', margin: 40 }}>
+                <RoundedButton text='Select a vehicle ' />
+            </View>
         </View>
     );
 };
@@ -111,6 +122,8 @@ const styles = StyleSheet.create({
     },
     price: {
         alignItems: 'center',
+        marginLeft: 70,
+        paddingTop: 20,
     },
     selectGas: {
         width: '18%',
