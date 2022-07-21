@@ -18,6 +18,8 @@ export default function App() {
     const Stack = createStackNavigator();
     const Tab = createBottomTabNavigator();
 
+    console.log('Current user:', user);
+
     return (
         <UserContext.Provider value={[user, setUser]}>
             <NavigationContainer>

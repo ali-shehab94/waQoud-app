@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { RoundedButton } from '../components/RoundedButton';
 
-export const Login = () => {
+export const Login = ({ navigation }) => {
     const [user, setUser] = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -41,9 +41,9 @@ export const Login = () => {
             });
             console.log(JSON.stringify(response.data));
             setUser(response?.data);
-            console.log(user.authorization);
+            navigation.navigate('BottomTab');
         } catch (error) {
-            console.log(error.response.data);
+            console.log(error);
         }
     };
 

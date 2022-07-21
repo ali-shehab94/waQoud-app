@@ -1,9 +1,14 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { useContext } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { UserContext } from '../../context/UserContext';
 
 export const Profile = () => {
+    const [user, setUser] = useContext(UserContext);
+    console.log('USER:', user);
+
     return (
         <View style={styles.container}>
             <View>
