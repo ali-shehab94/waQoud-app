@@ -19,7 +19,7 @@ class VehicleController extends Controller
         }
         //now vehicle variable is an array that has all vehicles with their info
 
-        //if a vehicle _id is specified in the request, only that vehicle will be return, else all vehicles will be returned
+        //if a vehicle _id is specified in the request, only that vehicle will be returned, else all vehicles will be returned
         if($request->has('vehicle_id')) {
             return response()->json([
                 "status" => "success",

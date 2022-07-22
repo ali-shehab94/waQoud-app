@@ -14,12 +14,15 @@ class VehicleTrackerController extends Controller
 {
     public function addBrakeTracker(Request $request)
     {
+        $users_id = $request->users_id;
+        $vehicles_id = $request->vehicles_id;
+        $users_vehicles_id = UserVehicle::where('users_id', $users_id)->where('vehicles_id', $vehicles_id)->first()->id;
         $brake = new Brake;
         $brake->model_name = $request->model_name;
         $brake->lasts = $request->lasts;
         $brake->installed_at = $request->installed_at;
         $brake->save();
-        UserVehicle::where('id', $request->users_vehicles_id)->update(['brakes_id' => $brake->id]);
+        UserVehicle::where('id', $users_vehicles_id)->update(['brakes_id' => $brake->id]);
         return response()->json([
             "status" => "success",
             "message" => "brakes tracker updated"
@@ -28,12 +31,15 @@ class VehicleTrackerController extends Controller
 
     public function addWheelTracker(Request $request)
     {
+        $users_id = $request->users_id;
+        $vehicles_id = $request->vehicles_id;
+        $users_vehicles_id = UserVehicle::where('users_id', $users_id)->where('vehicles_id', $vehicles_id)->first()->id;
         $wheel = new Wheel;
         $wheel->model_name = $request->model_name;
         $wheel->lasts = $request->lasts;
         $wheel->installed_at = $request->installed_at;
         $wheel->save();
-        UserVehicle::where('id', $request->users_vehicles_id)->update(['wheels_id' => $wheel->id]);
+        UserVehicle::where('id', $users_vehicles_id)->update(['wheels_id' => $wheel->id]);
         return response()->json([
             "status" => "success",
             "message" => "wheels tracker updated"
@@ -42,21 +48,27 @@ class VehicleTrackerController extends Controller
 
     public function addEngineOilTracker(Request $request)
     {
+        $users_id = $request->users_id;
+        $vehicles_id = $request->vehicles_id;
+        $users_vehicles_id = UserVehicle::where('users_id', $users_id)->where('vehicles_id', $vehicles_id)->first()->id;
         $engine_oil = new EngineOil;
         $engine_oil->model_name = $request->model_name;
         $engine_oil->lasts = $request->lasts;
         $engine_oil->installed_at = $request->installed_at;
         $engine_oil->save();
-        UserVehicle::where('id', $request->users_vehicles_id)->update(['engine_oils_id' => $engine_oil->id]);
+        UserVehicle::where('id', $users_vehicles_id)->update(['engine_oils_id' => $engine_oil->id]);
         return response()->json([
             "status" => "success",
             "message" => "engine oil tracker updated"
         ]);
     }
 
-    public function getTrackers($id)
+    public function getTrackers(Request $request)
     {
-        $vehicle = UserVehicle::where('id', $id)->with('brakes', 'wheels', 'engineOils')->first();
+        $users_id = $request->users_id;
+        $vehicles_id = $request->vehicles_id;
+        $users_vehicles_id = UserVehicle::where('users_id', $users_id)->where('vehicles_id', $vehicles_id)->first()->id;
+        $vehicle = UserVehicle::where('id', $users_vehicles_id)->with('brakes', 'wheels', 'engineOils')->first();
         return response()->json([
             "status" => "success",
             "brakes" => $vehicle->brakes,
@@ -64,5 +76,4 @@ class VehicleTrackerController extends Controller
             "engine_oil" => $vehicle->engineOils
         ]);
     }
-
 }

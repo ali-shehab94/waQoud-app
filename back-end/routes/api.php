@@ -31,7 +31,7 @@ Route::get('/get_location/{id}', [LocationController::class, 'getLocation']);
 Route::post('/add_brake_tracker', [VehicleTrackerController::class, 'addBrakeTracker']);
 Route::post('/add_wheel_tracker', [VehicleTrackerController::class, 'addWheelTracker']);
 Route::post('/add_engine_oil_tracker', [VehicleTrackerController::class, 'addEngineOilTracker']);
-Route::get('/get_trackers/{id}', [VehicleTrackerController::class, 'getTrackers']);
+Route::post('/get_trackers', [VehicleTrackerController::class, 'getTrackers']);
 
 
 Route::post('/get_fav_location', [LocationController::class, 'getFavLocations']);
