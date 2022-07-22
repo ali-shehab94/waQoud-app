@@ -131,7 +131,7 @@ export const Home = () => {
                                         props.navigation.navigate('Profile');
                                     }}
                                 >
-                                    Name
+                                    {user.user.first_name}
                                 </Text>
                             </View>
                             <Image source={require('../../assets/logos/2.png')} style={styles.logoImg} />
@@ -151,7 +151,7 @@ export const Home = () => {
                                 />
                             </TouchableOpacity>
                             <View style={styles.price}>
-                                <Text>Price {prices && getSelectedGasTypePrices()[0].price}</Text>
+                                <Text style={styles.selectedPrice}>{prices && getSelectedGasTypePrices()[0].price} / 20L</Text>
                             </View>
                         </View>
                         {prices && priceRows()}
@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
         color: 'white',
+        paddingLeft: 10,
     },
     headerContent: {
         padding: 30,
@@ -208,6 +209,9 @@ const styles = StyleSheet.create({
     gasChart: {
         padding: 30,
     },
+    selectedPrice: {
+        fontSize: 20,
+    },
     chartTop: {
         flexDirection: 'row',
         borderBottomWidth: 1,
@@ -218,8 +222,8 @@ const styles = StyleSheet.create({
     },
     price: {
         alignItems: 'center',
-        marginLeft: 70,
-        paddingTop: 20,
+        paddingHorizontal: 40,
+        paddingTop: 10,
     },
     roundedButton: {
         zIndex: 100,
