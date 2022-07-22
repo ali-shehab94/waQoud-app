@@ -59,6 +59,7 @@ class FuelController extends Controller
             $UNL95 = new FuelPrice;
             $UNL95->fuel_types_id = 1;
             $UNL95->price = $new_UNL95_price;
+            $UNL95->difference = $UNL95_difference;
             $UNL95->save();
         }
 
@@ -68,6 +69,7 @@ class FuelController extends Controller
             $UNL98 = new FuelPrice;
             $UNL98->fuel_types_id = 2;
             $UNL98->price = $new_UNL98_price;
+            $UNL98->difference = $UNL98_difference;
             $UNL98->save();
         }
 
@@ -77,6 +79,7 @@ class FuelController extends Controller
             $Diesel = new FuelPrice;
             $Diesel->fuel_types_id = 3;
             $Diesel->price = $new_Diesel_price;
+            $Diesel->difference = $Diesel_difference;
             $Diesel->save();
         }
         } 
