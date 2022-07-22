@@ -17,6 +17,7 @@ class CreateFuelPricesTable extends Migration
             $table->id();
             $table->integer('fuel_types_id');
             $table->decimal('price');
+            $table->decimal('difference');
             $table->timestamps();
         });
     }
