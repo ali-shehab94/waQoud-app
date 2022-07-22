@@ -4,6 +4,9 @@ import { UserContext } from '../../context/UserContext';
 import { RoundedButton } from '../components/RoundedButton';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState, useEffect, useContext } from 'react';
+import { AntDesign } from '@expo/vector-icons';
+
+import { Ionicons } from '@expo/vector-icons';
 
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -13,9 +16,7 @@ export const Home = () => {
     const [items, setItems] = useState([]);
     const [prices, setPrices] = useState();
     const [gasType, setGasType] = useState('UNL_95');
-
     const [isCreating, setIsCreating] = useState(false);
-
     const [user, setUser] = useContext(UserContext);
 
     const handleFuelTypeDropdown = (val) => {
@@ -57,7 +58,7 @@ export const Home = () => {
                             <Text>{difference}</Text>
                         </View>
                         <View>
-                            <Text>{difference > 0 ? '^' : 'v'}</Text>
+                            <Text>{difference > 0 ? <AntDesign name='arrowup' size={24} color='red' /> : <AntDesign name='arrowdown' size={24} color='green' />}</Text>
                         </View>
                     </View>
                 </View>
@@ -101,8 +102,19 @@ export const Home = () => {
     return (
         <View style={styles.container}>
             {isCreating ? (
-                <View>
-                    <Text> CREATE NEW CAR PAGE</Text>
+                <View style={styles.addVehiclesPage}>
+                    <View>
+                        <Ionicons name='arrow-back-circle' size={24} color='black' onPress={() => setIsCreating(false)} />
+                    </View>
+                    <View>
+                        <Text>Add a vehicle</Text>
+                    </View>
+                    <View>
+                        <Text>Make{value}</Text>
+                    </View>
+                    <View>
+                        <TextInput placeholder='Make' />
+                    </View>
                 </View>
             ) : (
                 <>
@@ -142,10 +154,10 @@ export const Home = () => {
                         {prices && priceRows()}
                     </View>
                     <View style={styles.roundedButton}>
-                        {/* <RoundedButton text='Select a vehicle ' /> */}
                         <DropDownPicker
-                            textStyle={styles.buttonText}
-                            style={[styles.gasDropdown, styles.shadowProp]}
+                            placeholder='Select a Vehicle'
+                            textStyle={styles.dropDownText}
+                            style={[styles.gasDropdown]}
                             open={open}
                             value={value}
                             items={items}
@@ -153,8 +165,12 @@ export const Home = () => {
                             setValue={handleFuelTypeDropdown}
                             setItems={setItems}
                         />
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />
+                        </View>
                     </View>
-                    <RoundedButton text='Add new vehicle' onPress={() => setIsCreating(true)} />
+
+                    {/* <RoundedButton text='Add new vehicle' onPress={() => setIsCreating(true)} /> */}
                 </>
             )}
         </View>
@@ -195,6 +211,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderBottomWidth: 1,
     },
+    addVehiclesPage: {
+        padding: 40,
+    },
     price: {
         alignItems: 'center',
         marginLeft: 70,
@@ -204,7 +223,8 @@ const styles = StyleSheet.create({
         zIndex: 100,
         position: 'absolute',
         top: '55%',
-        left: '30%',
+        left: '35%',
+        justifyContent: 'center',
     },
     selectGas: {
         width: '18%',
@@ -221,6 +241,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 20,
         shadowColor: 'black',
     },
+    addVehicle: {
+        width: '70%',
+        color: 'black',
+    },
     info: {
         height: 30,
         borderBottomWidth: 1,
@@ -233,6 +257,11 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 22,
+        color: '#0F5F53',
+        justifyContent: 'center',
+    },
+    dropDownText: {
+        fontSize: 10,
         color: '#0F5F53',
         justifyContent: 'center',
     },

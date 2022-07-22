@@ -86,8 +86,7 @@ class VehicleController extends Controller
         // dd($user_vehicle->vehicles_id[0]);
         return response()->json([
             "status" => "success",
-            "message" => "vehicle with id $vehicles_id successfully to user with id $user_vehicle->users_id"
+            "message" => "vehicle with id $vehicles_id successfully to user, users_vehicles id is $user_vehicle->id"
         ], 200);
-
     }
 }
