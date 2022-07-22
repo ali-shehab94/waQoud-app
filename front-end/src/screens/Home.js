@@ -30,6 +30,7 @@ export const Home = () => {
         switch (gasType) {
             case 'UNL_95':
                 _prices = prices.prices['UNL_95'];
+
                 break;
             case 'UNL_98':
                 _prices = prices.prices['UNL_98'];
@@ -46,7 +47,8 @@ export const Home = () => {
         const _prices = getSelectedGasTypePrices();
 
         return _prices.map((price, index) => {
-            const difference = prices && _prices[index].price - (_prices[index + 1]?.price ?? 0);
+            const difference = prices && _prices[index].difference;
+            // const difference = prices && _prices[index].price - (_prices[index + 1]?.price ?? 0);
 
             return (
                 <View key={price.id} style={styles.info}>
@@ -169,8 +171,6 @@ export const Home = () => {
                             <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />
                         </View>
                     </View>
-
-                    {/* <RoundedButton text='Add new vehicle' onPress={() => setIsCreating(true)} /> */}
                 </>
             )}
         </View>
