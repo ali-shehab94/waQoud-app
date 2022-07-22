@@ -115,6 +115,9 @@ export const Home = () => {
                         <Text>Make{value}</Text>
                         <TextInput placeholder='Make' style={{ marginTop: 20, backgroundColor: '#D9D9D9', width: '80%', height: '30%', borderRadius: 10, paddingHorizontal: 7 }} />
                     </View>
+                    <View style={{ alignItems: 'center' }}>
+                        <RoundedButton text='Next' />
+                    </View>
                 </View>
             ) : (
                 <>
@@ -247,11 +250,12 @@ const styles = StyleSheet.create({
     addVehiclesTitle: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 70,
+        marginBottom: 40,
     },
     inputField: {
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 20,
     },
     info: {
         height: 30,
