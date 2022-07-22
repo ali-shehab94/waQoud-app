@@ -108,14 +108,12 @@ export const Home = () => {
                     <View>
                         <Ionicons name='arrow-back-circle' size={24} color='black' onPress={() => setIsCreating(false)} />
                     </View>
-                    <View>
-                        <Text>Add a vehicle</Text>
+                    <View style={styles.addVehiclesTitle}>
+                        <Text style={{ fontSize: 40 }}>Add a vehicle</Text>
                     </View>
-                    <View>
+                    <View style={styles.inputField}>
                         <Text>Make{value}</Text>
-                    </View>
-                    <View>
-                        <TextInput placeholder='Make' />
+                        <TextInput placeholder='Make' style={{ marginTop: 20, backgroundColor: '#D9D9D9', width: '80%', height: '30%', borderRadius: 10, paddingHorizontal: 7 }} />
                     </View>
                 </View>
             ) : (
@@ -212,7 +210,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     addVehiclesPage: {
-        padding: 40,
+        padding: 20,
+        marginTop: 20,
     },
     price: {
         alignItems: 'center',
@@ -244,6 +243,15 @@ const styles = StyleSheet.create({
     addVehicle: {
         width: '70%',
         color: 'black',
+    },
+    addVehiclesTitle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 70,
+    },
+    inputField: {
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     info: {
         height: 30,
