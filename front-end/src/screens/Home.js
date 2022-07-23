@@ -26,19 +26,21 @@ export const Home = () => {
     const [user, setUser] = useContext(UserContext);
     const [step, setStep] = useState(0);
     const [vehicle, setVehicle] = useState({});
+    const [make, setMake] = useState();
+    const [model, setModel] = useState();
+    const [year, setYear] = useState();
+    const [cylinders, setCylinders] = useState();
 
     const handleGasTypeValue = (val) => {
         setGasTypesValue(val());
     };
 
     const handleSelectVehicle = (val) => {
-        // console.log(val());
         setVehicleValue(val());
         setUser({ ...user, selectedVehicle: val() });
     };
     const handleAddVehicle = () => {
         setStep(step + 1);
-        console.log(step);
     };
 
     const getSelectedGasTypePrices = () => {
@@ -126,8 +128,11 @@ export const Home = () => {
                             size={24}
                             color='black'
                             onPress={() => {
-                                setIsCreating(false);
-                                setStep(0);
+                                if (step > 0) {
+                                    setStep(step - 1);
+                                } else {
+                                    setIsCreating(false);
+                                }
                             }}
                         />
                     </View>
@@ -138,22 +143,22 @@ export const Home = () => {
                     {step == 0 ? (
                         <View style={styles.inputField}>
                             <Text>Make</Text>
-                            <TextInput placeholder='Example Toyota' style={styles.addVehiclesInput} />
+                            <TextInput placeholder='Example Toyota' style={styles.addVehiclesInput} onChangeText={(value) => setMake(value)} />
                         </View>
                     ) : step == 1 ? (
                         <View style={styles.inputField}>
                             <Text>Model</Text>
-                            <TextInput placeholder='Example Corolla' style={styles.addVehiclesInput} />
+                            <TextInput placeholder='Example Corolla' style={styles.addVehiclesInput} onChangeText={(value) => setModel(value)} />
                         </View>
                     ) : step == 2 ? (
                         <View style={styles.inputField}>
                             <Text>Year</Text>
-                            <TextInput placeholder='Example 1998' style={styles.addVehiclesInput} />
+                            <TextInput placeholder='Example 1998' style={styles.addVehiclesInput} onChangeText={(value) => setYear(value)} />
                         </View>
                     ) : step == 3 ? (
                         <View style={styles.inputField}>
                             <Text>Cylinders</Text>
-                            <TextInput placeholder='Example 4' style={styles.addVehiclesInput} />
+                            <TextInput placeholder='Example 4' style={styles.addVehiclesInput} onChangeText={(value) => setCylinders(value)} />
                         </View>
                     ) : step == 4 ? (
                         <View style={styles.inputField}>
@@ -169,7 +174,15 @@ export const Home = () => {
                                 setOpen={setOpen}
                             />
                         </View>
-                    ) : null}
+                    ) : (
+                        <View>
+                            <Text>{make}</Text>
+                            <Text>{model}</Text>
+                            <Text>{year}</Text>
+                            <Text>{cylinders}</Text>
+                            <Text>{gasTypesValue}</Text>
+                        </View>
+                    )}
 
                     <View style={{ alignItems: 'center' }}>
                         <RoundedButton text='Next' onPress={handleAddVehicle} />
