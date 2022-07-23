@@ -16,23 +16,6 @@ export const Login = ({ navigation }) => {
         };
     }, []);
 
-    // const handleLogin = async () => {
-    //     const { data } = await axios({
-    //         method: 'post',
-    //         url: 'http://10.0.2.2:8000/api/login',
-    //         data: {
-    //             email: email,
-    //             password: password,
-    //         },
-    //     })
-    //         .then((response) => {
-    //             setUser(response.data);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error.response.data);
-    //         });
-    // };
-
     const handleLogin = async () => {
         try {
             const response = await axios.post('http://10.0.2.2:8000/api/login', JSON.stringify({ email, password }), {
@@ -46,23 +29,6 @@ export const Login = ({ navigation }) => {
             console.log(error);
         }
     };
-
-    // const handleLogin = async () => {
-    //     try {
-    //         const response = await axios.post('http://10.0.2.2:8000/api/login', JSON.stringify({ email, password }), {
-    //             headers: { 'Content-type': 'application/json' },
-    //             withCredentials: true,
-    //         });
-    //         console.log(JSON.stringify(response?.data));
-    //         const firstName = response?.data?.user?.first_name;
-    //         const token = response?.data?.authorization.token;
-
-    //         setAuth(token);
-    //         console.log(AuthContext.token);
-    //     } catch (error) {
-    //         console.log(error.response.data);
-    //     }
-    // };
 
     return (
         <View style={styles.container}>

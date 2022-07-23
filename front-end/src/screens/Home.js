@@ -12,21 +12,32 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export const Home = () => {
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
+    const [vehicleValue, setVehicleValue] = useState(null);
     const [items, setItems] = useState([]);
+    const [gasTypesValue, setGasTypesValue] = useState(null);
+    const [gasTypes, setGasTypes] = useState([
+        { label: 'UNL_95', value: 'UNL_95' },
+        { label: 'UNL_98', value: 'UNL_98' },
+        { label: 'Diesel', value: 'Diesel' },
+    ]);
     const [prices, setPrices] = useState();
     const [gasType, setGasType] = useState('UNL_95');
     const [isCreating, setIsCreating] = useState(false);
     const [user, setUser] = useContext(UserContext);
     const [step, setStep] = useState(0);
+    const [vehicle, setVehicle] = useState({});
 
-    const handleFuelTypeDropdown = (val) => {
+    const handleGasTypeValue = (val) => {
+        setGasTypesValue(val());
+    };
+
+    const handleSelectVehicle = (val) => {
         // console.log(val());
-        setValue(val());
+        setVehicleValue(val());
         setUser({ ...user, selectedVehicle: val() });
     };
     const handleAddVehicle = () => {
-        step++;
+        setStep(step + 1);
         console.log(step);
     };
 
@@ -110,7 +121,15 @@ export const Home = () => {
             {isCreating ? (
                 <View style={styles.addVehiclesPage}>
                     <View>
-                        <Ionicons name='arrow-back-circle' size={24} color='black' onPress={() => setIsCreating(false)} />
+                        <Ionicons
+                            name='arrow-back-circle'
+                            size={24}
+                            color='black'
+                            onPress={() => {
+                                setIsCreating(false);
+                                setStep(0);
+                            }}
+                        />
                     </View>
                     <View style={styles.addVehiclesTitle}>
                         <Text style={{ fontSize: 40 }}>Add a vehicle</Text>
@@ -118,17 +137,39 @@ export const Home = () => {
 
                     {step == 0 ? (
                         <View style={styles.inputField}>
-                            <Text>Make{value}</Text>
-                            <TextInput placeholder='Example Toyota' style={{ marginTop: 20, backgroundColor: '#D9D9D9', width: '80%', height: '30%', borderRadius: 10, paddingHorizontal: 7 }} />
+                            <Text>Make</Text>
+                            <TextInput placeholder='Example Toyota' style={styles.addVehiclesInput} />
                         </View>
                     ) : step == 1 ? (
                         <View style={styles.inputField}>
                             <Text>Model</Text>
-                            <TextInput placeholder='Example Corolla' style={{ marginTop: 20, backgroundColor: '#D9D9D9', width: '80%', height: '30%', borderRadius: 10, paddingHorizontal: 7 }} />
+                            <TextInput placeholder='Example Corolla' style={styles.addVehiclesInput} />
                         </View>
-                    ) : (
-                        icon0
-                    )}
+                    ) : step == 2 ? (
+                        <View style={styles.inputField}>
+                            <Text>Year</Text>
+                            <TextInput placeholder='Example 1998' style={styles.addVehiclesInput} />
+                        </View>
+                    ) : step == 3 ? (
+                        <View style={styles.inputField}>
+                            <Text>Cylinders</Text>
+                            <TextInput placeholder='Example 4' style={styles.addVehiclesInput} />
+                        </View>
+                    ) : step == 4 ? (
+                        <View style={styles.inputField}>
+                            <Text>Gas type</Text>
+                            <DropDownPicker
+                                style={styles.addGasTypeInput}
+                                placeholder='Select preferred gas type'
+                                textStyle={styles.dropDownText}
+                                open={open}
+                                items={gasTypes}
+                                value={gasTypesValue}
+                                setValue={handleGasTypeValue}
+                                setOpen={setOpen}
+                            />
+                        </View>
+                    ) : null}
 
                     <View style={{ alignItems: 'center' }}>
                         <RoundedButton text='Next' onPress={handleAddVehicle} />
@@ -173,14 +214,14 @@ export const Home = () => {
                     </View>
                     <View style={styles.roundedButton}>
                         <DropDownPicker
-                            placeholder='Select a Vehicle'
+                            placeholder='Select a vehicle'
                             textStyle={styles.dropDownText}
                             style={[styles.gasDropdown]}
                             open={open}
-                            value={value}
+                            value={vehicleValue}
                             items={items}
                             setOpen={setOpen}
-                            setValue={handleFuelTypeDropdown}
+                            setValue={handleSelectVehicle}
                             setItems={setItems}
                         />
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -197,6 +238,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#E9E9E9',
+    },
+    addGasTypeInput: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 40,
+        marginBottom: 20,
+        backgroundColor: '#D9D9D9',
+
+        borderRadius: 10,
+        paddingHorizontal: 10,
     },
     header: {
         backgroundColor: '#0F5F53',
@@ -270,6 +321,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 40,
+    },
+    addVehiclesInput: {
+        marginTop: 20,
+        backgroundColor: '#D9D9D9',
+        width: '80%',
+        height: '30%',
+        borderRadius: 10,
+        paddingHorizontal: 7,
     },
     inputField: {
         justifyContent: 'center',
