@@ -32,6 +32,7 @@ export const Home = () => {
     const [model, setModel] = useState();
     const [year, setYear] = useState();
     const [cylinders, setCylinders] = useState();
+    const [mpg, setMpg] = useState();
 
     const handleGasTypeValue = (val) => {
         setGasTypesValue(val());
@@ -41,7 +42,7 @@ export const Home = () => {
         setVehicleValue(val());
         setUser({ ...user, selectedVehicle: val() });
     };
-    const handleAddVehicle = () => {
+    const handleFetchVehicle = () => {
         if (step < 4) {
             setStep(step + 1);
         } else {
@@ -51,17 +52,35 @@ export const Home = () => {
                 })
                 .then((response) => {
                     newVehicle = response.data[0];
+                    setMpg(newVehicle['combination_mpg']);
+                    console.log(mpg);
                     // console.log(JSON.stringify(response.data));
-                    console.log(newVehicle['city_mpg']);
-                    axios.post('http://10.0.2.2:8000/api/login', JSON.stringify({ email, password }), {
-                        headers: { 'Content-type': 'application/json' },
-                        withCredentials: true,
-                    });
+                    addNewVehicle();
                 })
                 .catch((err) => {
-                    console.log(err);
+                    console.log(err.response.data);
                 });
         }
+    };
+
+    const addNewVehicle = () => {
+        if (gasTypes === 'UNL_95') {
+            fuelType = 1;
+        } else if (gasTypes === 'UNL_98') {
+            fuelType = 2;
+        } else {
+            fuelType = 3;
+        }
+        axios
+            .post(`http://10.0.2.2:8000/api/add_vehicle`, JSON.stringify({ fuel_type: fuelType, make, model, year, cylinders, users_id: user.user.id, mpg }), {
+                headers: { 'Content-type': 'application/json' },
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            });
     };
 
     const getSelectedGasTypePrices = () => {
@@ -206,7 +225,7 @@ export const Home = () => {
                     )}
 
                     <View style={{ alignItems: 'center' }}>
-                        <RoundedButton text='Next' onPress={handleAddVehicle} />
+                        <RoundedButton text='Next' onPress={handleFetchVehicle} />
                     </View>
                 </View>
             ) : (
