@@ -1,25 +1,66 @@
 import * as React from 'react';
-import MapView, { Callout, Marker } from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import MapView, { Callout, Circle, Marker } from 'react-native-maps';
+import { StyleSheet, TextInput, Text, View, Dimensions } from 'react-native';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { useState } from 'react';
 
 export const TripCalculator = () => {
+    const [pin, setPin] = useState({ latitude: 33.893743, longitude: 35.486086 });
     return (
         <View style={styles.container}>
+            <GooglePlacesAutocomplete
+                placeholder='Search'
+                onPress={(data, details = null) => {
+                    // 'details' is provided when fetchDetails = true
+                    console.log(data, details);
+                }}
+                query={{
+                    key: 'YOUR API KEY',
+                    language: 'en',
+                }}
+            />
             <MapView
+                provider='google'
+                loadingEnabled={true}
                 style={styles.map}
                 initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
+                    latitude: 33.893743,
+                    longitude: 35.486086,
+                    latitudeDelta: 0.04,
+                    longitudeDelta: 0.05,
+                }}
+            ></MapView>
+            <Marker
+                coordinate={pin}
+                draggable={true}
+                onDragStart={(e) => {
+                    console.log('Drag start', e.nativeEvent.coordinates);
+                }}
+                onDragEnd={(e) => {
+                    console.log('Drag end', e.nativeEvent.coordinates);
                 }}
             >
-                <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }}>
-                    <Callout>
-                        <Text>Go Here</Text>
-                    </Callout>
-                </Marker>
-            </MapView>
+                <Callout>
+                    <Text>Hi</Text>
+                </Callout>
+            </Marker>
+            {/* <View style={{ position: 'absolute', top: 10, width: '100%' }}>
+                <TextInput
+                    style={{
+                        borderRadius: 10,
+                        margin: 10,
+                        color: '#000',
+                        borderColor: '#666',
+                        backgroundColor: '#FFF',
+                        borderWidth: 1,
+                        height: 45,
+                        paddingHorizontal: 10,
+                        fontSize: 18,
+                    }}
+                    placeholder={'Search'}
+                    placeholderTextColor={'#666'}
+                />
+            </View> */}
         </View>
     );
 };

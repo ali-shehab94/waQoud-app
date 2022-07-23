@@ -18,11 +18,16 @@ export const Home = () => {
     const [gasType, setGasType] = useState('UNL_95');
     const [isCreating, setIsCreating] = useState(false);
     const [user, setUser] = useContext(UserContext);
+    const [step, setStep] = useState(0);
 
     const handleFuelTypeDropdown = (val) => {
         // console.log(val());
         setValue(val());
         setUser({ ...user, selectedVehicle: val() });
+    };
+    const handleAddVehicle = () => {
+        step++;
+        console.log(step);
     };
 
     const getSelectedGasTypePrices = () => {
@@ -30,7 +35,6 @@ export const Home = () => {
         switch (gasType) {
             case 'UNL_95':
                 _prices = prices.prices['UNL_95'];
-
                 break;
             case 'UNL_98':
                 _prices = prices.prices['UNL_98'];
@@ -111,12 +115,23 @@ export const Home = () => {
                     <View style={styles.addVehiclesTitle}>
                         <Text style={{ fontSize: 40 }}>Add a vehicle</Text>
                     </View>
-                    <View style={styles.inputField}>
-                        <Text>Make{value}</Text>
-                        <TextInput placeholder='Make' style={{ marginTop: 20, backgroundColor: '#D9D9D9', width: '80%', height: '30%', borderRadius: 10, paddingHorizontal: 7 }} />
-                    </View>
+
+                    {step == 0 ? (
+                        <View style={styles.inputField}>
+                            <Text>Make{value}</Text>
+                            <TextInput placeholder='Example Toyota' style={{ marginTop: 20, backgroundColor: '#D9D9D9', width: '80%', height: '30%', borderRadius: 10, paddingHorizontal: 7 }} />
+                        </View>
+                    ) : step == 1 ? (
+                        <View style={styles.inputField}>
+                            <Text>Model</Text>
+                            <TextInput placeholder='Example Corolla' style={{ marginTop: 20, backgroundColor: '#D9D9D9', width: '80%', height: '30%', borderRadius: 10, paddingHorizontal: 7 }} />
+                        </View>
+                    ) : (
+                        icon0
+                    )}
+
                     <View style={{ alignItems: 'center' }}>
-                        <RoundedButton text='Next' />
+                        <RoundedButton text='Next' onPress={handleAddVehicle} />
                     </View>
                 </View>
             ) : (
