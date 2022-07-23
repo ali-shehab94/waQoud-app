@@ -52,7 +52,7 @@ class VehicleController extends Controller
         ->where('fuel_type', $request->fuel_type)
         ->where('cylinders', $request->cylinders)->exists();
         if (!$vehicle_exists)
-            {
+            {   
                 $vehicle = new Vehicle;
                 $vehicle->make = $request->make;
                 $vehicle->model = $request->model;
@@ -86,7 +86,7 @@ class VehicleController extends Controller
         // dd($user_vehicle->vehicles_id[0]);
         return response()->json([
             "status" => "success",
-            "message" => "vehicle with id $vehicles_id successfully to user, users_vehicles id is $user_vehicle->id"
+            "message" => "vehicle with id $vehicles_id successfully to user with id $request->users_id"
         ], 200);
     }
 }
