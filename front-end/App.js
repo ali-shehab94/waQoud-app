@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { UserContext } from './context/UserContext';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
@@ -16,7 +15,6 @@ import { BottomTab } from './src/screens/BottomTab';
 export default function App() {
     const [user, setUser] = useState();
     const Stack = createStackNavigator();
-    const Tab = createBottomTabNavigator();
 
     console.log('Current user:', user);
 

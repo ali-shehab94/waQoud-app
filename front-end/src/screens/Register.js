@@ -4,33 +4,22 @@ import { useState, useEffect } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { RoundedButton } from '../components/RoundedButton';
 
-export const Register = () => {
+export const Register = ({ navigation }) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    useEffect(() => {
-        return () => {
-            setFirstName(''), setLastName(''), setEmail(''), setPassword('');
-        };
-    }, []);
 
     const handleRegister = async () => {
         try {
-            const { data } = await axios({
-                method: 'post',
-                url: 'http://10.0.2.2:8000/api/register',
-                data: {
-                    first_name: firstName,
-                    last_name: lastName,
-                    email: email,
-                    password: password,
-                },
-            }).then((response) => {
-                console.log(response.data);
+            const response = await axios.post('http://10.0.2.2:8000/api/register', JSON.stringify({ first_name: firstName, last_name: lastName, email, password }), {
+                headers: { 'Content-type': 'application/json' },
+                withCredentials: true,
             });
+            console.log(JSON.stringify(response.data));
+            navigation.navigate('Login');
         } catch (error) {
-            console.log(error.response.data);
+            console.log(error);
         }
     };
     return (
