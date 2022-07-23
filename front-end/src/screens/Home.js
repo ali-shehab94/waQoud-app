@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { CARS_API_KEY } from '../../config/env';
 import { UserContext } from '../../context/UserContext';
 import { RoundedButton } from '../components/RoundedButton';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -209,7 +210,7 @@ export const Home = () => {
                     <View style={styles.gasChart}>
                         <View style={styles.chartTop}>
                             <TouchableOpacity style={styles.selectGas}>
-                                <Text>UNL95</Text>
+                                <Text>{CARS_API_KEY}</Text>
                                 <MaterialIcons
                                     name='keyboard-arrow-down'
                                     size={24}
