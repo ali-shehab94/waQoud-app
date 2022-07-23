@@ -6,7 +6,7 @@ import { RoundedButton } from '../components/RoundedButton';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState, useEffect, useContext } from 'react';
 import { AntDesign } from '@expo/vector-icons';
-
+import { GasChart } from '../components/GasChart';
 import { Ionicons } from '@expo/vector-icons';
 
 import { MaterialIcons } from '@expo/vector-icons';
@@ -83,48 +83,6 @@ export const Home = () => {
             });
     };
 
-    const getSelectedGasTypePrices = () => {
-        let _prices = [];
-        switch (gasType) {
-            case 'UNL_95':
-                _prices = prices.prices['UNL_95'];
-                break;
-            case 'UNL_98':
-                _prices = prices.prices['UNL_98'];
-                break;
-            case 'Diesel':
-                _prices = prices.prices['Diesel'];
-                break;
-        }
-
-        return _prices;
-    };
-
-    const priceRows = () => {
-        const _prices = getSelectedGasTypePrices();
-
-        return _prices.map((price, index) => {
-            const difference = prices && _prices[index].difference;
-            // const difference = prices && _prices[index].price - (_prices[index + 1]?.price ?? 0);
-
-            return (
-                <View key={price.id} style={styles.info}>
-                    <View>
-                        <Text>{price.created_at.split('T')[0] + ' ' + price.created_at.split('T')[1].slice(0, 8)}</Text>
-                    </View>
-                    <View style={styles.difference}>
-                        <View>
-                            <Text>{difference}</Text>
-                        </View>
-                        <View>
-                            <Text>{difference > 0 ? <AntDesign name='arrowup' size={24} color='red' /> : <AntDesign name='arrowdown' size={24} color='green' />}</Text>
-                        </View>
-                    </View>
-                </View>
-            );
-        });
-    };
-
     useEffect(() => {
         user &&
             axios
@@ -143,19 +101,19 @@ export const Home = () => {
                     console.log(err);
                 });
 
-        axios
-            .get(`http://10.0.2.2:8000/api/scrape_fuel_prices`, {
-                headers: { 'Content-type': 'application/json' },
-                withCredentials: true,
-            })
-            .then((response) => {
-                setPrices(response.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        // axios
+        //     .get(`http://10.0.2.2:8000/api/scrape_fuel_prices`, {
+        //         headers: { 'Content-type': 'application/json' },
+        //         withCredentials: true,
+        //     })
+        //     .then((response) => {
+        //         setPrices(response.data);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
 
-        return setIsCreating(false);
+        // return setIsCreating(false);
     }, []);
 
     return (
@@ -230,41 +188,7 @@ export const Home = () => {
                 </View>
             ) : (
                 <>
-                    <View style={styles.header}>
-                        <View style={styles.headerContent}>
-                            <View>
-                                <Image source={require('../../assets/logos/3.png')} style={styles.profileImg} />
-                                <Text
-                                    style={styles.headerText}
-                                    onPress={() => {
-                                        props.navigation.navigate('Profile');
-                                    }}
-                                >
-                                    {user.user.first_name}
-                                </Text>
-                            </View>
-                            <Image source={require('../../assets/logos/2.png')} style={styles.logoImg} />
-                        </View>
-                    </View>
-                    <View style={styles.gasChart}>
-                        <View style={styles.chartTop}>
-                            <TouchableOpacity style={styles.selectGas}>
-                                <Text>{gasType}</Text>
-                                <MaterialIcons
-                                    name='keyboard-arrow-down'
-                                    size={24}
-                                    color='black'
-                                    onPress={() => {
-                                        alert('pressed');
-                                    }}
-                                />
-                            </TouchableOpacity>
-                            <View style={styles.price}>
-                                <Text style={styles.selectedPrice}>{prices && getSelectedGasTypePrices()[0].price} / 20L</Text>
-                            </View>
-                        </View>
-                        {prices && priceRows()}
-                    </View>
+                    <GasChart />
                     <View style={styles.roundedButton}>
                         <DropDownPicker
                             placeholder='Select a vehicle'

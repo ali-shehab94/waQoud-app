@@ -16,8 +16,6 @@ export default function App() {
     const [user, setUser] = useState();
     const Stack = createStackNavigator();
 
-    console.log('Current user:', user);
-
     return (
         <UserContext.Provider value={[user, setUser]}>
             <NavigationContainer>
