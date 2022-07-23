@@ -16,6 +16,7 @@ export const Home = () => {
     const [vehicleValue, setVehicleValue] = useState(null);
     const [items, setItems] = useState([]);
     const [gasTypesValue, setGasTypesValue] = useState(null);
+    var newVehicle;
     const [gasTypes, setGasTypes] = useState([
         { label: 'UNL_95', value: 'UNL_95' },
         { label: 'UNL_98', value: 'UNL_98' },
@@ -41,7 +42,26 @@ export const Home = () => {
         setUser({ ...user, selectedVehicle: val() });
     };
     const handleAddVehicle = () => {
-        setStep(step + 1);
+        if (step < 4) {
+            setStep(step + 1);
+        } else {
+            axios
+                .get(`https://api.api-ninjas.com/v1/cars?make=${make}&year=${year}&model=${model}&cylinders=${cylinders}`, {
+                    headers: { 'Content-type': 'application/json', 'X-Api-Key': CARS_API_KEY },
+                })
+                .then((response) => {
+                    newVehicle = response.data[0];
+                    // console.log(JSON.stringify(response.data));
+                    console.log(newVehicle['city_mpg']);
+                    axios.post('http://10.0.2.2:8000/api/login', JSON.stringify({ email, password }), {
+                        headers: { 'Content-type': 'application/json' },
+                        withCredentials: true,
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     };
 
     const getSelectedGasTypePrices = () => {
@@ -210,7 +230,7 @@ export const Home = () => {
                     <View style={styles.gasChart}>
                         <View style={styles.chartTop}>
                             <TouchableOpacity style={styles.selectGas}>
-                                <Text>{CARS_API_KEY}</Text>
+                                <Text>{gasType}</Text>
                                 <MaterialIcons
                                     name='keyboard-arrow-down'
                                     size={24}
