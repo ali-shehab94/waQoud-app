@@ -1,41 +1,75 @@
-import * as React from 'react';
 import MapView, { Callout, Circle, Marker } from 'react-native-maps';
 import { StyleSheet, TextInput, Text, View, Dimensions } from 'react-native';
+import { UserContext } from '../../context/UserContext';
+import * as Location from 'expo-location';
+import { MY_GOOGLE_API_KEY } from '../../config/env';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { useState } from 'react';
 
+import { useState, useContext, useEffect } from 'react';
 export const TripCalculator = () => {
     const [pin, setPin] = useState({ latitude: 33.893743, longitude: 35.486086 });
+    const [region, setRegion] = useState({ latitude: 33.893743, longitude: 35.486086 });
+    const [userLocation, setUserLocation] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
+    useEffect(() => {
+        GetCurrentLocation();
+    }, []);
+    async function GetCurrentLocation() {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+
+        if (status !== 'granted') {
+            Alert.alert('Permission not granted', 'Allow the app to use location service.', [{ text: 'OK' }], { cancelable: false });
+        }
+
+        let { coords } = await Location.getCurrentPositionAsync();
+        if (coords) {
+            response = coords;
+
+            console.log('----', response);
+        }
+    }
+
     return (
-        <View style={styles.container}>
+        <View style={{ marginTop: 50, flex: 1 }}>
             <GooglePlacesAutocomplete
                 placeholder='Search'
+                fetchDetails={true}
+                GooglePlacesSearchQuery={{
+                    rankby: 'distance',
+                }}
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
                     console.log(data, details);
                 }}
                 query={{
-                    key: 'YOUR API KEY',
+                    key: MY_GOOGLE_API_KEY,
                     language: 'en',
+                    components: 'country:lb',
+                    types: 'establishment',
+                    radius: 30000,
+                    location: `${region.latitude}, ${region.longitude}`,
+                }}
+                styles={{
+                    container: { flex: 0, position: 'absolute', width: '100%', zIndex: 1 },
+                    listView: { backgroundColor: 'white' },
                 }}
             />
             <MapView
-                loadingEnabled={true}
                 style={styles.map}
                 initialRegion={{
                     latitude: 33.893743,
                     longitude: 35.486086,
-                    latitudeDelta: 0.04,
-                    longitudeDelta: 0.05,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
                 }}
                 onPress={(event) => {
                     setPin(event.nativeEvent.coordinate);
                     console.log(pin);
                 }}
+                showsUserLocation={true}
             >
                 <Marker
                     coordinate={pin}
-                    pinColor='red'
                     draggable={true}
                     onDragStart={(e) => {
                         console.log('Drag start', e.nativeEvent.coordinates);
@@ -45,27 +79,10 @@ export const TripCalculator = () => {
                     }}
                 >
                     <Callout>
-                        <Text>Hi</Text>
+                        <Text>I want to go here</Text>
                     </Callout>
                 </Marker>
             </MapView>
-            {/* <View style={{ position: 'absolute', top: 10, width: '100%' }}>
-                <TextInput
-                    style={{
-                        borderRadius: 10,
-                        margin: 10,
-                        color: '#000',
-                        borderColor: '#666',
-                        backgroundColor: '#FFF',
-                        borderWidth: 1,
-                        height: 45,
-                        paddingHorizontal: 10,
-                        fontSize: 18,
-                    }}
-                    placeholder={'Search'}
-                    placeholderTextColor={'#666'}
-                />
-            </View> */}
         </View>
     );
 };

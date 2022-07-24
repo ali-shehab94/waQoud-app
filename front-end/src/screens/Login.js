@@ -32,7 +32,7 @@ export const Login = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Sing in</Text>
+            <Text style={styles.title}>Sign in</Text>
             <View style={styles.inputContainer}>
                 <TextInput placeholder='Email' style={styles.textInput} onChangeText={(userEmail) => setEmail(userEmail)} />
                 <TextInput placeholder='Password' style={styles.textInput} onChangeText={(userPass) => setPassword(userPass)} />
