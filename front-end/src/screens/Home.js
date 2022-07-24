@@ -14,7 +14,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 export const Home = () => {
     const [open, setOpen] = useState(false);
     const [vehicleValue, setVehicleValue] = useState(null);
-    const [items, setItems] = useState([]);
+    const [vehicle, setVehicle] = useState([]);
     const [gasTypesValue, setGasTypesValue] = useState(null);
     var newVehicle;
     const [gasTypes, setGasTypes] = useState([
@@ -22,12 +22,10 @@ export const Home = () => {
         { label: 'UNL_98', value: 'UNL_98' },
         { label: 'Diesel', value: 'Diesel' },
     ]);
-    const [prices, setPrices] = useState();
-    const [gasType, setGasType] = useState('UNL_95');
+
     const [isCreating, setIsCreating] = useState(false);
     const [user, setUser] = useContext(UserContext);
     const [step, setStep] = useState(0);
-    const [vehicle, setVehicle] = useState({});
     const [make, setMake] = useState();
     const [model, setModel] = useState();
     const [year, setYear] = useState();
@@ -36,6 +34,7 @@ export const Home = () => {
 
     const handleGasTypeValue = (val) => {
         setGasTypesValue(val());
+        console.log(gasTypesValue);
     };
 
     const handleSelectVehicle = (val) => {
@@ -64,9 +63,9 @@ export const Home = () => {
     };
 
     const addNewVehicle = () => {
-        if (gasTypes === 'UNL_95') {
+        if (gasTypesValue === 'UNL_95') {
             fuelType = 1;
-        } else if (gasTypes === 'UNL_98') {
+        } else if (gasTypesValue === 'UNL_98') {
             fuelType = 2;
         } else {
             fuelType = 3;
@@ -91,7 +90,7 @@ export const Home = () => {
                     withCredentials: true,
                 })
                 .then((response) => {
-                    setItems(
+                    setVehicle(
                         response.data.user_vehicles.map((car) => {
                             return { label: `${car[0].make} ${car[0].model} ${car[0].year}`, value: car[0].id };
                         })
@@ -162,13 +161,14 @@ export const Home = () => {
                         <View style={styles.inputField}>
                             <Text>Gas type</Text>
                             <DropDownPicker
-                                style={styles.addGasTypeInput}
                                 placeholder='Select preferred gas type'
+                                style={styles.addGasTypeInput}
                                 textStyle={styles.dropDownText}
                                 open={open}
                                 items={gasTypes}
                                 value={gasTypesValue}
                                 setValue={handleGasTypeValue}
+                                setItems={setGasTypesValue}
                                 setOpen={setOpen}
                             />
                         </View>
@@ -196,10 +196,10 @@ export const Home = () => {
                             style={[styles.gasDropdown]}
                             open={open}
                             value={vehicleValue}
-                            items={items}
+                            items={vehicle}
                             setOpen={setOpen}
                             setValue={handleSelectVehicle}
-                            setItems={setItems}
+                            setItems={setVehicle}
                         />
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />

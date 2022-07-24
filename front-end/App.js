@@ -10,7 +10,7 @@ import { Login } from './src/screens/Login';
 import { Welcome } from './src/screens/Welcome';
 import { Register } from './src/screens/Register';
 import { Profile } from './src/screens/Profile';
-import { BottomTab } from './src/screens/BottomTab';
+import { BottomTab } from './src/components/BottomTab';
 
 export default function App() {
     const [user, setUser] = useState();

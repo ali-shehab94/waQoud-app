@@ -20,7 +20,6 @@ export const TripCalculator = () => {
                 }}
             />
             <MapView
-                provider='google'
                 loadingEnabled={true}
                 style={styles.map}
                 initialRegion={{
@@ -29,21 +28,27 @@ export const TripCalculator = () => {
                     latitudeDelta: 0.04,
                     longitudeDelta: 0.05,
                 }}
-            ></MapView>
-            <Marker
-                coordinate={pin}
-                draggable={true}
-                onDragStart={(e) => {
-                    console.log('Drag start', e.nativeEvent.coordinates);
-                }}
-                onDragEnd={(e) => {
-                    console.log('Drag end', e.nativeEvent.coordinates);
+                onPress={(event) => {
+                    setPin(event.nativeEvent.coordinate);
+                    console.log(pin);
                 }}
             >
-                <Callout>
-                    <Text>Hi</Text>
-                </Callout>
-            </Marker>
+                <Marker
+                    coordinate={pin}
+                    pinColor='red'
+                    draggable={true}
+                    onDragStart={(e) => {
+                        console.log('Drag start', e.nativeEvent.coordinates);
+                    }}
+                    onDragEnd={(e) => {
+                        console.log('Drag end', e.nativeEvent.coordinates);
+                    }}
+                >
+                    <Callout>
+                        <Text>Hi</Text>
+                    </Callout>
+                </Marker>
+            </MapView>
             {/* <View style={{ position: 'absolute', top: 10, width: '100%' }}>
                 <TextInput
                     style={{
