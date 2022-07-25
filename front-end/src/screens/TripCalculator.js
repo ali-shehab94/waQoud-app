@@ -1,11 +1,12 @@
 import MapView, { Callout, Circle, Marker } from 'react-native-maps';
-import { StyleSheet, TextInput, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, TextInput, Text, View, Dimensions, SafeAreaView } from 'react-native';
 import { UserContext } from '../../context/UserContext';
 import * as Location from 'expo-location';
 import { MY_GOOGLE_API_KEY } from '../../config/env';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 import { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
 export const TripCalculator = () => {
     const [pin, setPin] = useState({ latitude: 33.893743, longitude: 35.486086 });
     const [region, setRegion] = useState({ latitude: 33.893743, longitude: 35.486086 });
@@ -24,66 +25,68 @@ export const TripCalculator = () => {
         let { coords } = await Location.getCurrentPositionAsync();
         if (coords) {
             response = coords;
-
+            setUserLocation(response);
             console.log('----', response);
+            console.log(userLocation);
         }
     }
 
+    const calculateDistance = () => {
+        axios.get(
+            `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${(pin.latitude, pin.longitude)}&origins=${
+                (userLocation.latitude, userLocation.longitude)
+            }&key={${MY_GOOGLE_API_KEY}}`
+        );
+    };
     return (
-        <View style={{ marginTop: 50, flex: 1 }}>
-            <GooglePlacesAutocomplete
-                placeholder='Search'
-                fetchDetails={true}
-                GooglePlacesSearchQuery={{
-                    rankby: 'distance',
-                }}
-                onPress={(data, details = null) => {
-                    // 'details' is provided when fetchDetails = true
-                    console.log(data, details);
-                }}
-                query={{
-                    key: MY_GOOGLE_API_KEY,
-                    language: 'en',
-                    components: 'country:lb',
-                    types: 'establishment',
-                    radius: 30000,
-                    location: `${region.latitude}, ${region.longitude}`,
-                }}
-                styles={{
-                    container: { flex: 0, position: 'absolute', width: '100%', zIndex: 1 },
-                    listView: { backgroundColor: 'white' },
-                }}
-            />
-            <MapView
-                style={styles.map}
-                initialRegion={{
-                    latitude: 33.893743,
-                    longitude: 35.486086,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                }}
-                onPress={(event) => {
-                    setPin(event.nativeEvent.coordinate);
-                    console.log(pin);
-                }}
-                showsUserLocation={true}
-            >
-                <Marker
-                    coordinate={pin}
-                    draggable={true}
-                    onDragStart={(e) => {
-                        console.log('Drag start', e.nativeEvent.coordinates);
+        <SafeAreaView>
+            <View style={{ marginTop: 50, flex: 1 }}>
+                <GooglePlacesAutocomplete
+                    placeholder='Search'
+                    fetchDetails={true}
+                    GooglePlacesSearchQuery={{
+                        rankby: 'distance',
                     }}
-                    onDragEnd={(e) => {
-                        console.log('Drag end', e.nativeEvent.coordinates);
+                    onPress={(data, details = null) => {
+                        // 'details' is provided when fetchDetails = true
+                        console.log(details.geometry.location);
                     }}
+                    query={{
+                        key: MY_GOOGLE_API_KEY,
+                        language: 'en',
+                        components: 'country:lb',
+                        types: 'establishment',
+                        radius: 30000,
+                        location: `${region.latitude}, ${region.longitude}`,
+                    }}
+                    styles={{
+                        container: { flex: 0, position: 'absolute', width: '100%', zIndex: 1 },
+                        listView: { backgroundColor: 'white' },
+                    }}
+                />
+                <MapView
+                    style={styles.map}
+                    initialRegion={{
+                        latitude: 33.893743,
+                        longitude: 35.486086,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421,
+                    }}
+                    onPress={(event) => {
+                        setPin(event.nativeEvent.coordinate);
+                        console.log(pin);
+                        calculateDistance();
+                    }}
+                    showsUserLocation={true}
                 >
-                    <Callout>
-                        <Text>I want to go here</Text>
-                    </Callout>
-                </Marker>
-            </MapView>
-        </View>
+                    <Marker coordinate={pin} draggable={true}>
+                        <Callout>
+                            <Text>I want to go here</Text>
+                        </Callout>
+                    </Marker>
+                </MapView>
+            </View>
+        </SafeAreaView>
     );
 };
 

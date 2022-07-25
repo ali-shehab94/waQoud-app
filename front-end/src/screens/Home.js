@@ -18,9 +18,9 @@ export const Home = () => {
     const [gasTypesValue, setGasTypesValue] = useState(null);
     var newVehicle;
     const [gasTypes, setGasTypes] = useState([
-        { label: 'UNL_95', value: 'UNL_95' },
-        { label: 'UNL_98', value: 'UNL_98' },
-        { label: 'Diesel', value: 'Diesel' },
+        { label: 'UNL_95', value: '1' },
+        { label: 'UNL_98', value: '2' },
+        { label: 'Diesel', value: '3' },
     ]);
 
     const [isCreating, setIsCreating] = useState(false);
@@ -63,15 +63,8 @@ export const Home = () => {
     };
 
     const addNewVehicle = () => {
-        if (gasTypesValue === 'UNL_95') {
-            fuelType = 1;
-        } else if (gasTypesValue === 'UNL_98') {
-            fuelType = 2;
-        } else {
-            fuelType = 3;
-        }
         axios
-            .post(`http://10.0.2.2:8000/api/add_vehicle`, JSON.stringify({ fuel_type: fuelType, make, model, year, cylinders, users_id: user.user.id, mpg }), {
+            .post(`http://10.0.2.2:8000/api/add_vehicle`, JSON.stringify({ fuel_type: gasTypes, make, model, year, cylinders, users_id: user.user.id, mpg }), {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
