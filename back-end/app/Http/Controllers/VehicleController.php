@@ -43,6 +43,16 @@ class VehicleController extends Controller
         ], 200);
     }
 
+    public function getVehicleName(Request $request)
+    {
+        $vehicle = Vehicle::where('id', $request["vehicle_id"])->first();
+        $vehicle_name = $vehicle->make. ' '. $vehicle->model. ' '. $vehicle->year;
+        return response()->json([
+            "status" => "success",
+            "kmpl" => $vehicle_name
+        ], 200);
+    }
+
 
     public function addVehicle(Request $request) {
         //check if the vehicle already exists in database

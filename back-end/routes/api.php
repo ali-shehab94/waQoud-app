@@ -17,6 +17,7 @@ Route::post('/profile', [AuthController::class, 'profile']);
 
 Route::get('/user_vehicles/{id}', [VehicleController::class, 'getUserVehicles']);
 Route::get('/vehicle_kpml', [VehicleController::class, 'getVehicleKmpl']);
+Route::get('/vehicle_name', [VehicleController::class, 'getVehicleName']);
 Route::post('/add_vehicle', [VehicleController::class, 'addVehicle']);
 Route::post('/assign_vehicle', [VehicleController::class, 'assignVehicle']);
 
