@@ -7,6 +7,7 @@ import { UserContext } from '../../context/UserContext';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Righteous_400Regular } from '@expo-google-fonts/righteous';
 
 export const GasChart = () => {
     const [open, setOpen] = useState(false);
@@ -58,7 +59,7 @@ export const GasChart = () => {
                     </View>
                     <View style={styles.difference}>
                         <View>
-                            <Text>{difference}</Text>
+                            <Text>{Math.round(difference)}</Text>
                         </View>
                         <View>
                             <Text>{difference > 0 ? <AntDesign name='arrowup' size={24} color='red' /> : <AntDesign name='arrowdown' size={24} color='green' />}</Text>
@@ -106,7 +107,7 @@ export const GasChart = () => {
                         />
                     </TouchableOpacity>
                     <View style={styles.price}>
-                        <Text style={styles.selectedPrice}>{prices && getSelectedGasTypePrices()[0].price} / 20L</Text>
+                        <Text style={styles.selectedPrice}>{prices && Math.round(getSelectedGasTypePrices()[0].price)} / 20L</Text>
                     </View>
                 </View>
                 {prices && priceRows()}
@@ -144,19 +145,24 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     profileImg: {
-        width: 40,
-        height: 40,
+        width: '190%',
+        height: '70%',
+        borderWidth: 1,
+        borderColor: 'white',
         borderRadius: 40,
     },
     logoImg: {
-        width: 180,
-        height: 60,
+        width: '65%',
+        height: '90%',
     },
     gasChart: {
-        padding: 30,
+        padding: 15,
+        marginTop: 0,
+        backgroundColor: 'white',
     },
     selectedPrice: {
-        fontSize: 20,
+        fontSize: 30,
+        fontFamily: 'Righteous_400Regular',
     },
     chartTop: {
         flexDirection: 'row',
@@ -227,11 +233,12 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 22,
+        fontFamily: 'Righteous_400Regular',
         color: '#0F5F53',
         justifyContent: 'center',
     },
     dropDownText: {
-        fontSize: 10,
+        fontSize: 16,
         color: '#0F5F53',
         justifyContent: 'center',
     },
