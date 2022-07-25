@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Goutte\Client;
 use App\Models\FuelType;
+use App\Models\Vehicle;
 use App\Models\UserVehicle;
 use App\Models\FuelPrice;
 
@@ -128,8 +129,8 @@ class FuelController extends Controller
     public function calculateTripCost(Request $request)
     {
         //get vehicle by id
-        $vehicle = UserVehicle::where('id', $request->users_vehicles_id)->with('vehicle')->first();
-        $vehicle = $vehicle->vehicle;
+        $vehicle = Vehicle::where('id', $request->vehicles_id)->first();
+        dd($vehicle);
         //assign price variable to 0
         $price = 0;
         //if conditions to determine what fuel type the vehicle uses 
