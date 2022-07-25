@@ -32,11 +32,20 @@ export const TripCalculator = () => {
     }
 
     const calculateDistance = () => {
-        axios.get(
-            `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${(pin.latitude, pin.longitude)}&origins=${
-                (userLocation.latitude, userLocation.longitude)
-            }&key={${MY_GOOGLE_API_KEY}}`
-        );
+        axios
+            .get(
+                `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${pin.latitude},${pin.longitude}&origins=${userLocation.latitude},${userLocation.longitude}&key=${MY_GOOGLE_API_KEY}`
+            )
+            .then((response) => {
+                console.log(pin.latitude);
+                console.log(pin.longitude);
+                console.log(userLocation.latitude);
+                console.log(userLocation.longitude);
+                console.log('distance --> ', response.data.rows[0].elements[0].distance.value);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
     return (
         <SafeAreaView>
