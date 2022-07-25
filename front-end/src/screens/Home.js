@@ -9,8 +9,6 @@ import { AntDesign } from '@expo/vector-icons';
 import { GasChart } from '../components/GasChart';
 import { Ionicons } from '@expo/vector-icons';
 
-import { MaterialIcons } from '@expo/vector-icons';
-
 export const Home = () => {
     const [open, setOpen] = useState(false);
     const [vehicleValue, setVehicleValue] = useState(null);
