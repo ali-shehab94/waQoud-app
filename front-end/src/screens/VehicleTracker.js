@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, SafeAreaView, FlatList } from 'react-native';
 import { UserContext } from '../../context/UserContext';
 import { useState, useEffect, useContext } from 'react';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import axios from 'axios';
 
 export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
-    const [trackers, setTrackers] = useState({});
+    const [trackers, setTrackers] = useState([]);
 
     console.log(user.selectedVehicle);
 
@@ -28,24 +28,37 @@ export const VehicleTracker = () => {
             });
     };
 
+    const getIcon = (type) => {
+        const size = 40;
+        const color = 'black';
+
+        return type === 'engine_oils' ? (
+            <FontAwesome5 name='oil-can' size={40} color='black' />
+        ) : type === 'brakes' ? (
+            <MaterialCommunityIcons name='car-brake-alert' size={40} color='black' />
+        ) : (
+            <FontAwesome name='dot-circle-o' size={40} color='black' />
+        );
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text>{user.selectedVehicle}</Text>
             </View>
-            {trackers
-                ? trackers.keys().map((key) => {
+            {trackers.length
+                ? trackers.map((tracker) => {
                       return (
-                          <View>
+                          <View key={tracker.type}>
                               <View style={styles.tracker}>
                                   <View style={styles.trackerTitle}>
-                                      <FontAwesome5 name='oil-can' size={40} color='black' />
-                                      <Text>{key}</Text>
+                                      {getIcon(tracker.type)}
+                                      <Text>{tracker.type}</Text>
                                   </View>
                                   <View>
-                                      <Text>Type: {trackers[key][0].model_name}</Text>
-                                      <Text>Last replaced:</Text>
-                                      <Text>Replace at:</Text>
+                                      <Text>Type: {tracker.model_name}</Text>
+                                      <Text>Last replaced: {tracker.installed_at}</Text>
+                                      <Text>Replace at: {tracker.installed_at + tracker.lasts}</Text>
                                   </View>
                               </View>
                           </View>
