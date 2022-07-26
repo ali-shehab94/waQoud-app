@@ -43,34 +43,40 @@ export const Home = () => {
         if (step < 4) {
             setStep(step + 1);
         } else {
+            console.log(make);
+            console.log(year);
+            console.log(model);
+            console.log(cylinders);
             axios
                 .get(`https://api.api-ninjas.com/v1/cars?make=${make}&year=${year}&model=${model}&cylinders=${cylinders}`, {
                     headers: { 'Content-type': 'application/json', 'X-Api-Key': CARS_API_KEY },
                 })
                 .then((response) => {
                     newVehicle = response.data[0];
+                    console.log(newVehicle);
                     setMpg(newVehicle['combination_mpg']);
                     console.log(mpg);
                     // console.log(JSON.stringify(response.data));
                     addNewVehicle();
-                    setIsCreating = false;
                 })
                 .catch((err) => {
-                    console.log(err.response.data);
+                    console.log('error at handle fetch', err.response.data);
                 });
         }
     };
 
     const addNewVehicle = () => {
+        console.log('im heres');
         axios
-            .post(`http://10.0.2.2:8000/api/add_vehicle`, JSON.stringify({ fuel_type: gasTypes, make, model, year, cylinders, users_id: user.user.id, mpg }), {
+            .post(`http://10.0.2.2:8000/api/add_vehicle`, JSON.stringify({ fuel_type: gasTypesValue, make, model, year, cylinders, users_id: user.user.id, mpg }), {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
                 console.log(response.data);
+                setIsCreating = false;
             })
             .catch((err) => {
-                console.log(err.response.data);
+                console.log('error at add vehicle', err.response.data);
             });
     };
 
@@ -181,9 +187,9 @@ export const Home = () => {
             ) : (
                 <>
                     <GasChart />
-                    <View style={styles.roundedButton}>
+                    <View style={styles.vehicleSelector}>
                         <DropDownPicker
-                            placeholder='Select a vehicle'
+                            placeholder='My Vehicles'
                             textStyle={styles.dropDownText}
                             style={[styles.gasDropdown]}
                             open={open}
@@ -193,7 +199,8 @@ export const Home = () => {
                             setValue={handleSelectVehicle}
                             setItems={setVehicle}
                         />
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 5 }}>
+                            <Text>Add a vehicle</Text>
                             <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />
                         </View>
                     </View>
@@ -260,11 +267,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 40,
         paddingTop: 10,
     },
-    roundedButton: {
+    vehicleSelector: {
+        alignSelf: 'center',
         zIndex: 100,
         position: 'absolute',
         top: '55%',
-        left: '35%',
+        left: '23%',
         justifyContent: 'center',
     },
     selectGas: {
@@ -273,12 +281,13 @@ const styles = StyleSheet.create({
     },
     gasDropdown: {
         elevation: 8,
-        width: 116,
-        height: 116,
+        width: '100%',
+        height: '50%',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 15,
         padding: 10,
-        borderRadius: 20,
+        borderRadius: 10,
         backgroundColor: 'orange',
         shadowOpacity: 20,
         shadowColor: 'black',

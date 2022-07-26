@@ -10,6 +10,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 // import { Righteous_400Regular } from '@expo-google-fonts/righteous';
 
 export const GasChart = () => {
+    const date = new Date();
     const [open, setOpen] = useState(false);
     const [prices, setPrices] = useState();
     const [gasType, setGasType] = useState('UNL95');
@@ -130,13 +131,14 @@ const styles = StyleSheet.create({
     },
     header: {
         backgroundColor: '#0F5F53',
-        height: '17%',
+        height: '20%',
     },
     headerText: {
         color: 'white',
         paddingLeft: 10,
     },
     headerContent: {
+        paddingTop: '14%',
         padding: 30,
         flexDirection: 'row',
         alignItems: 'center',
