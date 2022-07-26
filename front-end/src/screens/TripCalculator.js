@@ -7,6 +7,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
+import { Modal } from '../components/TripCalcModal';
 
 export const TripCalculator = () => {
     const [user, setUser] = useContext(UserContext);
@@ -14,6 +15,7 @@ export const TripCalculator = () => {
     const [pin, setPin] = useState();
     const [region, setRegion] = useState({ latitude: 33.893743, longitude: 35.486086 });
     const [distance, setDistance] = useState();
+    const [tripCost, setTripCost] = useState();
     const [userLocation, setUserLocation] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -29,6 +31,12 @@ export const TripCalculator = () => {
 
         // console.log('Pin:', pin, '\nDistance:', distance);
     }, [pin, distance]);
+
+    const clearData = () => {
+        setPin();
+        setDistance();
+        setTripCost();
+    };
 
     async function GetCurrentLocation() {
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -70,7 +78,7 @@ export const TripCalculator = () => {
             })
             .then((response) => {
                 console.log(response.data);
-                setIsCreating = false;
+                setTripCost(response.data['trip cost']);
             })
             .catch((err) => {
                 console.log('error at add vehicle', err.response.data);
@@ -128,6 +136,7 @@ export const TripCalculator = () => {
                     )}
                 </MapView>
             </View>
+            {pin && <Modal clearData={clearData} distance={distance} tripCost={tripCost} />}
         </SafeAreaView>
     );
 };
