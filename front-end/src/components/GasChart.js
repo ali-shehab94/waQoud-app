@@ -77,6 +77,14 @@ export const GasChart = () => {
             );
         });
     };
+
+    const getGasTypeStyle = (val) => {
+        return {
+            box: val === gasType ? styles.boxActive : styles.boxInactive,
+            text: val === gasType ? styles.textActive : styles.textInactive,
+        };
+    };
+
     return (
         <>
             <View style={styles.header}>
@@ -97,7 +105,17 @@ export const GasChart = () => {
             </View>
             <View style={styles.gasChart}>
                 <View style={styles.chartTop}>
-                    <TouchableOpacity style={styles.selectGas}>
+                    <View style={styles.selectGas}>
+                        <TouchableOpacity style={getGasTypeStyle('UNL95').box} onPress={() => setGasType('UNL95')}>
+                            <Text style={getGasTypeStyle('UNL95').text}>UNL95</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={getGasTypeStyle('UNL98').box} onPress={() => setGasType('UNL98')}>
+                            <Text style={getGasTypeStyle('UNL98').text}>UNL98</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={getGasTypeStyle('Diesel').box} onPress={() => setGasType('Diesel')}>
+                            <Text style={getGasTypeStyle('Diesel').text}>Diesel</Text>
+                        </TouchableOpacity>
+
                         {/* <DropDownPicker
                             textStyle={styles.dropDownText}
                             style={[styles.gasDropdown]}
@@ -108,7 +126,7 @@ export const GasChart = () => {
                             setValue={handleSelectGasType}
                             setItems={setGasType}
                         /> */}
-                    </TouchableOpacity>
+                    </View>
                     <View style={styles.price}>
                         <Text style={styles.selectedPrice}>{prices && Math.round(getSelectedGasTypePrices()[0].price)} / 20L</Text>
                     </View>
@@ -252,5 +270,22 @@ const styles = StyleSheet.create({
         shadowOffset: { width: -2, height: 4 },
         shadowOpacity: 0.2,
         shadowRadius: 3,
+    },
+    boxActive: {
+        backgroundColor: '#0F5F53',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 68,
+    },
+    boxInactive: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 68,
+    },
+    textActive: {
+        color: 'white',
+    },
+    textInactive: {
+        /// style inactive text
     },
 });
