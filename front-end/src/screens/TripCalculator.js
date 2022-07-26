@@ -22,7 +22,9 @@ export const TripCalculator = () => {
     }, []);
 
     useEffect(() => {
-        if (pin) calculateDistance();
+        if (pin) {
+            calculateDistance();
+        }
         if (distance) calculateTripCost();
 
         // console.log('Pin:', pin, '\nDistance:', distance);
@@ -74,6 +76,7 @@ export const TripCalculator = () => {
                 console.log('error at add vehicle', err.response.data);
             });
     };
+
     return (
         <SafeAreaView>
             <View style={{ marginTop: 50, flex: 1 }}>
@@ -103,6 +106,8 @@ export const TripCalculator = () => {
                 />
                 <MapView
                     style={styles.map}
+                    showsPointsOfInterest
+                    zoomControlEnabled
                     initialRegion={{
                         latitude: 33.893743,
                         longitude: 35.486086,
@@ -136,6 +141,6 @@ const styles = StyleSheet.create({
     },
     map: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: Dimensions.get('window').height - 30,
     },
 });

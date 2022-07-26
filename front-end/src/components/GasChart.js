@@ -30,10 +30,12 @@ export const GasChart = () => {
                 console.log(err);
             });
     }, []);
+
     const handleSelectGasType = (val) => {
         setGasTypeValue(val());
         console.log(gasTypeValue);
     };
+
     const getSelectedGasTypePrices = () => {
         let _prices = [];
         switch (gasType) {
@@ -50,6 +52,7 @@ export const GasChart = () => {
 
         return _prices;
     };
+
     const priceRows = () => {
         const _prices = getSelectedGasTypePrices();
 

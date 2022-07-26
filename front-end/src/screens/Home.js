@@ -15,12 +15,14 @@ export const Home = () => {
     const [vehicle, setVehicle] = useState([]);
     const [tripCost, setTripCost] = useState();
     const [gasTypesValue, setGasTypesValue] = useState(null);
-    var newVehicle;
-    const [gasTypes, setGasTypes] = useState([
+
+    let newVehicle;
+
+    const gasTypes = [
         { label: 'UNL_95', value: '1' },
         { label: 'UNL_98', value: '2' },
         { label: 'Diesel', value: '3' },
-    ]);
+    ];
 
     const [isCreating, setIsCreating] = useState(false);
     const [user, setUser] = useContext(UserContext);
@@ -31,15 +33,20 @@ export const Home = () => {
     const [cylinders, setCylinders] = useState();
     const [mpg, setMpg] = useState();
 
+    useEffect(() => {
+        if (mpg) {
+            console.log(mpg);
+            addNewVehicle();
+        }
+    }, [mpg]);
+
     const handleGasTypeValue = (val) => {
         setGasTypesValue(val());
-        console.log(gasTypesValue);
     };
 
     const handleSelectVehicle = (val) => {
         setVehicleValue(val());
         setUser({ ...user, selectedVehicle: val() });
-        console.log(user.selectedVehicle);
     };
     const handleFetchVehicle = () => {
         if (step < 4) {
@@ -57,9 +64,7 @@ export const Home = () => {
                     newVehicle = response.data[0];
                     console.log(newVehicle);
                     setMpg(newVehicle['combination_mpg']);
-                    console.log(mpg);
                     // console.log(JSON.stringify(response.data));
-                    addNewVehicle();
                 })
                 .catch((err) => {
                     console.log('error at handle fetch', err.response.data);
@@ -75,7 +80,14 @@ export const Home = () => {
             })
             .then((response) => {
                 console.log(response.data);
-                setIsCreating = false;
+                setIsCreating(false);
+                setGasTypesValue(null);
+                setStep(0);
+                setCylinders();
+                setMake();
+                setModel();
+                setMpg();
+                setTripCost();
             })
             .catch((err) => {
                 console.log('error at add vehicle', err.response.data);
@@ -91,9 +103,11 @@ export const Home = () => {
                 })
                 .then((response) => {
                     setVehicle(
-                        response.data.user_vehicles.map((car) => {
-                            return { label: `${car[0].make} ${car[0].model} ${car[0].year}`, value: car[0].id };
-                        })
+                        response.data.user_vehicles
+                            .map((car) => {
+                                return { label: `${car[0].make} ${car[0].model} ${car[0].year}`, value: car[0].id };
+                            })
+                            .reverse()
                     );
                 })
                 .catch((err) => {
