@@ -70,10 +70,15 @@ class VehicleTrackerController extends Controller
         $users_vehicles_id = UserVehicle::where('users_id', $users_id)->where('vehicles_id', $vehicles_id)->first()->id;
         $vehicle = UserVehicle::where('id', $users_vehicles_id)->with('brakes', 'wheels', 'engineOils')->first();
         // $trackers = ["brakes" => $vehicle->brakes, "wheels" => $vehicle->wheels, "engine_oil" => $vehicle->engineOils];
-        $brakes = array("brakes" => $vehicle->brakes[0]);
-        $wheels = array("wheels" => $vehicle->wheels[0]);
-        $engine_oils = array("engine_oil" => $vehicle->engineOils[0]);
-        $tracker = array($brakes, $wheels, $engine_oils);
+
+        $brakes = $vehicle->brakes[0];
+        $brakes['type'] = 'brakes';
+        $wheels = $vehicle->wheels[0];
+        $wheels['type'] = 'wheels';
+        $engineOils = $vehicle->engineOils[0];
+        $engineOils['type'] = 'engine_oils';
+
+        $tracker = array($brakes, $wheels, $engineOils);
         return response()->json([
             "status" => "success",
             // "brakes" => $vehicle->brakes,
