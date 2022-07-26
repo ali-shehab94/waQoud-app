@@ -7,16 +7,27 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
+
 export const TripCalculator = () => {
     const [user, setUser] = useContext(UserContext);
-    const [pin, setPin] = useState({ latitude: 33.893743, longitude: 35.486086 });
+
+    const [pin, setPin] = useState();
     const [region, setRegion] = useState({ latitude: 33.893743, longitude: 35.486086 });
-    const [distance, setDistance] = useState({});
+    const [distance, setDistance] = useState();
     const [userLocation, setUserLocation] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+
     useEffect(() => {
         GetCurrentLocation();
     }, []);
+
+    useEffect(() => {
+        if (pin) calculateDistance();
+        if (distance) calculateTripCost();
+
+        // console.log('Pin:', pin, '\nDistance:', distance);
+    }, [pin, distance]);
+
     async function GetCurrentLocation() {
         let { status } = await Location.requestForegroundPermissionsAsync();
 
@@ -29,23 +40,21 @@ export const TripCalculator = () => {
             response = coords;
             setUserLocation(response);
             console.log('----', response);
-            console.log(userLocation);
         }
     }
 
     const calculateDistance = () => {
+        console.log('pin', pin);
         axios
             .get(
                 `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${pin.latitude},${pin.longitude}&origins=${userLocation.latitude},${userLocation.longitude}&key=${MY_GOOGLE_API_KEY}`
             )
             .then((response) => {
-                console.log(pin.latitude);
-                console.log(pin.longitude);
-                console.log(userLocation.latitude);
-                console.log(userLocation.longitude);
+                // console.log(pin.latitude);
+                // console.log(pin.longitude);
+                // console.log(userLocation.latitude);
+                // console.log(userLocation.longitude);
                 setDistance(response.data.rows[0].elements[0].distance.value);
-                console.log('distance --> ', distance);
-                calculateTripCost();
             })
             .catch((err) => {
                 console.log(err);
@@ -76,7 +85,8 @@ export const TripCalculator = () => {
                     }}
                     onPress={(data, details = null) => {
                         // 'details' is provided when fetchDetails = true
-                        console.log(details.geometry.location);
+                        console.log('searched location', details.geometry.location);
+                        setPin({ latitude: details.geometry.location.lat, longitude: details.geometry.location.lng });
                     }}
                     query={{
                         key: MY_GOOGLE_API_KEY,
@@ -101,16 +111,16 @@ export const TripCalculator = () => {
                     }}
                     onPress={(event) => {
                         setPin(event.nativeEvent.coordinate);
-                        console.log(pin);
-                        calculateDistance();
                     }}
                     showsUserLocation={true}
                 >
-                    <Marker coordinate={pin} draggable={true}>
-                        <Callout>
-                            <Text>I want to go here</Text>
-                        </Callout>
-                    </Marker>
+                    {pin && (
+                        <Marker coordinate={pin} draggable={true}>
+                            <Callout>
+                                <Text>I want to go here</Text>
+                            </Callout>
+                        </Marker>
+                    )}
                 </MapView>
             </View>
         </SafeAreaView>

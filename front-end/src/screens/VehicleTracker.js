@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, SafeAreaView, FlatList } from 'react-native';
 import { UserContext } from '../../context/UserContext';
 import { useState, useEffect, useContext } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export const VehcileTracker = () => {
+export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
     console.log(user.selectedVehicle);
 
@@ -24,6 +24,9 @@ export const VehcileTracker = () => {
                         <Text>Replace at:</Text>
                     </View>
                 </View>
+                <FlatList>
+                    <Text>Hi</Text>
+                </FlatList>
             </View>
         </View>
     );
