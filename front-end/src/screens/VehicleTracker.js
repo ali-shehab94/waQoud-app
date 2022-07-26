@@ -2,10 +2,25 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, SafeAreaVie
 import { UserContext } from '../../context/UserContext';
 import { useState, useEffect, useContext } from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
+import axios from 'axios';
 
 export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
     console.log(user.selectedVehicle);
+
+    const getTrackers = () => {
+        axios
+            .post(`http://10.0.2.2:8000/api/get_trackers`, JSON.stringify({ users_id: user., vehicles_id }), {
+                headers: { 'Content-type': 'application/json' },
+            })
+            .then((response) => {
+                console.log(response.data);
+        
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            });
+    };
 
     return (
         <View style={styles.container}>

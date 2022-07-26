@@ -11,10 +11,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export const GasChart = () => {
     const date = new Date();
-    const [open, setOpen] = useState(false);
     const [prices, setPrices] = useState();
     const [gasType, setGasType] = useState('UNL95');
-    const [gasTypeValue, setGasTypeValue] = useState();
     const [user, setUser] = useContext(UserContext);
 
     useEffect(() => {
@@ -30,11 +28,6 @@ export const GasChart = () => {
                 console.log(err);
             });
     }, []);
-
-    const handleSelectGasType = (val) => {
-        setGasTypeValue(val());
-        console.log(gasTypeValue);
-    };
 
     const getSelectedGasTypePrices = () => {
         let _prices = [];
@@ -115,17 +108,6 @@ export const GasChart = () => {
                         <TouchableOpacity style={getGasTypeStyle('Diesel').box} onPress={() => setGasType('Diesel')}>
                             <Text style={getGasTypeStyle('Diesel').text}>Diesel</Text>
                         </TouchableOpacity>
-
-                        {/* <DropDownPicker
-                            textStyle={styles.dropDownText}
-                            style={[styles.gasDropdown]}
-                            open={open}
-                            value={gasTypeValue}
-                            items={gasType}
-                            setOpen={setOpen}
-                            setValue={handleSelectGasType}
-                            setItems={setGasType}
-                        /> */}
                     </View>
                     <View style={styles.price}>
                         <Text style={styles.selectedPrice}>{prices && Math.round(getSelectedGasTypePrices()[0].price)} / 20L</Text>
