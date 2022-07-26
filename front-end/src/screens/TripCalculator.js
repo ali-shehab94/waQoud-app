@@ -8,8 +8,10 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 export const TripCalculator = () => {
+    const [user, setUser] = useContext(UserContext);
     const [pin, setPin] = useState({ latitude: 33.893743, longitude: 35.486086 });
     const [region, setRegion] = useState({ latitude: 33.893743, longitude: 35.486086 });
+    const [distance, setDistance] = useState({});
     const [userLocation, setUserLocation] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     useEffect(() => {
@@ -41,10 +43,26 @@ export const TripCalculator = () => {
                 console.log(pin.longitude);
                 console.log(userLocation.latitude);
                 console.log(userLocation.longitude);
-                console.log('distance --> ', response.data.rows[0].elements[0].distance.value);
+                setDistance(response.data.rows[0].elements[0].distance.value);
+                console.log('distance --> ', distance);
+                calculateTripCost();
             })
             .catch((err) => {
                 console.log(err);
+            });
+    };
+
+    const calculateTripCost = () => {
+        axios
+            .post(`http://10.0.2.2:8000/api/trip_cost`, JSON.stringify({ distance, vehicles_id: user.selectedVehicle }), {
+                headers: { 'Content-type': 'application/json' },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setIsCreating = false;
+            })
+            .catch((err) => {
+                console.log('error at add vehicle', err.response.data);
             });
     };
     return (

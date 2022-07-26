@@ -13,6 +13,7 @@ export const Home = () => {
     const [open, setOpen] = useState(false);
     const [vehicleValue, setVehicleValue] = useState(null);
     const [vehicle, setVehicle] = useState([]);
+    const [tripCost, setTripCost] = useState();
     const [gasTypesValue, setGasTypesValue] = useState(null);
     var newVehicle;
     const [gasTypes, setGasTypes] = useState([
@@ -38,6 +39,7 @@ export const Home = () => {
     const handleSelectVehicle = (val) => {
         setVehicleValue(val());
         setUser({ ...user, selectedVehicle: val() });
+        console.log(user.selectedVehicle);
     };
     const handleFetchVehicle = () => {
         if (step < 4) {
