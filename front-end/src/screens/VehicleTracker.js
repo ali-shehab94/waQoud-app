@@ -6,16 +6,22 @@ import axios from 'axios';
 
 export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
+    const [trackers, setTrackers] = useState([]);
+
     console.log(user.selectedVehicle);
+
+    useEffect(() => {
+        getTrackers();
+    });
 
     const getTrackers = () => {
         axios
-            .post(`http://10.0.2.2:8000/api/get_trackers`, JSON.stringify({ users_id: user., vehicles_id }), {
+            .post(`http://10.0.2.2:8000/api/get_trackers`, JSON.stringify({ users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
                 console.log(response.data);
-        
+                setTrackers(response.data);
             })
             .catch((err) => {
                 console.log(err.response.data);
@@ -27,22 +33,24 @@ export const VehicleTracker = () => {
             <View style={styles.header}>
                 <Text>{user.selectedVehicle}</Text>
             </View>
-            <View>
-                <View style={styles.tracker}>
-                    <View style={styles.trackerTitle}>
-                        <FontAwesome5 name='oil-can' size={40} color='black' />
-                        <Text>Engine Oil</Text>
-                    </View>
-                    <View>
-                        <Text>Type:</Text>
-                        <Text>Last replaced:</Text>
-                        <Text>Replace at:</Text>
-                    </View>
-                </View>
-                <FlatList>
-                    <Text>Hi</Text>
-                </FlatList>
-            </View>
+            {trackers.length &&
+                trackers.map((tracker) => {
+                    return (
+                        <View>
+                            <View style={styles.tracker}>
+                                <View style={styles.trackerTitle}>
+                                    <FontAwesome5 name='oil-can' size={40} color='black' />
+                                    <Text>Engine Oil</Text>
+                                </View>
+                                <View>
+                                    <Text>Type: {tracker.}</Text>
+                                    <Text>Last replaced:</Text>
+                                    <Text>Replace at:</Text>
+                                </View>
+                            </View>
+                        </View>
+                    );
+                })}
         </View>
     );
 };
@@ -66,7 +74,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#D9D9D9',
         alignSelf: 'center',
         width: '90%',
-        height: '35%',
+        height: 100,
         borderRadius: 8,
         flexDirection: 'row',
         alignItems: 'center',
