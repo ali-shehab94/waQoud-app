@@ -53,6 +53,7 @@ export const Home = () => {
                     console.log(mpg);
                     // console.log(JSON.stringify(response.data));
                     addNewVehicle();
+                    setIsCreating = false;
                 })
                 .catch((err) => {
                     console.log(err.response.data);
@@ -271,12 +272,13 @@ const styles = StyleSheet.create({
         borderRightWidth: 1,
     },
     gasDropdown: {
+        elevation: 8,
         width: 116,
         height: 116,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-        borderRadius: 100,
+        borderRadius: 20,
         backgroundColor: 'orange',
         shadowOpacity: 20,
         shadowColor: 'black',
@@ -319,7 +321,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     dropDownText: {
-        fontSize: 10,
+        fontSize: 15,
         color: '#0F5F53',
         justifyContent: 'center',
     },

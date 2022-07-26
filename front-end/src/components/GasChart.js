@@ -7,12 +7,13 @@ import { UserContext } from '../../context/UserContext';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Righteous_400Regular } from '@expo-google-fonts/righteous';
+// import { Righteous_400Regular } from '@expo-google-fonts/righteous';
 
 export const GasChart = () => {
     const [open, setOpen] = useState(false);
     const [prices, setPrices] = useState();
-    const [gasType, setGasType] = useState('UNL_95');
+    const [gasType, setGasType] = useState('UNL95');
+    const [gasTypeValue, setGasTypeValue] = useState();
     const [user, setUser] = useContext(UserContext);
 
     useEffect(() => {
@@ -28,14 +29,17 @@ export const GasChart = () => {
                 console.log(err);
             });
     }, []);
-
+    const handleSelectGasType = (val) => {
+        setGasTypeValue(val());
+        console.log(gasTypeValue);
+    };
     const getSelectedGasTypePrices = () => {
         let _prices = [];
         switch (gasType) {
-            case 'UNL_95':
+            case 'UNL95':
                 _prices = prices.prices['UNL_95'];
                 break;
-            case 'UNL_98':
+            case 'UNL98':
                 _prices = prices.prices['UNL_98'];
                 break;
             case 'Diesel':
@@ -55,14 +59,14 @@ export const GasChart = () => {
             return (
                 <View key={price.id} style={styles.info}>
                     <View>
-                        <Text>{price.created_at.split('T')[0] + ' ' + price.created_at.split('T')[1].slice(0, 8)}</Text>
+                        <Text style={{ fontSize: 15 }}>{price.created_at.split('T')[0] + ' ' + price.created_at.split('T')[1].slice(0, 8)}</Text>
                     </View>
                     <View style={styles.difference}>
                         <View>
-                            <Text>{Math.round(difference)}</Text>
+                            <Text style={{ fontSize: 17 }}>{Math.round(difference)}</Text>
                         </View>
                         <View>
-                            <Text>{difference > 0 ? <AntDesign name='arrowup' size={24} color='red' /> : <AntDesign name='arrowdown' size={24} color='green' />}</Text>
+                            <Text>{difference > 0 ? <AntDesign name='arrowup' size={20} color='red' /> : <AntDesign name='arrowdown' size={20} color='green' />}</Text>
                         </View>
                     </View>
                 </View>
@@ -90,21 +94,16 @@ export const GasChart = () => {
             <View style={styles.gasChart}>
                 <View style={styles.chartTop}>
                     <TouchableOpacity style={styles.selectGas}>
-                        <Text
-                            onPress={() => {
-                                console.log('Current user:', user);
-                            }}
-                        >
-                            {gasType}
-                        </Text>
-                        <MaterialIcons
-                            name='keyboard-arrow-down'
-                            size={24}
-                            color='black'
-                            onPress={() => {
-                                alert('pressed');
-                            }}
-                        />
+                        {/* <DropDownPicker
+                            textStyle={styles.dropDownText}
+                            style={[styles.gasDropdown]}
+                            open={open}
+                            value={gasTypeValue}
+                            items={gasType}
+                            setOpen={setOpen}
+                            setValue={handleSelectGasType}
+                            setItems={setGasType}
+                        /> */}
                     </TouchableOpacity>
                     <View style={styles.price}>
                         <Text style={styles.selectedPrice}>{prices && Math.round(getSelectedGasTypePrices()[0].price)} / 20L</Text>
@@ -126,7 +125,6 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginBottom: 20,
         backgroundColor: '#D9D9D9',
-
         borderRadius: 10,
         paddingHorizontal: 10,
     },
@@ -153,16 +151,17 @@ const styles = StyleSheet.create({
     },
     logoImg: {
         width: '65%',
-        height: '90%',
+        height: '105%',
     },
     gasChart: {
         padding: 15,
         marginTop: 0,
+        borderRadius: 10,
         backgroundColor: 'white',
+        elevation: 6,
     },
     selectedPrice: {
         fontSize: 30,
-        fontFamily: 'Righteous_400Regular',
     },
     chartTop: {
         flexDirection: 'row',
@@ -187,6 +186,8 @@ const styles = StyleSheet.create({
     selectGas: {
         width: '18%',
         borderRightWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     gasDropdown: {
         width: 116,
@@ -233,7 +234,6 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 22,
-        fontFamily: 'Righteous_400Regular',
         color: '#0F5F53',
         justifyContent: 'center',
     },

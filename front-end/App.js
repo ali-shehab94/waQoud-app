@@ -13,31 +13,27 @@ import { Register } from './src/screens/Register';
 import { Profile } from './src/screens/Profile';
 import { BottomTab } from './src/components/BottomTab';
 import AppLoading from 'expo-app-loading';
-import { Righteous_400Regular } from '@expo-google-fonts/righteous';
+// import { Righteous_400Regular } from '@expo-google-fonts/righteous';
 
 export default function App() {
     const [user, setUser] = useState();
     const Stack = createStackNavigator();
 
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    } else {
-        return (
-            <UserContext.Provider value={[user, setUser]}>
-                <NavigationContainer>
-                    <Stack.Navigator
-                        initialRouteName='Main'
-                        screenOptions={{
-                            headerShown: false,
-                        }}
-                    >
-                        <Stack.Screen name='Welcome' component={Welcome} />
-                        <Stack.Screen name='Login' component={Login} />
-                        <Stack.Screen name='Register' component={Register} />
-                        <Stack.Screen name='BottomTab' component={BottomTab} />
-                    </Stack.Navigator>
-                </NavigationContainer>
-            </UserContext.Provider>
-        );
-    }
+    return (
+        <UserContext.Provider value={[user, setUser]}>
+            <NavigationContainer>
+                <Stack.Navigator
+                    initialRouteName='Main'
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                >
+                    <Stack.Screen name='Welcome' component={Welcome} />
+                    <Stack.Screen name='Login' component={Login} />
+                    <Stack.Screen name='Register' component={Register} />
+                    <Stack.Screen name='BottomTab' component={BottomTab} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </UserContext.Provider>
+    );
 }

@@ -56,7 +56,7 @@ class FuelController extends Controller
             //if condition to check if price changed, if true, the new price is saved in database
             if ($this->UNL95_price->price != $new_UNL95_price)
         {
-            $UNL95_difference = $this->UNL95_price->price - $new_UNL95_price;
+            $UNL95_difference = $new_UNL95_price - $this->UNL95_price->price;
             $UNL95 = new FuelPrice;
             $UNL95->fuel_types_id = 1;
             $UNL95->price = $new_UNL95_price;
@@ -66,7 +66,7 @@ class FuelController extends Controller
 
         if ($this->UNL98_price->price != $new_UNL98_price)
         {
-            $UNL98_difference = $this->UNL98_price->price - $new_UNL98_price;
+            $UNL98_difference = $new_UNL98_price - $this->UNL98_price->price;
             $UNL98 = new FuelPrice;
             $UNL98->fuel_types_id = 2;
             $UNL98->price = $new_UNL98_price;
@@ -76,7 +76,7 @@ class FuelController extends Controller
 
         if ($this->Diesel_price->price != $new_Diesel_price)
         {
-            $Diesel_difference = $this->Diesel_price->price - $new_Diesel_price;
+            $Diesel_difference = $new_Diesel_price - $this->Diesel_price->price;
             $Diesel = new FuelPrice;
             $Diesel->fuel_types_id = 3;
             $Diesel->price = $new_Diesel_price;
