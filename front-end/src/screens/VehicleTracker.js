@@ -6,13 +6,13 @@ import axios from 'axios';
 
 export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
-    const [trackers, setTrackers] = useState([]);
+    const [trackers, setTrackers] = useState({});
 
     console.log(user.selectedVehicle);
 
     useEffect(() => {
         getTrackers();
-    });
+    }, []);
 
     const getTrackers = () => {
         axios
@@ -21,7 +21,7 @@ export const VehicleTracker = () => {
             })
             .then((response) => {
                 console.log(response.data);
-                setTrackers(response.data);
+                setTrackers(response.data.tracker);
             })
             .catch((err) => {
                 console.log(err.response.data);
@@ -33,24 +33,25 @@ export const VehicleTracker = () => {
             <View style={styles.header}>
                 <Text>{user.selectedVehicle}</Text>
             </View>
-            {trackers.length &&
-                trackers.map((tracker) => {
-                    return (
-                        <View>
-                            <View style={styles.tracker}>
-                                <View style={styles.trackerTitle}>
-                                    <FontAwesome5 name='oil-can' size={40} color='black' />
-                                    <Text>Engine Oil</Text>
-                                </View>
-                                <View>
-                                    <Text>Type: {tracker.}</Text>
-                                    <Text>Last replaced:</Text>
-                                    <Text>Replace at:</Text>
-                                </View>
-                            </View>
-                        </View>
-                    );
-                })}
+            {trackers
+                ? trackers.keys().map((key) => {
+                      return (
+                          <View>
+                              <View style={styles.tracker}>
+                                  <View style={styles.trackerTitle}>
+                                      <FontAwesome5 name='oil-can' size={40} color='black' />
+                                      <Text>{key}</Text>
+                                  </View>
+                                  <View>
+                                      <Text>Type: {trackers[key][0].model_name}</Text>
+                                      <Text>Last replaced:</Text>
+                                      <Text>Replace at:</Text>
+                                  </View>
+                              </View>
+                          </View>
+                      );
+                  })
+                : null}
         </View>
     );
 };
