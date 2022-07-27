@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         paddingTop: 30,
     },
     title: {
-        marginTop: 25,
+        marginTop: '20%',
         color: '#0F5F53',
         fontSize: 40,
     },
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textInput: {
-        margin: 10,
+        margin: '4%',
         width: 250,
         height: 54,
         backgroundColor: 'white',
