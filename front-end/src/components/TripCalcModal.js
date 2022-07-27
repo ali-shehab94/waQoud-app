@@ -14,7 +14,9 @@ export const Modal = ({ tripCost, distance, clearData }) => {
                             <Text style={styles.text}>
                                 This trip will cost: <Text style={{ fontSize: 25 }}>{tripCost}</Text>
                             </Text>
-                            <Text style={styles.text}>Distance: {(distance / 1000).toFixed(2)} KM</Text>
+                            <Text style={styles.text}>
+                                Distance: <Text style={{ fontSize: 25 }}>{(distance / 1000).toFixed(2)} KM</Text>
+                            </Text>
                         </View>
                     </View>
                 </View>
@@ -39,11 +41,11 @@ const styles = StyleSheet.create({
     },
     info: {
         marginTop: '10%',
-        paddingHorizontal: '10%',
+        paddingHorizontal: '4%',
         fontSize: 5,
     },
     text: {
-        fontSize: 22,
+        fontSize: 20,
         color: 'white',
         fontWeight: 'bold',
     },
