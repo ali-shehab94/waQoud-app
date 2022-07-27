@@ -20,16 +20,6 @@ export const Welcome = (props) => {
                     }}
                 />
             </View>
-            <Pressable>
-                <Text
-                    style={styles.skip}
-                    onPress={() => {
-                        props.navigation.navigate('BottomTab');
-                    }}
-                >
-                    Skip
-                </Text>
-            </Pressable>
         </View>
     );
 };
