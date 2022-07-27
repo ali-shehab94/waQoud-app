@@ -258,6 +258,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: 68,
+        borderRadius: 5,
     },
     boxInactive: {
         alignItems: 'center',
@@ -266,8 +267,9 @@ const styles = StyleSheet.create({
     },
     textActive: {
         color: 'white',
+        fontSize: 18,
     },
     textInactive: {
-        /// style inactive text
+        fontSize: 16,
     },
 });

@@ -42,9 +42,6 @@ export const VehicleTracker = () => {
     };
 
     const getIcon = (type) => {
-        const size = 40;
-        const color = 'black';
-
         return type === 'engine_oils' ? (
             <FontAwesome5 name='oil-can' size={40} color='black' />
         ) : type === 'brakes' ? (

@@ -113,20 +113,6 @@ export const Home = () => {
                 .catch((err) => {
                     console.log(err);
                 });
-
-        // axios
-        //     .get(`http://10.0.2.2:8000/api/scrape_fuel_prices`, {
-        //         headers: { 'Content-type': 'application/json' },
-        //         withCredentials: true,
-        //     })
-        //     .then((response) => {
-        //         setPrices(response.data);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
-
-        // return setIsCreating(false);
     }, []);
 
     return (
@@ -304,7 +290,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         padding: 10,
         borderRadius: 10,
-        backgroundColor: 'orange',
+        backgroundColor: '#FFAC33',
         shadowOpacity: 20,
         shadowColor: 'black',
     },

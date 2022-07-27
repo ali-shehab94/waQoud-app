@@ -17,10 +17,10 @@ export const TripCalculator = () => {
     const [distance, setDistance] = useState();
     const [tripCost, setTripCost] = useState();
     const [userLocation, setUserLocation] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
         GetCurrentLocation();
+        setUser({ ...user, userLocation: userLocation });
     }, []);
 
     useEffect(() => {
@@ -28,8 +28,6 @@ export const TripCalculator = () => {
             calculateDistance();
         }
         if (distance) calculateTripCost();
-
-        // console.log('Pin:', pin, '\nDistance:', distance);
     }, [pin, distance]);
 
     const clearData = () => {
@@ -60,10 +58,6 @@ export const TripCalculator = () => {
                 `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${pin.latitude},${pin.longitude}&origins=${userLocation.latitude},${userLocation.longitude}&key=${MY_GOOGLE_API_KEY}`
             )
             .then((response) => {
-                // console.log(pin.latitude);
-                // console.log(pin.longitude);
-                // console.log(userLocation.latitude);
-                // console.log(userLocation.longitude);
                 setDistance(response.data.rows[0].elements[0].distance.value);
             })
             .catch((err) => {
@@ -87,55 +81,57 @@ export const TripCalculator = () => {
 
     return (
         <SafeAreaView>
-            <View style={{ marginTop: 50, flex: 1 }}>
-                <GooglePlacesAutocomplete
-                    placeholder='Search'
-                    fetchDetails={true}
-                    GooglePlacesSearchQuery={{
-                        rankby: 'distance',
-                    }}
-                    onPress={(data, details = null) => {
-                        // 'details' is provided when fetchDetails = true
-                        console.log('searched location', details.geometry.location);
-                        setPin({ latitude: details.geometry.location.lat, longitude: details.geometry.location.lng });
-                    }}
-                    query={{
-                        key: MY_GOOGLE_API_KEY,
-                        language: 'en',
-                        components: 'country:lb',
-                        types: 'establishment',
-                        radius: 30000,
-                        location: `${region.latitude}, ${region.longitude}`,
-                    }}
-                    styles={{
-                        container: { flex: 0, position: 'absolute', width: '100%', zIndex: 1 },
-                        listView: { backgroundColor: 'white' },
-                    }}
-                />
-                <MapView
-                    style={styles.map}
-                    showsPointsOfInterest
-                    zoomControlEnabled
-                    initialRegion={{
-                        latitude: 33.893743,
-                        longitude: 35.486086,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                    }}
-                    onPress={(event) => {
-                        setPin(event.nativeEvent.coordinate);
-                    }}
-                    showsUserLocation={true}
-                >
-                    {pin && (
-                        <Marker coordinate={pin} draggable={true}>
-                            <Callout>
-                                <Text>I want to go here</Text>
-                            </Callout>
-                        </Marker>
-                    )}
-                </MapView>
-            </View>
+            {userLocation && (
+                <View style={{ marginTop: 50, flex: 1 }}>
+                    <GooglePlacesAutocomplete
+                        placeholder='Search'
+                        fetchDetails={true}
+                        GooglePlacesSearchQuery={{
+                            rankby: 'distance',
+                        }}
+                        onPress={(data, details = null) => {
+                            // 'details' is provided when fetchDetails = true
+                            console.log('searched location', details.geometry.location);
+                            setPin({ latitude: details.geometry.location.lat, longitude: details.geometry.location.lng });
+                        }}
+                        query={{
+                            key: MY_GOOGLE_API_KEY,
+                            language: 'en',
+                            components: 'country:lb',
+                            types: 'establishment',
+                            radius: 30000,
+                            location: `${region.latitude}, ${region.longitude}`,
+                        }}
+                        styles={{
+                            container: { flex: 0, position: 'absolute', width: '100%', zIndex: 1 },
+                            listView: { backgroundColor: 'white' },
+                        }}
+                    />
+                    <MapView
+                        style={styles.map}
+                        showsPointsOfInterest
+                        zoomControlEnabled
+                        initialRegion={{
+                            latitude: userLocation.latitude,
+                            longitude: userLocation.longitude,
+                            latitudeDelta: 0.0922,
+                            longitudeDelta: 0.0421,
+                        }}
+                        onPress={(event) => {
+                            setPin(event.nativeEvent.coordinate);
+                        }}
+                        showsUserLocation={true}
+                    >
+                        {pin && (
+                            <Marker coordinate={pin} draggable={true}>
+                                <Callout>
+                                    <Text>I want to go here</Text>
+                                </Callout>
+                            </Marker>
+                        )}
+                    </MapView>
+                </View>
+            )}
             {pin && <Modal clearData={clearData} distance={distance} tripCost={tripCost} />}
         </SafeAreaView>
     );
