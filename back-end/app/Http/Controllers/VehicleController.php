@@ -49,7 +49,7 @@ class VehicleController extends Controller
         $vehicle_name = $vehicle->make. ' '. $vehicle->model. ' '. $vehicle->year;
         return response()->json([
             "status" => "success",
-            "kmpl" => $vehicle_name
+            "vehicle_name" => $vehicle_name
         ], 200);
     }
 
