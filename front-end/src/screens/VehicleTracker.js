@@ -7,11 +7,13 @@ import axios from 'axios';
 export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
     const [trackers, setTrackers] = useState([]);
+    const [vehicleName, setVehicleName] = useState('');
 
     console.log(user.selectedVehicle);
 
     useEffect(() => {
         getTrackers();
+        getVehicleName();
     }, []);
 
     const getTrackers = () => {
@@ -22,6 +24,17 @@ export const VehicleTracker = () => {
             .then((response) => {
                 console.log(response.data);
                 setTrackers(response.data.tracker);
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            });
+    };
+    const getVehicleName = () => {
+        axios
+            .get(`http://10.0.2.2:8000/api/vehicle_name?vehicle_id=${user.selectedVehicle}`)
+            .then((response) => {
+                console.log(response.data);
+                setVehicleName(response.data.vehicle_name);
             })
             .catch((err) => {
                 console.log(err.response.data);
@@ -43,9 +56,7 @@ export const VehicleTracker = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text>{user.selectedVehicle}</Text>
-            </View>
+            <View style={styles.header}>{user.selectedVehicle ? <Text style={styles.vehicleName}>{vehicleName}</Text> : <Text>Please select a vehicle</Text>}</View>
             {trackers.length
                 ? trackers.map((tracker) => {
                       return (
@@ -96,5 +107,9 @@ const styles = StyleSheet.create({
     },
     trackerTitle: {
         paddingHorizontal: 20,
+    },
+    vehicleName: {
+        color: 'white',
+        fontSize: 20,
     },
 });

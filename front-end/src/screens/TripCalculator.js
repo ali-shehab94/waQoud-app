@@ -149,7 +149,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     map: {
+        position: 'absolute',
+        top: 44,
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height - 30,
+        height: Dimensions.get('window').height - 80,
     },
 });
