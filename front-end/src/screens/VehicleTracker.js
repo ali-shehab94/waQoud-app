@@ -56,7 +56,7 @@ export const VehicleTracker = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>{user.selectedVehicle ? <Text style={styles.vehicleName}>{vehicleName}</Text> : <Text>Please select a vehicle</Text>}</View>
+            <View style={styles.header}>{user.selectedVehicle ? <Text style={styles.vehicleName}>{vehicleName}</Text> : <Text style={styles.vehicleName}>Please select a vehicle</Text>}</View>
             <View>
                 {isCreating ? (
                     <Text>Hi</Text>

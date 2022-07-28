@@ -63,7 +63,7 @@ export const StationsNearYou = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text>Find gas station near you</Text>
+                <Text style={styles.vehicleName}>Find gas station near you</Text>
             </View>
             <View style={{ paddingTop: '2%', borderWidth: 1, alignItems: 'center', height: '100%' }}>
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Stations</Text>
@@ -103,6 +103,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#E9E9E9',
     },
     subContainer: {},
+    vehicleName: {
+        color: 'white',
+        fontSize: 20,
+    },
     header: {
         backgroundColor: '#0F5F53',
         width: '90%',
