@@ -13,6 +13,7 @@ export const StationsNearYou = (props) => {
     const [userLocation, setUserLocation] = useState({ latitude: user.userLocation.latitude, longitude: user.userLocation.longitude });
     const [gasStations, setGasStations] = useState([]);
     const [distances, setDistances] = useState([]);
+
     useEffect(() => {
         fetchGasStations();
     }, []);
@@ -23,7 +24,11 @@ export const StationsNearYou = (props) => {
 
     useEffect(() => {
         console.log(distances);
-    }, [distances]);
+    }, [selectedGasStation]);
+
+    const clearData = () => {
+        setSelectedGasStation();
+    };
 
     const getDistance = async () => {
         let _gasStations = [...gasStations];
@@ -62,31 +67,33 @@ export const StationsNearYou = (props) => {
             </View>
             <View style={{ paddingTop: '2%', borderWidth: 1, alignItems: 'center', height: '100%' }}>
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Stations</Text>
-
-                <FlatList
-                    style={styles.gasStations}
-                    data={distances}
-                    renderItem={({ item }) => (
-                        <View style={{ margin: 5, alignItems: 'center', width: '100%' }}>
-                            <TouchableOpacity
-                                style={styles.tracker}
-                                onPress={() => {
-                                    setSelectedGasStation(item);
-                                }}
-                            >
-                                <View style={styles.trackerTitle}>
-                                    <Image source={require('../../assets/logos/3.png')} style={styles.stationImage} />
-                                </View>
-                                <View>
-                                    <Text style={styles.stationInfo}>{item.name.split(' ')[0]}</Text>
-                                    <Text style={styles.stationInfo}>{(item.calculated_distance / 1000).toFixed(2)} KM away</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                />
+                {selectedGasStation ? (
+                    <MapModal style={{ zIndex: 5 }} coords={[selectedGasStation.geometry.location.lat, selectedGasStation.geometry.location.lng]} clearData={clearData} />
+                ) : (
+                    <FlatList
+                        style={styles.gasStations}
+                        data={distances}
+                        renderItem={({ item }) => (
+                            <View style={{ margin: 5, alignItems: 'center', width: '100%' }}>
+                                <TouchableOpacity
+                                    style={styles.tracker}
+                                    onPress={() => {
+                                        setSelectedGasStation(item);
+                                    }}
+                                >
+                                    <View style={styles.trackerTitle}>
+                                        <Image source={require('../../assets/logos/3.png')} style={styles.stationImage} />
+                                    </View>
+                                    <View>
+                                        <Text style={styles.stationInfo}>{item.name.split(' ')[0]}</Text>
+                                        <Text style={styles.stationInfo}>{(item.calculated_distance / 1000).toFixed(2)} KM away</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                    />
+                )}
             </View>
-            {selectedGasStation && <MapModal coords={[selectedGasStation.geometry.location.lat, selectedGasStation.geometry.location.lng]} />}
         </SafeAreaView>
     );
 };
