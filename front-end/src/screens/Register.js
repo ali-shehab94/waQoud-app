@@ -12,7 +12,7 @@ export const Register = ({ navigation }) => {
 
     const handleRegister = async () => {
         try {
-            const response = await axios.post('http://10.0.2.2:8000/api/register', JSON.stringify({ first_name: firstName, last_name: lastName, email, password }), {
+            const response = await axios.post('http://192.168.43.230:8000/api/register', JSON.stringify({ first_name: firstName, last_name: lastName, email, password }), {
                 headers: { 'Content-type': 'application/json' },
                 withCredentials: true,
             });
@@ -29,7 +29,7 @@ export const Register = ({ navigation }) => {
                 <TextInput placeholder='First name' style={styles.textInput} onChangeText={(userFName) => setFirstName(userFName)} />
                 <TextInput placeholder='Last name' style={styles.textInput} onChangeText={(userLName) => setLastName(userLName)} />
                 <TextInput placeholder='Email' style={styles.textInput} onChangeText={(userEmail) => setEmail(userEmail)} />
-                <TextInput placeholder='Password' style={styles.textInput} onChangeText={(userPassword) => setPassword(userPassword)} />
+                <TextInput placeholder='Password' secureTextEntry={true} style={styles.textInput} onChangeText={(userPassword) => setPassword(userPassword)} />
             </View>
             <RoundedButton text='Register' onPress={handleRegister} />
         </View>

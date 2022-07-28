@@ -200,7 +200,7 @@ export const Home = () => {
                             setValue={handleSelectVehicle}
                             setItems={setVehicle}
                         />
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 5 }}>
+                        <View style={{ alignItems: 'center', alignSelf: 'center', borderWidth: 2, width: '100%' }}>
                             <Text>Add a vehicle</Text>
                             <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />
                         </View>
@@ -286,6 +286,7 @@ const styles = StyleSheet.create({
         height: '50%',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 15,
         marginBottom: 15,
         padding: 10,
         borderRadius: 10,

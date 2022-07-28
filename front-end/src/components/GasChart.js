@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
         color: 'white',
-        paddingLeft: 10,
+        alignSelf: 'center',
     },
     headerContent: {
         paddingTop: '14%',
@@ -148,8 +148,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     profileImg: {
-        width: '190%',
-        height: '70%',
+        width: 60,
+        height: 60,
         borderWidth: 1,
         borderColor: 'white',
         borderRadius: 40,
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     selectGas: {
-        width: '18%',
+        width: '22%',
         borderRightWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',

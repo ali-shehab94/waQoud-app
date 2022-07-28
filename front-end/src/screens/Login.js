@@ -35,8 +35,8 @@ export const Login = ({ navigation }) => {
             <Text style={styles.title}>Sign in</Text>
             <View style={styles.inputContainer}>
                 <TextInput placeholder='Email' style={styles.textInput} onChangeText={(userEmail) => setEmail(userEmail)} />
-                <TextInput placeholder='Password' style={styles.textInput} onChangeText={(userPass) => setPassword(userPass)} />
-                <TouchableHighlight
+                <TextInput placeholder='Password' secureTextEntry={true} style={styles.textInput} onChangeText={(userPass) => setPassword(userPass)} />
+                {/* <TouchableHighlight
                     style={styles.googleButton}
                     onPress={() => {
                         alert(password);
@@ -46,7 +46,7 @@ export const Login = ({ navigation }) => {
                         <AntDesign name='google' size={24} color='black' />
                         Continue with google
                     </Text>
-                </TouchableHighlight>
+                </TouchableHighlight> */}
             </View>
             <RoundedButton text='Go' onPress={handleLogin} />
         </View>
