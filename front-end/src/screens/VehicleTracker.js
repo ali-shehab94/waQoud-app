@@ -58,31 +58,32 @@ export const VehicleTracker = () => {
         <View style={styles.container}>
             <View style={styles.header}>{user.selectedVehicle ? <Text style={styles.vehicleName}>{vehicleName}</Text> : <Text>Please select a vehicle</Text>}</View>
             <View>
-                {trackers.length
-                    ? trackers.map((tracker) => {
-                          return (
-                              <View>
-                                  <View key={tracker.type}>
-                                      <View style={styles.tracker}>
-                                          <View style={styles.trackerTitle}>
-                                              {getIcon(tracker.type)}
-                                              <Text>{tracker.type}</Text>
-                                          </View>
-                                          <View>
-                                              <Text>Type: {tracker.model_name}</Text>
-                                              <Text>Last replaced: {tracker.installed_at}</Text>
-                                              <Text>Replace at: {tracker.installed_at + tracker.lasts}</Text>
-                                          </View>
-                                      </View>
-                                  </View>
-                                  <View style={{ justifyContent: 'center', marginTop: 5 }}>
-                                      <Text>New Tracker</Text>
-                                      <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />
-                                  </View>
-                              </View>
-                          );
-                      })
-                    : null}
+                {trackers.length ? (
+                    trackers.map((tracker) => {
+                        return (
+                            <View>
+                                <View key={tracker.type}>
+                                    <View style={styles.tracker}>
+                                        <View style={styles.trackerTitle}>
+                                            {getIcon(tracker.type)}
+                                            <Text>{tracker.type}</Text>
+                                        </View>
+                                        <View>
+                                            <Text>Type: {tracker.model_name}</Text>
+                                            <Text>Last replaced: {tracker.installed_at}</Text>
+                                            <Text>Replace at: {tracker.installed_at + tracker.lasts}</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            </View>
+                        );
+                    })
+                ) : (
+                    <View style={{ justifyContent: 'center', marginTop: 5 }}>
+                        <Text>New Tracker</Text>
+                        <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />
+                    </View>
+                )}
             </View>
         </View>
     );
