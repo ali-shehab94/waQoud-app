@@ -3,6 +3,7 @@ import { UserContext } from '../../context/UserContext';
 // import { GasStation } from '../components/GasStation';
 import { TripCalculator } from './TripCalculator';
 import { MY_GOOGLE_API_KEY } from '../../config/env';
+import { MapModal } from '../components/MapModal';
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
@@ -60,14 +61,13 @@ export const StationsNearYou = (props) => {
                 <Text>Find gas station near you</Text>
             </View>
             <View style={{ paddingTop: '2%', borderWidth: 1, alignItems: 'center', height: '100%' }}>
-                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Stations{distances.length}</Text>
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Stations</Text>
 
                 <FlatList
                     style={styles.gasStations}
                     data={distances}
                     renderItem={({ item }) => (
                         <View style={{ margin: 5, alignItems: 'center', width: '100%' }}>
-                            {/* <Text>{JSON.stringify(getDistance([item.geometry.location.lat, item.geometry.location.lng]))}</Text> */}
                             <TouchableOpacity
                                 style={styles.tracker}
                                 onPress={() => {
@@ -79,35 +79,15 @@ export const StationsNearYou = (props) => {
                                 </View>
                                 <View>
                                     <Text style={styles.stationInfo}>{item.name.split(' ')[0]}</Text>
-                                    <Text style={styles.stationInfo}>{item.calculated_distance}away</Text>
+                                    <Text style={styles.stationInfo}>{(item.calculated_distance / 1000).toFixed(2)} KM away</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
                     )}
                 />
-
-                {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: '5%', borderWidth: 1, width: '80%', justifyContent: 'space-between' }}>
-                    {gasStations
-                        ? gasStations.results.map((gasStation, index) => {
-                              return (
-                                  <View key={index}>
-                                      <GasStation name={gasStation.name.split(' ')[0]} location='1.1 KM' />
-                                  </View>
-                              );
-                          })
-                        : null}
-                </View> */}
             </View>
-            {selectedGasStation ? <TripCalculator /> : null}
+            {selectedGasStation && <MapModal coords={[selectedGasStation.geometry.location.lat, selectedGasStation.geometry.location.lng]} />}
         </SafeAreaView>
-        //     <View style={styles.tracker}>
-        //     <View style={styles.trackerTitle}>
-        //         <Text>{gasStation.name}</Text>
-        //     </View>
-        //     <View>
-        //         <Text>Type: {gasStation.business_status}</Text>
-        //     </View>
-        // </View>
     );
 };
 const styles = StyleSheet.create({
