@@ -103,11 +103,9 @@ export const Home = () => {
                 })
                 .then((response) => {
                     setVehicle(
-                        response.data.user_vehicles
-                            .map((car) => {
-                                return { label: `${car[0].make} ${car[0].model} ${car[0].year}`, value: car[0].id };
-                            })
-                            .reverse()
+                        response.data.user_vehicles.map((car) => {
+                            return { label: `${car[0].make} ${car[0].model} ${car[0].year}`, value: car[0].id };
+                        })
                     );
                 })
                 .catch((err) => {

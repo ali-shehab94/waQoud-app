@@ -2,19 +2,22 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, SafeAreaVie
 import { UserContext } from '../../context/UserContext';
 import { useState, useEffect, useContext } from 'react';
 import { FontAwesome5, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+
 import axios from 'axios';
 
 export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
     const [trackers, setTrackers] = useState([]);
     const [vehicleName, setVehicleName] = useState('');
+    const [isCreating, setIsCreating] = useState(false);
 
     console.log(user.selectedVehicle);
 
     useEffect(() => {
         getTrackers();
         getVehicleName();
-    }, []);
+    }, [user.selectedVehicle]);
 
     const getTrackers = () => {
         axios
@@ -54,25 +57,33 @@ export const VehicleTracker = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>{user.selectedVehicle ? <Text style={styles.vehicleName}>{vehicleName}</Text> : <Text>Please select a vehicle</Text>}</View>
-            {trackers.length
-                ? trackers.map((tracker) => {
-                      return (
-                          <View key={tracker.type}>
-                              <View style={styles.tracker}>
-                                  <View style={styles.trackerTitle}>
-                                      {getIcon(tracker.type)}
-                                      <Text>{tracker.type}</Text>
+            <View>
+                {trackers.length
+                    ? trackers.map((tracker) => {
+                          return (
+                              <View>
+                                  <View key={tracker.type}>
+                                      <View style={styles.tracker}>
+                                          <View style={styles.trackerTitle}>
+                                              {getIcon(tracker.type)}
+                                              <Text>{tracker.type}</Text>
+                                          </View>
+                                          <View>
+                                              <Text>Type: {tracker.model_name}</Text>
+                                              <Text>Last replaced: {tracker.installed_at}</Text>
+                                              <Text>Replace at: {tracker.installed_at + tracker.lasts}</Text>
+                                          </View>
+                                      </View>
                                   </View>
-                                  <View>
-                                      <Text>Type: {tracker.model_name}</Text>
-                                      <Text>Last replaced: {tracker.installed_at}</Text>
-                                      <Text>Replace at: {tracker.installed_at + tracker.lasts}</Text>
+                                  <View style={{ justifyContent: 'center', marginTop: 5 }}>
+                                      <Text>New Tracker</Text>
+                                      <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />
                                   </View>
                               </View>
-                          </View>
-                      );
-                  })
-                : null}
+                          );
+                      })
+                    : null}
+            </View>
         </View>
     );
 };
