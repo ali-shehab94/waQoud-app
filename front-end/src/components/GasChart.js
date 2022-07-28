@@ -17,7 +17,7 @@ export const GasChart = () => {
 
     useEffect(() => {
         axios
-            .get(`http://10.0.2.2:8000/api/scrape_fuel_prices`, {
+            .get(`http://192.168.43.230:8000/api/scrape_fuel_prices`, {
                 headers: { 'Content-type': 'application/json' },
                 withCredentials: true,
             })
