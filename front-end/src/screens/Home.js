@@ -79,6 +79,7 @@ export const Home = () => {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
+                //clearing all fields
                 console.log(response.data);
                 setIsCreating(false);
                 setGasTypesValue(null);
