@@ -20,9 +20,11 @@ export const TripCalculator = () => {
 
     useEffect(() => {
         GetCurrentLocation();
-        setUser({ ...user, userLocation: userLocation });
     }, []);
 
+    useEffect(() => {
+        setUser({ ...user, userLocation: userLocation });
+    }, [userLocation]);
     useEffect(() => {
         if (pin) {
             calculateDistance();

@@ -6,24 +6,35 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
 export const StationsNearYou = () => {
-    useEffect(() => {
-        getNearByStations();
-    }, []);
-    const getNearByStations = () => {
-        const [user, setUser] = useContext(UserContext);
+    const [user, setUser] = useContext(UserContext);
+    const [userLocation, setUserLocation] = useState({ latitude: user.userLocation.latitude, longitude: user.userLocation.longitude });
+    const [gasStations, setGasStations] = useState();
 
-        axios
-            .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.899873,35.488818&radius=50000&type=gas_station&key=${MY_GOOGLE_API_KEY}`)
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+    useEffect(() => {
+        console.log(userLocation);
+    }, []);
+
+    axios
+        .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${userLocation.latitude},${userLocation.longitude}&radius=2000&type=gas_station&key=${MY_GOOGLE_API_KEY}`)
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
     return (
-        <View>
-            <Text onPress={getNearByStations}>Stations</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <View>
+                <Text>Stations</Text>
+            </View>
+        </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#E9E9E9',
+    },
+});
