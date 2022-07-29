@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
         marginTop: '20%',
         color: '#0F5F53',
         fontSize: 40,
+        fontFamily: 'Righteous_400Regular',
     },
     inputContainer: {
         marginTop: '10%',

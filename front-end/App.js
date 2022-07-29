@@ -11,6 +11,8 @@ import { Login } from './src/screens/Login';
 import { Welcome } from './src/screens/Welcome';
 import { Register } from './src/screens/Register';
 import { Profile } from './src/screens/Profile';
+import { useFonts, Righteous_400Regular } from '@expo-google-fonts/righteous';
+
 import { BottomTab } from './src/components/BottomTab';
 import AppLoading from 'expo-app-loading';
 // import { Righteous_400Regular } from '@expo-google-fonts/righteous';
@@ -18,7 +20,13 @@ import AppLoading from 'expo-app-loading';
 export default function App() {
     const [user, setUser] = useState();
     const Stack = createStackNavigator();
+    const [fontsLoaded] = useFonts({
+        Righteous_400Regular,
+    });
 
+    if (!fontsLoaded) {
+        return <Text>Loading</Text>;
+    }
     return (
         <UserContext.Provider value={[user, setUser]}>
             <NavigationContainer>
