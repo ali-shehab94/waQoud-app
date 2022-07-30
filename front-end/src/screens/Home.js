@@ -254,6 +254,7 @@ const styles = StyleSheet.create({
     },
     selectedPrice: {
         fontSize: 20,
+        fontFamily: 'Righteous_400Regular',
     },
     chartTop: {
         flexDirection: 'row',
@@ -328,6 +329,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 22,
+        fontFamily: 'Righteous_400Regular',
         color: '#0F5F53',
         justifyContent: 'center',
     },
@@ -335,6 +337,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#0F5F53',
         justifyContent: 'center',
+        fontFamily: 'Righteous_400Regular',
     },
     shadowProp: {
         shadowColor: 'black',

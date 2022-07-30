@@ -110,7 +110,8 @@ export const GasChart = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.price}>
-                        <Text style={styles.selectedPrice}>{prices && Math.round(getSelectedGasTypePrices()[0].price)} / 20L</Text>
+                        <Text style={styles.selectedPrice}>{prices && Math.round(getSelectedGasTypePrices()[0].price)}</Text>
+                        <Text style={[styles.selectedPrice, { fontSize: 20, marginLeft: 5 }]}>/ 20L</Text>
                     </View>
                 </View>
                 {prices && priceRows()}
@@ -167,6 +168,7 @@ const styles = StyleSheet.create({
     },
     selectedPrice: {
         fontSize: 30,
+        fontFamily: 'Righteous_400Regular',
     },
     chartTop: {
         flexDirection: 'row',
@@ -177,6 +179,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     price: {
+        flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 40,
         paddingTop: 10,
