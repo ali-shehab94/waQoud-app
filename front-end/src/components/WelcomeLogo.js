@@ -6,9 +6,9 @@ export const WelcomeLogo = () => {
 
 const styles = StyleSheet.create({
     mainLogo: {
-        borderWidth: 2,
-        width: 308,
-        height: 308,
+        width: 340,
+        height: 340,
         resizeMode: 'contain',
+        borderRadius: 10,
     },
 });
