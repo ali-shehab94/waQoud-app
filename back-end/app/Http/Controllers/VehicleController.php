@@ -65,13 +65,13 @@ class VehicleController extends Controller
 
     public function addVehicle(Request $request) {
         //check if the vehicle already exists in database
-        // $vehicle_exists = Vehicle::where('make', $request->make)
-        // ->where('model', $request->model)
-        // ->where('year', $request->year)
-        // ->where('fuel_type', $request->fuel_type)
-        // ->where('cylinders', $request->cylinders)->exists();
-        $vehicles_id = $this->queryVehicle($request);
-        if (!$vehicles_id)
+        $vehicle_exists = Vehicle::where('make', $request->make)
+        ->where('model', $request->model)
+        ->where('year', $request->year)
+        ->where('fuel_type', $request->fuel_type)
+        ->where('cylinders', $request->cylinders)->exists();
+        // $vehicles_id = $this->queryVehicle($request);
+        if (!$vehicle_exists)
             {   
                 $vehicle = new Vehicle;
                 $vehicle->make = $request->make;
@@ -83,15 +83,13 @@ class VehicleController extends Controller
                 $vehicle->save();
             }
 
-        $vehicles_id = $this->queryVehicle($request);
-
-        // $vehicles_id = Vehicle::where('make', $request->make)
-        // ->where('model', $request->model)
-        // ->where('year', $request->year)
-        // ->where('fuel_type', $request->fuel_type)
-        // ->where('cylinders', $request->cylinders)->pluck('id');
-        //get id from variable
+        $vehicles_id = Vehicle::where('make', $request->make)
+        ->where('model', $request->model)
+        ->where('year', $request->year)
+        ->where('fuel_type', $request->fuel_type)
+        ->where('cylinders', $request->cylinders)->pluck('id');
         $vehicles_id = $vehicles_id[0];
+        //get id from variable
         //check if user already added same vehicle to prevent duplicates
         if (UserVehicle::where('users_id', $request->users_id)
         ->where('vehicles_id', $vehicles_id)->exists())
