@@ -7,7 +7,6 @@ import { UserContext } from '../../context/UserContext';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-// import { Righteous_400Regular } from '@expo-google-fonts/righteous';
 
 export const GasChart = () => {
     const date = new Date();
@@ -56,11 +55,11 @@ export const GasChart = () => {
             return (
                 <View key={price.id} style={styles.info}>
                     <View>
-                        <Text style={{ fontSize: 15 }}>{price.created_at.split('T')[0] + ' ' + price.created_at.split('T')[1].slice(0, 8)}</Text>
+                        <Text style={{ fontSize: 15, fontFamily: 'Righteous_400Regular' }}>{price.created_at.split('T')[0] + ' ' + price.created_at.split('T')[1].slice(0, 8)}</Text>
                     </View>
                     <View style={styles.difference}>
                         <View>
-                            <Text style={{ fontSize: 17 }}>{Math.round(difference)}</Text>
+                            <Text style={{ fontSize: 17, fontFamily: 'Righteous_400Regular' }}>{Math.round(difference)}</Text>
                         </View>
                         <View>
                             <Text>{difference > 0 ? <AntDesign name='arrowup' size={20} color='red' /> : <AntDesign name='arrowdown' size={20} color='green' />}</Text>
@@ -262,17 +261,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 68,
         borderRadius: 5,
+        fontFamily: 'Righteous_400Regular',
     },
     boxInactive: {
         alignItems: 'center',
         justifyContent: 'center',
         width: 68,
+        fontFamily: 'Righteous_400Regular',
     },
     textActive: {
         color: 'white',
         fontSize: 18,
+        fontFamily: 'Righteous_400Regular',
     },
     textInactive: {
         fontSize: 16,
+        fontFamily: 'Righteous_400Regular',
     },
 });
