@@ -38,9 +38,10 @@ class FuelController extends Controller
     {
         //create a goutte client
         $client = new Client();
-        $url = 'https://www.iptgroup.com.lb/ipt/en/our-stations/fuel-prices';
+        
+        // $url = 'https://www.iptgroup.com.lb/ipt/en/our-stations/fuel-prices';
         //scrape page and filter data
-        $page = $client->request('GET', $url);
+        $page = $client->request('GET', env('IPT_URL'));
         $rawData = $page->filter('.pricesTable')->text();
         $myArray = explode(' ', $rawData);
         $new_UNL95_price = str_replace(",","", $myArray[2]);
