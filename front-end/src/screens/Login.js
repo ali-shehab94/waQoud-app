@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
-import axios from '../../config/axios';
+import axios from '../../global/axios';
 import { UserContext } from '../../context/UserContext';
 import { useState, useEffect, useContext } from 'react';
 import { AntDesign } from '@expo/vector-icons';
@@ -18,7 +18,7 @@ export const Login = ({ navigation }) => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post(`http://192.168.43.230:8000/api/login`, JSON.stringify({ email, password }), {
+            const response = await axios.post(`http://10.0.2.2:8000/api/login`, JSON.stringify({ email, password }), {
                 headers: { 'Content-type': 'application/json' },
                 withCredentials: true,
             });

@@ -69,7 +69,7 @@ export const TripCalculator = () => {
 
     const calculateTripCost = () => {
         axios
-            .post(`http://192.168.43.230:8000/api/trip_cost`, JSON.stringify({ distance, vehicles_id: user.selectedVehicle }), {
+            .post(`http://10.0.2.2:8000/api/trip_cost`, JSON.stringify({ distance, vehicles_id: user.selectedVehicle }), {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {

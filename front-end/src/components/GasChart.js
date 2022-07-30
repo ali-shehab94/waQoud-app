@@ -16,7 +16,7 @@ export const GasChart = () => {
 
     useEffect(() => {
         axios
-            .get(`http://192.168.43.230:8000/api/scrape_fuel_prices`, {
+            .get(`http://10.0.2.2:8000/api/scrape_fuel_prices`, {
                 headers: { 'Content-type': 'application/json' },
                 withCredentials: true,
             })
@@ -175,7 +175,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Righteous_400Regular',
     },
     chartTop: {
-        flexDirection: 'row',
         borderBottomWidth: 1,
     },
     addVehiclesPage: {
@@ -184,6 +183,7 @@ const styles = StyleSheet.create({
     },
     price: {
         flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 40,
         paddingTop: 10,
@@ -196,10 +196,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     selectGas: {
-        width: '22%',
-        borderRightWidth: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: '#FFAC33',
+        height: 40,
+        borderWidth: 1.5,
+        borderStyle: 'dashed',
+        borderRadius: 7,
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-between',
     },
     gasDropdown: {
         width: 116,
@@ -264,7 +268,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#0F5F53',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 68,
+        width: 70,
         borderRadius: 5,
         fontFamily: 'Righteous_400Regular',
     },

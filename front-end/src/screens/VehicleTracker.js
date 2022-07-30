@@ -21,7 +21,7 @@ export const VehicleTracker = () => {
 
     const getTrackers = () => {
         axios
-            .post(`http://192.168.43.230:8000/api/get_trackers`, JSON.stringify({ users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
+            .post(`http://10.0.2.2:8000/api/get_trackers`, JSON.stringify({ users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
@@ -34,7 +34,7 @@ export const VehicleTracker = () => {
     };
     const getVehicleName = () => {
         axios
-            .get(`http://192.168.43.230:8000/api/vehicle_name?vehicle_id=${user.selectedVehicle}`)
+            .get(`http://10.0.2.2:8000/api/vehicle_name?vehicle_id=${user.selectedVehicle}`)
             .then((response) => {
                 console.log(response.data);
                 setVehicleName(response.data.vehicle_name);

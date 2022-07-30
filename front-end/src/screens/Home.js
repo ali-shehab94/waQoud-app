@@ -75,7 +75,7 @@ export const Home = () => {
     const addNewVehicle = () => {
         console.log('im heres');
         axios
-            .post(`http://192.168.43.230:8000/api/add_vehicle`, JSON.stringify({ fuel_type: gasTypesValue, make, model, year, cylinders, users_id: user.user.id, mpg }), {
+            .post(`http://10.0.2.2:8000/api/add_vehicle`, JSON.stringify({ fuel_type: gasTypesValue, make, model, year, cylinders, users_id: user.user.id, mpg }), {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
@@ -98,14 +98,14 @@ export const Home = () => {
     useEffect(() => {
         user &&
             axios
-                .get(`http://192.168.43.230:8000/api/user_vehicles/${user.user.id}`, {
+                .get(`http://10.0.2.2:8000/api/user_vehicles/${user.user.id}`, {
                     headers: { 'Content-type': 'application/json' },
                     withCredentials: true,
                 })
                 .then((response) => {
                     setVehicle(
                         response.data.user_vehicles.map((car) => {
-                            return { label: `${car[0].make} ${car[0].model} ${car[0].year}`, value: car[0].id };
+                            return { label: `${car[0].make.charAt(0).toUpperCase() + car[0].make.substring(1)} ${car[0].model.toUpperCase()} ${car[0].year}`, value: car[0].id };
                         })
                     );
                 })
