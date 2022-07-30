@@ -15,10 +15,9 @@ export const VehicleTracker = () => {
     const [trackers, setTrackers] = useState([]);
     const [vehicleName, setVehicleName] = useState('');
     const [isCreating, setIsCreating] = useState(false);
+    const [trackerValue, setTrackerValue] = useState(null);
 
-    console.log(user.selectedVehicle);
-
-    const gasTypes = [
+    const tracker = [
         { label: 'Engine Oil', value: '1' },
         { label: 'Brakes', value: '2' },
         { label: 'Wheels', value: '3' },
@@ -28,6 +27,11 @@ export const VehicleTracker = () => {
         getTrackers();
         getVehicleName();
     }, [user.selectedVehicle]);
+
+    const handleTrackerValue = (val) => {
+        setTrackerValue(val());
+        console.log(trackers);
+    };
 
     const getTrackers = () => {
         axios
@@ -101,10 +105,10 @@ export const VehicleTracker = () => {
                                     style={styles.addGasTypeInput}
                                     textStyle={styles.dropDownText}
                                     open={open}
-                                    items={gasTypes}
-                                    value={gasTypesValue}
-                                    setValue={handleGasTypeValue}
-                                    setItems={setGasTypesValue}
+                                    items={tracker}
+                                    value={trackerValue}
+                                    setValue={handleTrackerValue}
+                                    setItems={setTrackerValue}
                                     setOpen={setOpen}
                                 />
                             </View>
