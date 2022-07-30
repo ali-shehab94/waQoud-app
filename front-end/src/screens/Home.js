@@ -171,15 +171,7 @@ export const Home = () => {
                                 setOpen={setOpen}
                             />
                         </View>
-                    ) : (
-                        <View>
-                            <Text>{make}</Text>
-                            <Text>{model}</Text>
-                            <Text>{year}</Text>
-                            <Text>{cylinders}</Text>
-                            <Text>{gasTypesValue}</Text>
-                        </View>
-                    )}
+                    ) : null}
 
                     <View style={{ alignItems: 'center' }}>
                         <RoundedButton text='Next' onPress={handleFetchVehicle} />

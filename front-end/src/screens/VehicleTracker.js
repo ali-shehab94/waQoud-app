@@ -2,17 +2,27 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, SafeAreaVie
 import { UserContext } from '../../context/UserContext';
 import { useState, useEffect, useContext } from 'react';
 import { FontAwesome5, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { RoundedButton } from '../components/RoundedButton';
 import { Ionicons } from '@expo/vector-icons';
 
 import axios from 'axios';
 
 export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
+    const [open, setOpen] = useState(false);
+    const [step, setStep] = useState(0);
     const [trackers, setTrackers] = useState([]);
     const [vehicleName, setVehicleName] = useState('');
     const [isCreating, setIsCreating] = useState(false);
 
     console.log(user.selectedVehicle);
+
+    const gasTypes = [
+        { label: 'Engine Oil', value: '1' },
+        { label: 'Brakes', value: '2' },
+        { label: 'Wheels', value: '3' },
+    ];
 
     useEffect(() => {
         getTrackers();
@@ -56,10 +66,68 @@ export const VehicleTracker = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>{user.selectedVehicle ? <Text style={styles.vehicleName}>{vehicleName}</Text> : <Text style={styles.vehicleName}>Please select a vehicle</Text>}</View>
+            <View style={styles.header}>
+                {user.selectedVehicle ? (
+                    <Text style={styles.vehicleName}>{vehicleName.charAt(0).toUpperCase() + vehicleName.substring(1)}</Text>
+                ) : (
+                    <Text style={styles.vehicleName}>Please select a vehicle</Text>
+                )}
+            </View>
             <View>
                 {isCreating ? (
-                    <Text>Hi</Text>
+                    <View style={styles.addVehiclesPage}>
+                        <View>
+                            <Ionicons
+                                name='arrow-back-circle'
+                                size={30}
+                                color='black'
+                                onPress={() => {
+                                    if (step > 0) {
+                                        setStep(step - 1);
+                                    } else {
+                                        setIsCreating(false);
+                                    }
+                                }}
+                            />
+                        </View>
+                        <View style={styles.addVehiclesTitle}>
+                            <Text style={{ fontSize: 40, fontFamily: 'Righteous_400Regular' }}>Add a vehicle</Text>
+                        </View>
+                        {step == 0 ? (
+                            <View style={[styles.inputField, { marginTop: 50 }]}>
+                                <Text style={styles.smallText}>Gas type</Text>
+                                <DropDownPicker
+                                    placeholder='Select preferred gas type'
+                                    style={styles.addGasTypeInput}
+                                    textStyle={styles.dropDownText}
+                                    open={open}
+                                    items={gasTypes}
+                                    value={gasTypesValue}
+                                    setValue={handleGasTypeValue}
+                                    setItems={setGasTypesValue}
+                                    setOpen={setOpen}
+                                />
+                            </View>
+                        ) : step == 1 ? (
+                            <View style={styles.inputField}>
+                                <Text style={styles.smallText}>Model</Text>
+                                <TextInput placeholder='Example Corolla' style={styles.addVehiclesInput} onChangeText={(value) => setModel(value)} />
+                            </View>
+                        ) : step == 2 ? (
+                            <View style={styles.inputField}>
+                                <Text style={styles.smallText}>Year</Text>
+                                <TextInput placeholder='Example 1998' style={styles.addVehiclesInput} onChangeText={(value) => setYear(value)} />
+                            </View>
+                        ) : step == 3 ? (
+                            <View style={styles.inputField}>
+                                <Text style={styles.smallText}>Cylinders</Text>
+                                <TextInput placeholder='Example 4' style={styles.addVehiclesInput} onChangeText={(value) => setCylinders(value)} />
+                            </View>
+                        ) : null}
+                        <View style={{ alignItems: 'center' }}>
+                            <RoundedButton text='Next' />
+                        </View>
+                    </View>
                 ) : trackers.length ? (
                     trackers.map((tracker) => {
                         return (
@@ -122,5 +190,27 @@ const styles = StyleSheet.create({
     vehicleName: {
         color: 'white',
         fontSize: 20,
+    },
+    addVehiclesPage: {
+        padding: 20,
+        marginTop: 24,
+    },
+    addVehiclesTitle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 40,
+    },
+    inputField: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    addVehiclesInput: {
+        marginTop: 20,
+        backgroundColor: '#D9D9D9',
+        width: '80%',
+        height: '30%',
+        borderRadius: 10,
+        paddingHorizontal: 7,
     },
 });
