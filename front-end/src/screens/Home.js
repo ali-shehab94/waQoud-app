@@ -121,7 +121,7 @@ export const Home = () => {
                     <View>
                         <Ionicons
                             name='arrow-back-circle'
-                            size={24}
+                            size={30}
                             color='black'
                             onPress={() => {
                                 if (step > 0) {
@@ -133,32 +133,32 @@ export const Home = () => {
                         />
                     </View>
                     <View style={styles.addVehiclesTitle}>
-                        <Text style={{ fontSize: 40 }}>Add a vehicle</Text>
+                        <Text style={{ fontSize: 40, fontFamily: 'Righteous_400Regular' }}>Add a vehicle</Text>
                     </View>
 
                     {step == 0 ? (
                         <View style={styles.inputField}>
-                            <Text>Make</Text>
+                            <Text style={styles.smallText}>Make</Text>
                             <TextInput placeholder='Example Toyota' style={styles.addVehiclesInput} onChangeText={(value) => setMake(value)} />
                         </View>
                     ) : step == 1 ? (
                         <View style={styles.inputField}>
-                            <Text>Model</Text>
+                            <Text style={styles.smallText}>Model</Text>
                             <TextInput placeholder='Example Corolla' style={styles.addVehiclesInput} onChangeText={(value) => setModel(value)} />
                         </View>
                     ) : step == 2 ? (
                         <View style={styles.inputField}>
-                            <Text>Year</Text>
+                            <Text style={styles.smallText}>Year</Text>
                             <TextInput placeholder='Example 1998' style={styles.addVehiclesInput} onChangeText={(value) => setYear(value)} />
                         </View>
                     ) : step == 3 ? (
                         <View style={styles.inputField}>
-                            <Text>Cylinders</Text>
+                            <Text style={styles.smallText}>Cylinders</Text>
                             <TextInput placeholder='Example 4' style={styles.addVehiclesInput} onChangeText={(value) => setCylinders(value)} />
                         </View>
                     ) : step == 4 ? (
-                        <View style={styles.inputField}>
-                            <Text>Gas type</Text>
+                        <View style={[styles.inputField, { marginTop: 50 }]}>
+                            <Text style={styles.smallText}>Gas type</Text>
                             <DropDownPicker
                                 placeholder='Select preferred gas type'
                                 style={styles.addGasTypeInput}
@@ -200,9 +200,11 @@ export const Home = () => {
                             setValue={handleSelectVehicle}
                             setItems={setVehicle}
                         />
-                        <View style={{ alignItems: 'center', alignSelf: 'center', borderWidth: 2, width: '100%' }}>
-                            <Text>Add a vehicle</Text>
-                            <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />
+                        <View style={{ alignItems: 'center', alignSelf: 'center', borderWidth: 2, borderRadius: 10, backgroundColor: '#', width: '100%' }}>
+                            <Text style={{ fontFamily: 'Righteous_400Regular' }}>Add a vehicle</Text>
+                            <TouchableOpacity onPress={() => setIsCreating(true)}>
+                                <Ionicons name='add-circle-sharp' size={24} color='black' />
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </>
@@ -217,12 +219,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#E9E9E9',
     },
     addGasTypeInput: {
+        width: '80%',
+        alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 40,
-        marginBottom: 20,
+        marginTop: 50,
+        marginBottom: 30,
         backgroundColor: '#D9D9D9',
-
         borderRadius: 10,
         paddingHorizontal: 10,
     },
@@ -245,6 +248,9 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 40,
     },
+    smallText: {
+        fontSize: 20,
+    },
     logoImg: {
         width: 180,
         height: 60,
@@ -262,7 +268,7 @@ const styles = StyleSheet.create({
     },
     addVehiclesPage: {
         padding: 20,
-        marginTop: 20,
+        marginTop: 24,
     },
     price: {
         alignItems: 'center',
