@@ -10,8 +10,8 @@ export const RoundedButton = ({ text, onPress }) => {
 
 const styles = StyleSheet.create({
     roundButton: {
-        width: 116,
-        height: 116,
+        width: 130,
+        height: 130,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
@@ -19,9 +19,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'orange',
         shadowOpacity: 20,
         shadowColor: 'black',
+        borderWidth: 0.5,
+        elevation: 8,
     },
     buttonText: {
-        fontSize: 22,
+        fontSize: 26,
+        fontFamily: 'Righteous_400Regular',
         color: '#0F5F53',
         justifyContent: 'center',
     },

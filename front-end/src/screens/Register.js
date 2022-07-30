@@ -31,7 +31,7 @@ export const Register = ({ navigation }) => {
                 <TextInput placeholder='Email' style={styles.textInput} onChangeText={(userEmail) => setEmail(userEmail)} />
                 <TextInput placeholder='Password' secureTextEntry={true} style={styles.textInput} onChangeText={(userPassword) => setPassword(userPassword)} />
             </View>
-            <RoundedButton text='Register' onPress={handleRegister} />
+            <RoundedButton text='Go' onPress={handleRegister} />
         </View>
     );
 };
@@ -47,20 +47,30 @@ const styles = StyleSheet.create({
         marginTop: '20%',
         color: '#0F5F53',
         fontSize: 40,
+        fontFamily: 'Righteous_400Regular',
     },
     inputContainer: {
-        marginTop: 18,
-        marginBottom: 10,
+        width: '80%',
+        height: '50%',
+        marginTop: '10%',
+        marginBottom: '7%',
+        justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 0,
+        borderRadius: 20,
+        backgroundColor: '#1fc5ac',
+        elevation: 20,
     },
     textInput: {
         margin: '4%',
-        width: 250,
+        width: 220,
         height: 54,
         backgroundColor: 'white',
-        borderRadius: 10,
+        borderRadius: 15,
         borderColor: 'black',
-        borderWidth: 1.5,
+        borderWidth: 2,
+        borderColor: '#0F5F53',
+        elevation: 8,
         paddingHorizontal: 7,
     },
 });
