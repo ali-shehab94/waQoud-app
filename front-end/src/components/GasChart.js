@@ -28,6 +28,11 @@ export const GasChart = () => {
             });
     }, []);
 
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+
     const getSelectedGasTypePrices = () => {
         let _prices = [];
         switch (gasType) {
@@ -55,7 +60,7 @@ export const GasChart = () => {
             return (
                 <View key={price.id} style={styles.info}>
                     <View>
-                        <Text style={{ fontSize: 15, fontFamily: 'Righteous_400Regular' }}>{price.created_at.split('T')[0] + ' ' + price.created_at.split('T')[1].slice(0, 8)}</Text>
+                        <Text style={{ fontSize: 15, fontFamily: 'Righteous_400Regular' }}>{formatDate(price.created_at)}</Text>
                     </View>
                     <View style={styles.difference}>
                         <View>
