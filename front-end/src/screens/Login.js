@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
     inputContainer: {
         width: '70%',
         height: '30%',
-        marginTop: '10%',
-        marginBottom: '7%',
+        marginTop: '20%',
+        marginBottom: '12%',
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 0,
