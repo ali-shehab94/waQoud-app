@@ -66,7 +66,7 @@ export const StationsNearYou = (props) => {
                 <Text style={styles.vehicleName}>Find gas station near you</Text>
             </View>
             <View style={{ paddingTop: '2%', borderWidth: 1, alignItems: 'center', height: '100%' }}>
-                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Stations</Text>
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }}></Text>
                 {selectedGasStation ? (
                     <MapModal style={{ zIndex: 5 }} coords={[selectedGasStation.geometry.location.lat, selectedGasStation.geometry.location.lng]} clearData={clearData} />
                 ) : (
@@ -74,7 +74,7 @@ export const StationsNearYou = (props) => {
                         style={styles.gasStations}
                         data={distances}
                         renderItem={({ item }) => (
-                            <View style={{ margin: 5, alignItems: 'center', width: '100%' }}>
+                            <View style={{ margin: 2, alignItems: 'center', width: '100%' }}>
                                 <TouchableOpacity
                                     style={styles.tracker}
                                     onPress={() => {
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     vehicleName: {
         color: 'white',
         fontSize: 20,
+        fontFamily: 'Righteous_400Regular',
     },
     header: {
         backgroundColor: '#0F5F53',
@@ -130,10 +131,7 @@ const styles = StyleSheet.create({
     trackerTitle: {
         paddingHorizontal: 20,
     },
-    vehicleName: {
-        color: 'white',
-        fontSize: 20,
-    },
+
     gasStations: {
         width: '80%',
     },
@@ -146,6 +144,7 @@ const styles = StyleSheet.create({
         borderRadius: 40,
     },
     stationInfo: {
+        fontFamily: 'Righteous_400Regular',
         paddingLeft: '2%',
         fontSize: 20,
         width: '100%',
