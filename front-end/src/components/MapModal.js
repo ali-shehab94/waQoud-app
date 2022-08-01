@@ -14,7 +14,7 @@ export const MapModal = ({ coords, clearData }) => {
             <View style={styles.modal}>
                 <View style={styles.textContainer}>
                     <TouchableOpacity onPress={() => clearData()} style={{ position: 'absolute', left: '92%', alignItems: 'center' }}>
-                        <MaterialIcons name='exit-to-app' size={30} color='white' />
+                        <MaterialIcons name='exit-to-app' size={34} color='black' />
                     </TouchableOpacity>
                     <MapView
                         style={styles.map}
@@ -49,10 +49,7 @@ const styles = StyleSheet.create({
         zIndex: 10,
         borderTopWidth: 0.2,
     },
-    modal: {
-        height: '100%',
-        backgroundColor: '#FFAC33',
-    },
+
     info: {
         marginTop: '10%',
         paddingHorizontal: '4%',
