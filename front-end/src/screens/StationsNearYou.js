@@ -5,6 +5,8 @@ import { TripCalculator } from './TripCalculator';
 import { MY_GOOGLE_API_KEY } from '../../config/env';
 import { MapModal } from '../components/MapModal';
 import { useState, useEffect, useContext } from 'react';
+import { Entypo } from '@expo/vector-icons';
+
 import axios from 'axios';
 
 export const StationsNearYou = (props) => {
@@ -51,7 +53,7 @@ export const StationsNearYou = (props) => {
 
     const fetchGasStations = () => {
         axios
-            .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${userLocation.latitude},${userLocation.longitude}&radius=2000&type=gas_station&key=${MY_GOOGLE_API_KEY}`)
+            .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${userLocation.latitude},${userLocation.longitude}&radius=1000&type=gas_station&key=${MY_GOOGLE_API_KEY}`)
             .then((response) => {
                 setGasStations(response.data.results);
             })
@@ -63,8 +65,13 @@ export const StationsNearYou = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.vehicleName}>Find gas station near you</Text>
+                <Text style={styles.vehicleName}>Stations Nearby</Text>
             </View>
+            <Text style={styles.stationCount}>
+                <Entypo name='location-pin' size={24} color='black' />
+                Near you: {distances.length}
+            </Text>
+
             <View style={{ alignItems: 'center', height: '74%' }}>
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}></Text>
                 {selectedGasStation ? (
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
     subContainer: {},
     vehicleName: {
         color: 'white',
-        fontSize: 24,
+        fontSize: 30,
         fontFamily: 'Righteous_400Regular',
     },
     header: {
@@ -134,8 +141,7 @@ const styles = StyleSheet.create({
     },
 
     gasStations: {
-        height: 50,
-        width: '80%',
+        width: '90%',
     },
 
     stationImage: {
@@ -156,5 +162,17 @@ const styles = StyleSheet.create({
         paddingLeft: '2%',
         fontSize: 20,
         width: '100%',
+    },
+    stationCount: {
+        color: 'black',
+        fontFamily: 'Righteous_400Regular',
+        paddingHorizontal: '1%',
+        paddingVertical: '2%',
+        marginHorizontal: '10%',
+        borderRadius: 4,
+        fontSize: 20,
+        backgroundColor: 'orange',
+        height: 40,
+        width: '80%',
     },
 });
