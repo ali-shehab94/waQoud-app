@@ -44,9 +44,15 @@ class FuelController extends Controller
         $page = $client->request('GET', env('IPT_URL'));
         $rawData = $page->filter('.pricesTable')->text();
         $myArray = explode(' ', $rawData);
-        $new_UNL95_price = str_replace(",","", $myArray[2]);
-        $new_UNL98_price = str_replace(",","", $myArray[8]);
-        $new_Diesel_price = str_replace(",","", $myArray[13]);
+        // $new_UNL95_price = str_replace(",","", $myArray[2]);
+        // $new_UNL98_price = str_replace(",","", $myArray[8]);
+        // $new_Diesel_price = str_replace(",","", $myArray[13]);
+        $new_UNL95_price =  str_replace(",","", $myArray[array_search('95', $myArray) + 1]);
+        $new_UNL98_price =  str_replace(",","", $myArray[array_search('98', $myArray) + 1]);
+        $new_Diesel_price =  str_replace(",","", $myArray[array_search('Diesel', $myArray) + 1]);
+        // dd($new_UNL95_price);
+
+  
 
         // dd($UNL95_price->price);
         // dd($UNL95_price->price == $new_UNL95_price);

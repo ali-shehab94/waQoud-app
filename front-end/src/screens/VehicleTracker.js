@@ -12,15 +12,19 @@ export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
     const [open, setOpen] = useState(false);
     const [step, setStep] = useState(0);
+    let path;
     const [trackers, setTrackers] = useState([]);
     const [vehicleName, setVehicleName] = useState('');
     const [isCreating, setIsCreating] = useState(false);
     const [trackerValue, setTrackerValue] = useState(null);
+    const [modelName, setModelName] = useState(null);
+    const [lasts, setLasts] = useState(null);
+    const [installedAt, setInstalledAt] = useState(null);
 
     const tracker = [
-        { label: 'Engine Oil', value: '1' },
-        { label: 'Brakes', value: '2' },
-        { label: 'Wheels', value: '3' },
+        { label: 'Engine Oil', value: 1 },
+        { label: 'Brakes', value: 2 },
+        { label: 'Wheels', value: 3 },
     ];
 
     useEffect(() => {
@@ -46,6 +50,39 @@ export const VehicleTracker = () => {
                 console.log(err.response.data);
             });
     };
+
+    const handleStep = () => {
+        if (step < 3) {
+            setStep(step + 1);
+        } else {
+            console.log(modelName);
+            console.log(lasts);
+            console.log(installedAt);
+            if (trackerValue === 1) {
+                path = 'add_engine_oil_tracker';
+            } else if (trackerValue === 2) {
+                path = 'add_brake_tracker';
+            } else {
+                path = 'add_wheel_tracker';
+            }
+            axios
+                .post(`http://10.0.2.2:8000/api/${path}`, JSON.stringify({ model_name: modelName, lasts, installed_at: installedAt, users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
+                    headers: { 'Content-type': 'application/json' },
+                })
+                .then((response) => {
+                    console.log(response.data);
+                    setStep(0);
+                    setModelName();
+                    setLasts();
+                    setInstalledAt();
+                    // console.log(JSON.stringify(response.data));
+                })
+                .catch((err) => {
+                    console.log('error at handle fetch', err.response.data);
+                });
+        }
+    };
+
     const getVehicleName = () => {
         axios
             .get(`http://10.0.2.2:8000/api/vehicle_name?vehicle_id=${user.selectedVehicle}`)
@@ -99,9 +136,9 @@ export const VehicleTracker = () => {
                         </View>
                         {step == 0 ? (
                             <View style={[styles.inputField, { marginTop: 50 }]}>
-                                <Text style={styles.smallText}>Gas type</Text>
+                                <Text style={styles.smallText}>Tracker Type</Text>
                                 <DropDownPicker
-                                    placeholder='Select preferred gas type'
+                                    placeholder='Select tracker you would like to add'
                                     style={styles.addGasTypeInput}
                                     textStyle={styles.dropDownText}
                                     open={open}
@@ -115,21 +152,21 @@ export const VehicleTracker = () => {
                         ) : step == 1 ? (
                             <View style={styles.inputField}>
                                 <Text style={styles.smallText}>Model</Text>
-                                <TextInput placeholder='Example Corolla' style={styles.addVehiclesInput} onChangeText={(value) => setModel(value)} />
+                                <TextInput placeholder='Model name of item' style={styles.addVehiclesInput} onChangeText={(value) => setModelName(value)} />
                             </View>
                         ) : step == 2 ? (
                             <View style={styles.inputField}>
-                                <Text style={styles.smallText}>Year</Text>
-                                <TextInput placeholder='Example 1998' style={styles.addVehiclesInput} onChangeText={(value) => setYear(value)} />
+                                <Text style={styles.smallText}>Lasts</Text>
+                                <TextInput placeholder='How long does the item lasts in KM' style={styles.addVehiclesInput} onChangeText={(value) => setLasts(value)} />
                             </View>
                         ) : step == 3 ? (
                             <View style={styles.inputField}>
-                                <Text style={styles.smallText}>Cylinders</Text>
-                                <TextInput placeholder='Example 4' style={styles.addVehiclesInput} onChangeText={(value) => setCylinders(value)} />
+                                <Text style={styles.smallText}>Installed at</Text>
+                                <TextInput placeholder='' style={styles.addVehiclesInput} onChangeText={(value) => setInstalledAt(value)} />
                             </View>
                         ) : null}
                         <View style={{ alignItems: 'center' }}>
-                            <RoundedButton text='Next' />
+                            <RoundedButton text='Next' onPress={handleStep} />
                         </View>
                     </View>
                 ) : trackers.length ? (

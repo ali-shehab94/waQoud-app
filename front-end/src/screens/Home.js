@@ -73,7 +73,6 @@ export const Home = () => {
     };
 
     const addNewVehicle = () => {
-        console.log('im heres');
         axios
             .post(`http://10.0.2.2:8000/api/add_vehicle`, JSON.stringify({ fuel_type: gasTypesValue, make, model, year, cylinders, users_id: user.user.id, mpg }), {
                 headers: { 'Content-type': 'application/json' },
