@@ -26,14 +26,14 @@ export function BottomTab() {
                 headerShown: false,
             }}
         >
-            <Tab.Screen name='Home' component={Home} options={{ tabBarIcon: ({ focused }) => <Entypo name='home' size={24} color={focused ? 'black' : 'gray'} /> }} />
+            <Tab.Screen name='Home' component={Home} options={{ tabBarIcon: ({ focused }) => <Entypo name='home' size={26} color={focused ? 'black' : 'gray'} /> }} />
             <Tab.Screen
                 name='Trip Calculator'
                 component={TripCalculator}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View style={{ flexDirection: 'row' }}>
-                            <Entypo name='calculator' size={24} color={focused ? 'black' : 'gray'} />
+                            <Entypo name='calculator' size={26} color={focused ? 'black' : 'gray'} />
                             <FontAwesome name='dollar' size={20} color={focused ? 'black' : 'gray'} />
                         </View>
                     ),
@@ -42,12 +42,12 @@ export function BottomTab() {
             <Tab.Screen
                 name='Vehicle Tracker'
                 component={VehicleTracker}
-                options={{ tabBarIcon: ({ focused }) => <MaterialCommunityIcons name='car-settings' size={24} color={focused ? 'black' : 'gray'} /> }}
+                options={{ tabBarIcon: ({ focused }) => <MaterialCommunityIcons name='car-settings' size={26} color={focused ? 'black' : 'gray'} /> }}
             />
             <Tab.Screen
                 name='Stations Nearby'
                 component={StationsNearYou}
-                options={{ tabBarIcon: ({ focused }) => <MaterialIcons name='local-gas-station' size={24} color={focused ? 'black' : 'gray'} /> }}
+                options={{ tabBarIcon: ({ focused }) => <MaterialIcons name='local-gas-station' size={26} color={focused ? 'black' : 'gray'} /> }}
             />
         </Tab.Navigator>
     );
@@ -56,7 +56,6 @@ export function BottomTab() {
 const styles = StyleSheet.create({
     bottomTab: {
         flex: 1,
-        backgroundColor: '#E9E9E9',
-        fontSize: 20,
+        backgroundColor: '#FFAC33',
     },
 });

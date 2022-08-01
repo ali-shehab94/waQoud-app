@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         zIndex: 100,
         position: 'absolute',
-        top: '55%',
+        top: '60%',
         left: '23%',
         justifyContent: 'center',
     },

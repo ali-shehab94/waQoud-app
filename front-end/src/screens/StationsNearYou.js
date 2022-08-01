@@ -65,7 +65,7 @@ export const StationsNearYou = (props) => {
             <View style={styles.header}>
                 <Text style={styles.vehicleName}>Find gas station near you</Text>
             </View>
-            <View style={{ paddingTop: '2%', borderWidth: 1, alignItems: 'center', height: '100%' }}>
+            <View style={{ alignItems: 'center', height: '74%' }}>
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}></Text>
                 {selectedGasStation ? (
                     <MapModal style={{ zIndex: 5 }} coords={[selectedGasStation.geometry.location.lat, selectedGasStation.geometry.location.lng]} clearData={clearData} />
@@ -85,7 +85,7 @@ export const StationsNearYou = (props) => {
                                         <Image source={require('../../assets/logos/3.png')} style={styles.stationImage} />
                                     </View>
                                     <View>
-                                        <Text style={styles.stationInfo}>{item.name.split(' ')[0]}</Text>
+                                        <Text style={styles.stationName}>{item.name.split(' ')[0].toUpperCase()}</Text>
                                         <Text style={styles.stationInfo}>{(item.calculated_distance / 1000).toFixed(2)} KM away</Text>
                                     </View>
                                 </TouchableOpacity>
@@ -100,19 +100,20 @@ export const StationsNearYou = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#E9E9E9',
+        backgroundColor: '#0F5F53',
     },
     subContainer: {},
     vehicleName: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 24,
         fontFamily: 'Righteous_400Regular',
     },
     header: {
         backgroundColor: '#0F5F53',
         width: '90%',
         height: '7%',
-        margin: '12%',
+        marginTop: '15%',
+        marginBottom: '7%',
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#D9D9D9',
         alignSelf: 'center',
         width: '90%',
-        height: 100,
+        height: 90,
         borderRadius: 8,
         flexDirection: 'row',
         alignItems: 'center',
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
     },
 
     gasStations: {
+        height: 50,
         width: '80%',
     },
 
@@ -144,6 +146,12 @@ const styles = StyleSheet.create({
         borderRadius: 40,
     },
     stationInfo: {
+        fontFamily: 'Righteous_400Regular',
+        paddingLeft: '2%',
+        fontSize: 15,
+        width: '100%',
+    },
+    stationName: {
         fontFamily: 'Righteous_400Regular',
         paddingLeft: '2%',
         fontSize: 20,
