@@ -23,7 +23,7 @@ export const MapModal = ({ coords, clearData }) => {
                         initialRegion={{
                             latitude: coords[0],
                             longitude: coords[1],
-                            latitudeDelta: 0.0922,
+                            latitudeDelta: 0.0222,
                             longitudeDelta: 0.0421,
                         }}
                         showsUserLocation={true}

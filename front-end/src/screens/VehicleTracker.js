@@ -136,7 +136,7 @@ export const VehicleTracker = () => {
                         </View>
                         {step == 0 ? (
                             <View style={[styles.inputField, { marginTop: 50 }]}>
-                                <Text style={styles.smallText}>Tracker Type</Text>
+                                <Text style={{ marginBottom: 20 }}>Tracker Type</Text>
                                 <DropDownPicker
                                     placeholder='Select tracker you would like to add'
                                     style={styles.addGasTypeInput}
@@ -209,7 +209,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#0F5F53',
         width: '90%',
         height: '7%',
-        margin: '12%',
+        marginTop: '12%',
+        marginBottom: '5%',
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
@@ -231,15 +232,15 @@ const styles = StyleSheet.create({
     vehicleName: {
         color: 'white',
         fontSize: 20,
+        fontFamily: 'Righteous_400Regular',
     },
     addVehiclesPage: {
         padding: 20,
-        marginTop: 24,
     },
     addVehiclesTitle: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 40,
+        marginBottom: 20,
     },
     inputField: {
         justifyContent: 'center',
@@ -253,5 +254,11 @@ const styles = StyleSheet.create({
         height: '30%',
         borderRadius: 10,
         paddingHorizontal: 7,
+    },
+    dropDownText: {
+        fontFamily: 'Righteous_400Regular',
+    },
+    smallText: {
+        fontFamily: 'Righteous_400Regular',
     },
 });
