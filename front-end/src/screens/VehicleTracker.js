@@ -136,7 +136,7 @@ export const VehicleTracker = () => {
                         </View>
                         {step == 0 ? (
                             <View style={[styles.inputField, { marginTop: 50 }]}>
-                                <Text style={{ marginBottom: 20 }}>Tracker Type</Text>
+                                <Text style={{ marginBottom: 20, fontFamily: 'Righteous_400Regular' }}>Tracker Type</Text>
                                 <DropDownPicker
                                     placeholder='Select tracker you would like to add'
                                     style={styles.addGasTypeInput}
@@ -172,16 +172,16 @@ export const VehicleTracker = () => {
                 ) : trackers.length ? (
                     trackers.map((tracker) => {
                         return (
-                            <View key={tracker.type}>
+                            <View key={tracker.type} style={{ marginBottom: '5%' }}>
                                 <View style={styles.tracker}>
                                     <View style={styles.trackerTitle}>
                                         {getIcon(tracker.type)}
-                                        <Text>{tracker.type}</Text>
+                                        <Text style={styles.smallText}>{tracker.type}</Text>
                                     </View>
                                     <View>
-                                        <Text>Type: {tracker.model_name}</Text>
-                                        <Text>Last replaced: {tracker.installed_at}</Text>
-                                        <Text>Replace at: {tracker.installed_at + tracker.lasts}</Text>
+                                        <Text style={styles.smallText}>Type: {tracker.model_name}</Text>
+                                        <Text style={styles.smallText}>Last replaced: {tracker.installed_at}</Text>
+                                        <Text style={styles.smallText}>Replace at: {tracker.installed_at + tracker.lasts}</Text>
                                     </View>
                                 </View>
                             </View>
@@ -190,10 +190,10 @@ export const VehicleTracker = () => {
                 ) : null}
 
                 {!isCreating ? (
-                    <View style={{ marginTop: 20, alignItems: 'center', alignSelf: 'center', borderWidth: 2, width: '80%' }}>
-                        <Text>New Tracker</Text>
-                        <Ionicons name='add-circle-sharp' size={24} color='black' onPress={() => setIsCreating(true)} />
-                    </View>
+                    <TouchableOpacity style={styles.addTracker} onPress={() => setIsCreating(true)}>
+                        <Text style={styles.smallText}>New Tracker</Text>
+                        <Ionicons name='add-circle-sharp' size={30} color='black' />
+                    </TouchableOpacity>
                 ) : null}
             </View>
         </View>
@@ -210,13 +210,15 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '7%',
         marginTop: '12%',
-        marginBottom: '5%',
+        marginBottom: '10%',
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
     },
     tracker: {
+        elevation: 5,
+        borderWidth: 1,
         backgroundColor: '#D9D9D9',
         alignSelf: 'center',
         width: '90%',
@@ -260,5 +262,15 @@ const styles = StyleSheet.create({
     },
     smallText: {
         fontFamily: 'Righteous_400Regular',
+    },
+    addTracker: {
+        elevation: 4,
+        borderRadius: 5,
+        backgroundColor: 'orange',
+        marginTop: 20,
+        alignItems: 'center',
+        alignSelf: 'center',
+        borderWidth: 2,
+        width: '90%',
     },
 });
