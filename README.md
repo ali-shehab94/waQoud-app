@@ -41,16 +41,15 @@
 
 Here's a brief high-level overview of the tech stack used to build waQoud:
 
--   This project uses the [React Native Framework](https://reactnative.dev/). React Native is a JavaScript-based mobile app framework that allows you to build natively-rendered mobile apps for iOS and Android. The framework lets you create an application for various platforms by using the same codebase.
--   For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
--   To send local push notifications, the app uses the [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
-    -   🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
--   The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+-   This project uses the [React Native Framework](https://reactnative.dev/). React Native is a framework for building native apps using React. It can be used to develop applications that target anything from Android, iOS devices to Windows systems.
+-   For reliability, the app uses [MySQL](https://www.mysql.com/) database with a firm structure to allow scalability.
+
+-   The app uses the font [Righteous](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
 
 <br><br>
 <img src="./readme/title5.svg"/>
 
-> Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+> Using the above mentioned tech stacks and the wireframes build with figma from the user stories available, the implementation of the app is shown as below, these are screenshots from the real app
 
 | Landing                                                                                | Home/Search                                                                               |
 | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
