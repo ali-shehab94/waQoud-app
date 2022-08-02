@@ -50,13 +50,10 @@ class FuelController extends Controller
         $new_UNL95_price =  str_replace(",","", $myArray[array_search('95', $myArray) + 1]);
         $new_UNL98_price =  str_replace(",","", $myArray[array_search('98', $myArray) + 1]);
         $new_Diesel_price =  str_replace(",","", $myArray[array_search('Diesel', $myArray) + 1]);
-        // dd($new_UNL95_price);
 
   
 
-        // dd($UNL95_price->price);
-        // dd($UNL95_price->price == $new_UNL95_price);
-
+   
 
         //check if there are any fuel prices saved to compare
         if (FuelPrice::exists()) {
