@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import axios from 'axios';
 import { UserContext } from './context/UserContext';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
@@ -15,7 +15,7 @@ import { useFonts, Righteous_400Regular } from '@expo-google-fonts/righteous';
 
 import { BottomTab } from './src/components/BottomTab';
 import AppLoading from 'expo-app-loading';
-// import { Righteous_400Regular } from '@expo-google-fonts/righteous';
+axios.defaults.baseURL = 'http://10.0.2.2:8000/api';
 
 export default function App() {
     const [user, setUser] = useState();

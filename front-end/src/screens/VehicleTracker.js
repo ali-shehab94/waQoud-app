@@ -39,7 +39,7 @@ export const VehicleTracker = () => {
 
     const getTrackers = () => {
         axios
-            .post(`http://10.0.2.2:8000/api/get_trackers`, JSON.stringify({ users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
+            .post(`/get_trackers`, JSON.stringify({ users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
@@ -66,7 +66,7 @@ export const VehicleTracker = () => {
                 path = 'add_wheel_tracker';
             }
             axios
-                .post(`http://10.0.2.2:8000/api/${path}`, JSON.stringify({ model_name: modelName, lasts, installed_at: installedAt, users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
+                .post(`/${path}`, JSON.stringify({ model_name: modelName, lasts, installed_at: installedAt, users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
                     headers: { 'Content-type': 'application/json' },
                 })
                 .then((response) => {
@@ -85,7 +85,7 @@ export const VehicleTracker = () => {
 
     const getVehicleName = () => {
         axios
-            .get(`http://10.0.2.2:8000/api/vehicle_name?vehicle_id=${user.selectedVehicle}`)
+            .get(`/vehicle_name?vehicle_id=${user.selectedVehicle}`)
             .then((response) => {
                 console.log(response.data);
                 setVehicleName(response.data.vehicle_name);

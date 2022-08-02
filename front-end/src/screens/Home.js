@@ -35,7 +35,6 @@ export const Home = () => {
 
     useEffect(() => {
         if (mpg) {
-            console.log(mpg);
             addNewVehicle();
         }
     }, [mpg]);
@@ -74,7 +73,7 @@ export const Home = () => {
 
     const addNewVehicle = () => {
         axios
-            .post(`http://10.0.2.2:8000/api/add_vehicle`, JSON.stringify({ fuel_type: gasTypesValue, make, model, year, cylinders, users_id: user.user.id, mpg }), {
+            .post(`/add_vehicle`, JSON.stringify({ fuel_type: gasTypesValue, make, model, year, cylinders, users_id: user.user.id, mpg }), {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
@@ -97,7 +96,7 @@ export const Home = () => {
     useEffect(() => {
         user &&
             axios
-                .get(`http://10.0.2.2:8000/api/user_vehicles/${user.user.id}`, {
+                .get(`/user_vehicles/${user.user.id}`, {
                     headers: { 'Content-type': 'application/json' },
                     withCredentials: true,
                 })

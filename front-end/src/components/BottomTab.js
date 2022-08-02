@@ -22,6 +22,7 @@ export function BottomTab() {
         <Tab.Navigator
             initialRouteName='Home'
             sceneContainerStyle={styles.bottomTab}
+            barStyle={{ backgroundColor: 'red' }}
             screenOptions={{
                 headerShown: false,
             }}

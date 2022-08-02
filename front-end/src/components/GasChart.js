@@ -16,7 +16,7 @@ export const GasChart = () => {
 
     useEffect(() => {
         axios
-            .get(`http://10.0.2.2:8000/api/scrape_fuel_prices`, {
+            .get(`/scrape_fuel_prices`, {
                 headers: { 'Content-type': 'application/json' },
                 withCredentials: true,
             })
@@ -32,6 +32,10 @@ export const GasChart = () => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
 
     const getSelectedGasTypePrices = () => {
         let _prices = [];
@@ -54,7 +58,8 @@ export const GasChart = () => {
         const _prices = getSelectedGasTypePrices();
 
         return _prices.map((price, index) => {
-            const difference = prices && _prices[index].difference;
+            let difference = prices && _prices[index].difference;
+            difference = Math.round(difference);
             // const difference = prices && _prices[index].price - (_prices[index + 1]?.price ?? 0);
 
             return (
@@ -64,7 +69,7 @@ export const GasChart = () => {
                     </View>
                     <View style={styles.difference}>
                         <View>
-                            <Text style={{ fontSize: 17, fontFamily: 'Righteous_400Regular' }}>{Math.round(difference)}</Text>
+                            <Text style={{ fontSize: 17, fontFamily: 'Righteous_400Regular' }}>{numberWithCommas(difference)}</Text>
                         </View>
                         <View>
                             <Text>{difference > 0 ? <AntDesign name='arrowup' size={20} color='red' /> : <AntDesign name='arrowdown' size={20} color='green' />}</Text>
@@ -114,7 +119,7 @@ export const GasChart = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.price}>
-                        <Text style={styles.selectedPrice}>{prices && Math.round(getSelectedGasTypePrices()[0].price)}</Text>
+                        <Text style={styles.selectedPrice}>{prices && numberWithCommas(Math.round(getSelectedGasTypePrices()[0].price))}</Text>
                         <Text style={[styles.selectedPrice, { fontSize: 20, marginLeft: 5 }]}>/ 20L</Text>
                     </View>
                 </View>
