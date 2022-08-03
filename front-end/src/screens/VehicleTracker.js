@@ -30,7 +30,7 @@ export const VehicleTracker = () => {
     useEffect(() => {
         getTrackers();
         getVehicleName();
-    }, [user.selectedVehicle]);
+    }, [user.selectedVehicle, trackers]);
 
     const handleTrackerValue = (val) => {
         setTrackerValue(val());
@@ -65,6 +65,7 @@ export const VehicleTracker = () => {
             } else {
                 path = 'add_wheel_tracker';
             }
+            console.log('Tracker => ', path);
             axios
                 .post(`/${path}`, JSON.stringify({ model_name: modelName, lasts, installed_at: installedAt, users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
                     headers: { 'Content-type': 'application/json' },
@@ -75,6 +76,7 @@ export const VehicleTracker = () => {
                     setModelName();
                     setLasts();
                     setInstalledAt();
+                    setIsCreating(false);
                     // console.log(JSON.stringify(response.data));
                 })
                 .catch((err) => {
@@ -103,6 +105,16 @@ export const VehicleTracker = () => {
         ) : (
             <FontAwesome name='dot-circle-o' size={40} color='black' />
         );
+    };
+
+    const getTrackerName = (type) => {
+        if (type === 'engine_oils') {
+            return 'Engine Oil';
+        } else if (type === 'brakes') {
+            return 'Brakes';
+        } else {
+            return 'Wheels';
+        }
     };
 
     return (
@@ -176,7 +188,7 @@ export const VehicleTracker = () => {
                                 <View style={styles.tracker}>
                                     <View style={styles.trackerTitle}>
                                         {getIcon(tracker.type)}
-                                        <Text style={styles.smallText}>{tracker.type}</Text>
+                                        <Text style={styles.smallText}>{getTrackerName(tracker.type)}</Text>
                                     </View>
                                     <View>
                                         <Text style={styles.smallText}>Type: {tracker.model_name}</Text>
@@ -229,7 +241,7 @@ const styles = StyleSheet.create({
         margin: 5,
     },
     trackerTitle: {
-        paddingHorizontal: 20,
+        marginHorizontal: 20,
     },
     vehicleName: {
         color: 'white',

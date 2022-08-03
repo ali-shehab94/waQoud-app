@@ -26,14 +26,23 @@
 <img src="./readme/title3.svg"/>
 
 > The design was implemented on Figma
+> The logo was created on Canva
 
-| Landing                                                                                | Home/Search                                                                               |
-| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
+| <table>
 
-| Artists results                                                                                | Artist's Albums                                                                               |
-| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| ![Artists results](https://github.com/julescript/spotifyndr/blob/master/demo/Artists_Page.jpg) | ![Artist's Albums](https://github.com/julescript/spotifyndr/blob/master/demo/Albums_Page.jpg) |
+  <tr>
+    <td><img src="./readme/login.PNG" /></td>
+    <td><img src="./readme/map.PNG" /></td>
+    <td><img src="./readme/search.PNG"/></td>
+    <td><img src="./readme/feed.PNG"/></td>
+  </tr>
+  <tr>
+    <td><img src="./readme/options.PNG" /></td>
+    <td><img src="./readme/reviews.PNG"/></td>
+    <td><img src="./readme/profile.PNG"/></td>
+    <td><img src="./readme/profilerev.PNG"/></td>
+  </tr>
+</table>
 
 <br><br>
 
