@@ -97,6 +97,10 @@ export const VehicleTracker = () => {
             });
     };
 
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
     const getIcon = (type) => {
         return type === 'engine_oils' ? (
             <FontAwesome5 name='oil-can' size={40} color='black' />
@@ -192,8 +196,8 @@ export const VehicleTracker = () => {
                                     </View>
                                     <View>
                                         <Text style={styles.smallText}>Type: {tracker.model_name}</Text>
-                                        <Text style={styles.smallText}>Last replaced: {tracker.installed_at}</Text>
-                                        <Text style={styles.smallText}>Replace at: {tracker.installed_at + tracker.lasts}</Text>
+                                        <Text style={styles.smallText}>Last replaced: {numberWithCommas(tracker.installed_at)} KM</Text>
+                                        <Text style={styles.smallText}>Replace at: {numberWithCommas(tracker.installed_at + tracker.lasts)} KM</Text>
                                     </View>
                                 </View>
                             </View>
