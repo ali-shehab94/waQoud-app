@@ -7,7 +7,6 @@ import { UserContext } from '../../context/UserContext';
 
 export const Profile = () => {
     const [user, setUser] = useContext(UserContext);
-    console.log('USER:', user);
 
     return (
         <View style={styles.container}>

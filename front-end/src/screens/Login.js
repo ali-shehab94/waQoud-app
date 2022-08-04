@@ -22,7 +22,6 @@ export const Login = ({ navigation }) => {
                 headers: { 'Content-type': 'application/json' },
                 withCredentials: true,
             });
-            console.log(JSON.stringify(response.data));
             setUser(response?.data);
             navigation.navigate('BottomTab');
         } catch (error) {

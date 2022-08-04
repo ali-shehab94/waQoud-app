@@ -51,19 +51,13 @@ export const Home = () => {
         if (step < 4) {
             setStep(step + 1);
         } else {
-            console.log(make);
-            console.log(year);
-            console.log(model);
-            console.log(cylinders);
             axios
                 .get(`https://api.api-ninjas.com/v1/cars?make=${make}&year=${year}&model=${model}&cylinders=${cylinders}`, {
                     headers: { 'Content-type': 'application/json', 'X-Api-Key': CARS_API_KEY },
                 })
                 .then((response) => {
                     newVehicle = response.data[0];
-                    console.log(newVehicle);
                     setMpg(newVehicle['combination_mpg']);
-                    // console.log(JSON.stringify(response.data));
                 })
                 .catch((err) => {
                     console.log('error at handle fetch', err.response.data);
@@ -78,7 +72,6 @@ export const Home = () => {
             })
             .then((response) => {
                 //clearing all fields
-                console.log(response.data);
                 setIsCreating(false);
                 setGasTypesValue(null);
                 setStep(0);

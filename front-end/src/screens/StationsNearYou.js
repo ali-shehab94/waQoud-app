@@ -24,9 +24,7 @@ export const StationsNearYou = (props) => {
         getDistance();
     }, [gasStations]);
 
-    useEffect(() => {
-        console.log(distances);
-    }, [selectedGasStation]);
+    useEffect(() => {}, [selectedGasStation]);
 
     const clearData = () => {
         setSelectedGasStation();
@@ -40,9 +38,7 @@ export const StationsNearYou = (props) => {
                     `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${gasStation.geometry.location.lat},${gasStation.geometry.location.lng}&origins=${user.userLocation.latitude},${user.userLocation.longitude}&key=${MY_GOOGLE_API_KEY}`
                 )
                 .then((response) => {
-                    // setDistance(response.data.rows[0].elements[0].distance.value);
                     gasStation['calculated_distance'] = response.data.rows[0].elements[0].distance.value;
-                    // setDistance({ ...gasStations, distance: response.data.rows[0].elements[0].distance.value });
                 })
                 .catch((err) => {
                     console.log(err);

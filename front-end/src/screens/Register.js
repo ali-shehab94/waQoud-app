@@ -16,7 +16,6 @@ export const Register = ({ navigation }) => {
                 headers: { 'Content-type': 'application/json' },
                 withCredentials: true,
             });
-            console.log(JSON.stringify(response.data));
             navigation.navigate('Login');
         } catch (error) {
             console.log(error);

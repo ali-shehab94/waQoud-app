@@ -49,12 +49,10 @@ export const TripCalculator = () => {
         if (coords) {
             response = coords;
             setUserLocation(response);
-            console.log('----', response);
         }
     }
 
     const calculateDistance = () => {
-        console.log('pin', pin);
         axios
             .get(
                 `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${pin.latitude},${pin.longitude}&origins=${userLocation.latitude},${userLocation.longitude}&key=${MY_GOOGLE_API_KEY}`
@@ -73,7 +71,6 @@ export const TripCalculator = () => {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
-                console.log(response.data);
                 setTripCost(response.data['trip cost']);
             })
             .catch((err) => {
@@ -93,7 +90,6 @@ export const TripCalculator = () => {
                         }}
                         onPress={(data, details = null) => {
                             // 'details' is provided when fetchDetails = true
-                            console.log('searched location', details.geometry.location);
                             setPin({ latitude: details.geometry.location.lat, longitude: details.geometry.location.lng });
                         }}
                         query={{

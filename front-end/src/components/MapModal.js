@@ -5,10 +5,6 @@ import { useState, useEffect } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export const MapModal = ({ coords, clearData }) => {
-    useEffect(() => {
-        console.log(coords);
-    }, []);
-
     return (
         <View style={styles.container}>
             <View style={styles.modal}>

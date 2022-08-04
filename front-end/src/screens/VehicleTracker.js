@@ -35,19 +35,14 @@ export const VehicleTracker = () => {
 
     const handleTrackerValue = (val) => {
         setTrackerValue(val());
-        console.log(trackers);
     };
 
     const getTrackers = () => {
-        console.log(user.user.id);
-        console.log(user.selectedVehicle);
-
         axios
             .post(`/get_trackers`, JSON.stringify({ users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
                 headers: { 'Content-type': 'application/json' },
             })
             .then((response) => {
-                console.log(response.data);
                 setTrackers(response.data.tracker);
             })
             .catch((err) => {
@@ -59,9 +54,6 @@ export const VehicleTracker = () => {
         if (step < 3) {
             setStep(step + 1);
         } else {
-            console.log(modelName);
-            console.log(lasts);
-            console.log(installedAt);
             if (trackerValue === 1) {
                 path = 'add_engine_oil_tracker';
             } else if (trackerValue === 2) {
@@ -69,7 +61,6 @@ export const VehicleTracker = () => {
             } else {
                 path = 'add_wheel_tracker';
             }
-            console.log('Tracker => ', path);
             axios
                 .post(`/${path}`, JSON.stringify({ model_name: modelName, lasts, installed_at: installedAt, users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
                     headers: { 'Content-type': 'application/json' },
@@ -81,7 +72,6 @@ export const VehicleTracker = () => {
                     setLasts();
                     setInstalledAt();
                     setIsCreating(false);
-                    // console.log(JSON.stringify(response.data));
                 })
                 .catch((err) => {
                     console.log('error at handle fetch', err.response.data);
@@ -93,7 +83,6 @@ export const VehicleTracker = () => {
         axios
             .get(`/vehicle_name?vehicle_id=${user.selectedVehicle}`)
             .then((response) => {
-                console.log(response.data);
                 setVehicleName(response.data.vehicle_name);
             })
             .catch((err) => {
