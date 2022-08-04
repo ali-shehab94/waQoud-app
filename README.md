@@ -31,7 +31,7 @@
 | <table>
 
   <tr>
-    <td><img src="./readme/login.PNG" /></td>
+    <td><img src="./readme/add-vehicle.gif" /></td>
     <td><img src="./readme/map.PNG" /></td>
     <td><img src="./readme/search.PNG"/></td>
     <td><img src="./readme/feed.PNG"/></td>
@@ -60,9 +60,17 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 
 > Using the above mentioned tech stacks and the wireframes build with figma from the user stories available, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Landing                                                                                | Home/Search                                                                               |
-| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
+| Register                           | Sign in                           | Gas Prices Chart                     | Add a vehicle                         |
+| ---------------------------------- | --------------------------------- | ------------------------------------ | ------------------------------------- |
+| <img src="./readme/sign-up.gif" /> | <img src="./readme/login.gif"  /> | <img src="./readme/gas-prices.gif"/> | <img src="./readme/add-vehicle.gif"/> |
+
+| Select a vehicle                    | Calculate Trip Cost 1                      | Calculate Trip Cost 2                            | Vehicle Tracker                   |
+| ----------------------------------- | ------------------------------------------ | ------------------------------------------------ | --------------------------------- |
+| <img src="./readme/pick-car.gif" /> | <img src="./readme/calculate-trip.gif"  /> | <img src="./readme/calculate-trip-by-name.gif"/> | <img src="./readme/tracker.gif"/> |
+
+| List of Gas Stations Near You                       | Navigate to Gas Station                             |
+| --------------------------------------------------- | --------------------------------------------------- |
+| <img src="./readme/list-nearby-gas-stations.gif" /> | <img src="./readme/navigate-to-gas-station.gif"  /> |
 
 <br><br>
 <img src="./readme/title6.svg"/>
