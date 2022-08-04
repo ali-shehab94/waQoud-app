@@ -4,13 +4,13 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.
 
-**[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
+**[PROJECT PHILOSOPHY](#philosophy) • [WIREFRAMES](#wireframes) • [TECH STACK](#stacks) • [IMPLEMENTATION](#implementation) • [HOW TO RUN?](#install)**
 
 </div>
 
 <br><br>
 
-<img src="./readme/title2.svg"/>
+<img src="./readme/title2.svg" id='philosophy'/>
 
 > waQoud is a utility app that calculates your trip costs and keeps you updated on the daily fluctuating gas prices.
 
@@ -23,7 +23,7 @@
 
 <br><br>
 
-<img src="./readme/title3.svg"/>
+<img src="./readme/title3.svg" id='wireframes'/>
 
 > The design was implemented on Figma
 > The logo was created on Canva
@@ -46,7 +46,7 @@
 
 <br><br>
 
-<img src="./readme/title4.svg"/>
+<img src="./readme/title4.svg" id='stacks'/>
 
 Here's a brief high-level overview of the tech stack used to build waQoud:
 
@@ -55,10 +55,16 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 
 -   The app uses the font [Righteous](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
 
-<br><br>
-<img src="./readme/title5.svg"/>
+-   [Cars API](https://fonts.google.com/specimen/Work+Sans) was used to get necessary info about cars like mileage.
 
-> Using the above mentioned tech stacks and the wireframes build with figma from the user stories available, the implementation of the app is shown as below, these are screenshots from the real app
+-   [Google Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/overview) was used to calculate distance between two coordinates.
+
+-   [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview) was used to get nearby gas stations, and for autocomplete to when searching places.
+
+<br><br>
+<img src="./readme/title5.svg" id='implementation'/>
+
+> Using the above mentioned tech stack and the wireframes built with Figma, the implementation of the app is shown as below (recordings from the real app)
 
 | Register                           | Sign in                           | Gas Prices Chart                     |
 | ---------------------------------- | --------------------------------- | ------------------------------------ |
@@ -68,12 +74,12 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 | ------------------------------------- | ----------------------------------- | ------------------------------------------ |
 | <img src="./readme/add-vehicle.gif"/> | <img src="./readme/pick-car.gif" /> | <img src="./readme/calculate-trip.gif"  /> |
 
-| Calculate Trip Cost by Search                     | Vehicle Tracker                     | Gas Station Nearby                                |     |
-| ------------------------------------------------- | ----------------------------------- | ------------------------------------------------- | --- |
+| Calculate Trip Cost by Search                     | Vehicle Tracker                     | Gas Station Nearby                                |
+| ------------------------------------------------- | ----------------------------------- | ------------------------------------------------- |
 | <img src="./readme/calculate-trip-by-name.gif" /> | <img src="./readme/tracker.gif"  /> | <img src="./readme/navigate-to-gas-station.gif"/> |
 
 <br><br>
-<img src="./readme/title6.svg"/>
+<img src="./readme/title6.svg" id='install'/>
 
 > This is an example of how you may give instructions on setting up your project locally.
 > To get a local copy up and running follow these simple example steps.
