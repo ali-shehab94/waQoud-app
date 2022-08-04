@@ -31,16 +31,17 @@
 | <table>
 
   <tr>
-    <td><img src="./readme/" /></td>
-    <td><img src="./readme/map.PNG" /></td>
-    <td><img src="./readme/search.PNG"/></td>
-    <td><img src="./readme/feed.PNG"/></td>
+    <td><img src="./readme/landing.png" /></td>
+    <td><img src="./readme/login.png" /></td>
+    <td><img src="./readme/register.png"/></td>
+    <td><img src="./readme/gas-chart.png"/></td>
+    
   </tr>
   <tr>
-    <td><img src="./readme/options.PNG" /></td>
-    <td><img src="./readme/reviews.PNG"/></td>
-    <td><img src="./readme/profile.PNG"/></td>
-    <td><img src="./readme/profilerev.PNG"/></td>
+    <td><img src="./readme/trip-cost.png" /></td>
+    <td><img src="./readme/add-vehicle.png"/></td>
+    <td><img src="./readme/tracker.png"/></td>
+    <td><img src="./readme/stations-nearby.png"/></td>
   </tr>
 </table>
 
