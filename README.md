@@ -19,7 +19,7 @@
 -   As a user, I want to easily access the updated gas prices
 -   As a user, I want to find out my trip costs according to the vehicle I am driving
 -   As a user, I want to keep maintenance records of all my vehicles in one place
--   As a user, I want to know how many gas stations are around me and their locations
+-   As a user, I want to know how many gas stations are around me and view their locations
 
 <br><br>
 
