@@ -60,17 +60,17 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 
 > Using the above mentioned tech stacks and the wireframes build with figma from the user stories available, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Register                           | Sign in                           | Gas Prices Chart                     | Add a vehicle                         |
-| ---------------------------------- | --------------------------------- | ------------------------------------ | ------------------------------------- |
-| <img src="./readme/sign-up.gif" /> | <img src="./readme/login.gif"  /> | <img src="./readme/gas-prices.gif"/> | <img src="./readme/add-vehicle.gif"/> |
+| Register                           | Sign in                           | Gas Prices Chart                     |
+| ---------------------------------- | --------------------------------- | ------------------------------------ |
+| <img src="./readme/sign-up.gif" /> | <img src="./readme/login.gif"  /> | <img src="./readme/gas-prices.gif"/> |
 
-| Select a vehicle                    | Calculate Trip Cost 1                      | Calculate Trip Cost 2                            | Vehicle Tracker                   |
-| ----------------------------------- | ------------------------------------------ | ------------------------------------------------ | --------------------------------- |
-| <img src="./readme/pick-car.gif" /> | <img src="./readme/calculate-trip.gif"  /> | <img src="./readme/calculate-trip-by-name.gif"/> | <img src="./readme/tracker.gif"/> |
+| Add a vehicle                         | Select a vehicle                    | Calculate Trip Cost by marker              |
+| ------------------------------------- | ----------------------------------- | ------------------------------------------ |
+| <img src="./readme/add-vehicle.gif"/> | <img src="./readme/pick-car.gif" /> | <img src="./readme/calculate-trip.gif"  /> |
 
-| List of Gas Stations Near You                       | Navigate to Gas Station                             |
-| --------------------------------------------------- | --------------------------------------------------- |
-| <img src="./readme/list-nearby-gas-stations.gif" /> | <img src="./readme/navigate-to-gas-station.gif"  /> |
+| Calculate Trip Cost by Search                     | Vehicle Tracker                     | Gas Station Nearby                                |     |
+| ------------------------------------------------- | ----------------------------------- | ------------------------------------------------- | --- |
+| <img src="./readme/calculate-trip-by-name.gif" /> | <img src="./readme/tracker.gif"  /> | <img src="./readme/navigate-to-gas-station.gif"/> |
 
 <br><br>
 <img src="./readme/title6.svg"/>
