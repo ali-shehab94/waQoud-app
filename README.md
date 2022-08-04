@@ -56,6 +56,8 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 
 -   The app uses the font [Righteous](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
 
+-   [React Native Maps](https://github.com/react-native-maps/react-native-maps) was used to allow user to pick destination and to view locations of gas stations nearby.
+
 -   [Cars API](https://fonts.google.com/specimen/Work+Sans) was used to get necessary info about cars like mileage.
 
 -   [Google Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/overview) was used to calculate distance between two coordinates.
@@ -89,25 +91,31 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 
 This is an example of how to list things you need to use the software and how to install them.
 
+-   Download and install [Node.js](https://nodejs.org/en/)
+
 -   npm
     ```sh
     npm install npm@latest -g
     ```
+-   Expo CLI
+    ```sh
+    npm install --global expo-cli
+    ```
+-   Expo Go mobile app
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
     ```sh
-    git clone https://github.com/your_username_/Project-Name.git
+    git clone https://github.com/ali-shehab94/waQoud-app.git
     ```
-3. Install NPM packages
+2. Navigate to the Frontend folder and install dependencies
     ```sh
+    cd waQoud-app/front-end
     npm install
     ```
-4. Enter your API in `config.js`
-    ```js
-    const API_KEY = 'ENTER YOUR API';
+3. Run the start up command
+    ```sh
+    expo start
     ```
+4. Scan the generated QR code with your camera (ios) or through the Expo Go application (android).
