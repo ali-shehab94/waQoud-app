@@ -30,7 +30,7 @@ export const VehicleTracker = () => {
     useEffect(() => {
         getTrackers();
         getVehicleName();
-    }, [trackers]);
+    }, []);
 
     const handleTrackerValue = (val) => {
         setTrackerValue(val());
@@ -199,8 +199,8 @@ export const VehicleTracker = () => {
                                     </View>
                                     <View>
                                         <Text style={styles.smallText}>Type: {tracker.model_name}</Text>
-                                        <Text style={styles.smallText}>Last replaced: {numberWithCommas(tracker.installed_at)} KM</Text>
-                                        <Text style={styles.smallText}>Replace at: {numberWithCommas(tracker.installed_at + tracker.lasts)} KM</Text>
+                                        <Text style={styles.smallText}>Last replaced: {tracker.installed_at && numberWithCommas(tracker.installed_at)} KM</Text>
+                                        <Text style={styles.smallText}>Replace at: {tracker.installed_at && numberWithCommas(tracker.installed_at + tracker.lasts)} KM</Text>
                                     </View>
                                 </View>
                             </View>

@@ -70,20 +70,25 @@ class VehicleTrackerController extends Controller
         $users_vehicles_id = UserVehicle::where('users_id', $users_id)->where('vehicles_id', $vehicles_id)->first()->id;
         $vehicle = UserVehicle::where('id', $users_vehicles_id)->with('brakes', 'wheels', 'engineOils')->first();
         // $trackers = ["brakes" => $vehicle->brakes, "wheels" => $vehicle->wheels, "engine_oil" => $vehicle->engineOils];
+        
+        if (isset($vehicle->brakes[0])) {
+            $brakes = $vehicle->brakes[0];
+            $brakes['type'] = 'brakes';
+        }else $brakes = [];
 
-        $brakes = $vehicle->brakes[0];
-        $brakes['type'] = 'brakes';
-        $wheels = $vehicle->wheels[0];
-        $wheels['type'] = 'wheels';
-        $engineOils = $vehicle->engineOils[0];
-        $engineOils['type'] = 'engine_oils';
+        if (isset($vehicle->wheels[0])) {
+            $wheels = $vehicle->wheels[0];
+            $wheels['type'] = 'wheels';
+        }else $wheels = [];
 
+        if (isset($vehicle->engineOils[0])) {
+            $engineOils = $vehicle->engineOils[0];
+            $engineOils['type'] = 'engine_oils';
+        }else $engineOils = [];
+        
         $tracker = array($brakes, $wheels, $engineOils);
         return response()->json([
             "status" => "success",
-            // "brakes" => $vehicle->brakes,
-            // "wheels" => $vehicle->wheels,
-            // "engine_oil" => $vehicle->engineOils
             "tracker" => $tracker
         ]);
     }
