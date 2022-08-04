@@ -94,23 +94,22 @@ export const Home = () => {
     };
 
     useEffect(() => {
-        user &&
-            axios
-                .get(`/user_vehicles/${user.user.id}`, {
-                    headers: { 'Content-type': 'application/json' },
-                    withCredentials: true,
-                })
-                .then((response) => {
-                    setVehicle(
-                        response.data.user_vehicles.map((car) => {
-                            return { label: `${car[0].make.charAt(0).toUpperCase() + car[0].make.substring(1)} ${car[0].model.toUpperCase()} ${car[0].year}`, value: car[0].id };
-                        })
-                    );
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-    }, []);
+        axios
+            .get(`/user_vehicles/${user.user.id}`, {
+                headers: { 'Content-type': 'application/json' },
+                withCredentials: true,
+            })
+            .then((response) => {
+                setVehicle(
+                    response.data.user_vehicles.map((car) => {
+                        return { label: `${car[0].make.charAt(0).toUpperCase() + car[0].make.substring(1)} ${car[0].model.toUpperCase()} ${car[0].year}`, value: car[0].id };
+                    })
+                );
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [isCreating]);
 
     return (
         <View style={styles.container}>
