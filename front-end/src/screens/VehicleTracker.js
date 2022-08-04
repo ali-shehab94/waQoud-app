@@ -30,7 +30,7 @@ export const VehicleTracker = () => {
     useEffect(() => {
         getTrackers();
         getVehicleName();
-    }, [user.selectedVehicle, trackers]);
+    }, [trackers]);
 
     const handleTrackerValue = (val) => {
         setTrackerValue(val());
@@ -38,6 +38,9 @@ export const VehicleTracker = () => {
     };
 
     const getTrackers = () => {
+        console.log(user.user.id);
+        console.log(user.selectedVehicle);
+
         axios
             .post(`/get_trackers`, JSON.stringify({ users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
                 headers: { 'Content-type': 'application/json' },
@@ -47,7 +50,7 @@ export const VehicleTracker = () => {
                 setTrackers(response.data.tracker);
             })
             .catch((err) => {
-                console.log(err.response.data);
+                console.log('from vehicle trackers', err.response.data);
             });
     };
 
