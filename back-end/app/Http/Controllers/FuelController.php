@@ -44,9 +44,7 @@ class FuelController extends Controller
         $page = $client->request('GET', env('IPT_URL'));
         $rawData = $page->filter('.pricesTable')->text();
         $myArray = explode(' ', $rawData);
-        // $new_UNL95_price = str_replace(",","", $myArray[2]);
-        // $new_UNL98_price = str_replace(",","", $myArray[8]);
-        // $new_Diesel_price = str_replace(",","", $myArray[13]);
+  
         $new_UNL95_price =  str_replace(",","", $myArray[array_search('95', $myArray) + 1]);
         $new_UNL98_price =  str_replace(",","", $myArray[array_search('98', $myArray) + 1]);
         $new_Diesel_price =  str_replace(",","", $myArray[array_search('Diesel', $myArray) + 1]);
@@ -108,15 +106,6 @@ class FuelController extends Controller
 
         
 
-        // display prices comes directly from scraping the website
-        // $display_prices = array(
-        //     'UNL_95' => $myArray[2],
-        //     'UNL_95_difference' => $myArray[4],
-        //     'UNL_98' => $myArray[8],
-        //     'UNL_98_difference' => $myArray[10],
-        //     'Diesel' => $myArray[13],
-        //     'Diesel difference' => $myArray[15],
-        // );
             $display_prices = array(
                 'UNL_95' => FuelPrice::where('fuel_types_id', 1)->latest()->take(4)->get(),
                 'UNL_98' => FuelPrice::where('fuel_types_id', 2)->latest()->take(4)->get(),

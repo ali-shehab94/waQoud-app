@@ -8,15 +8,7 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
-    protected function queryVehicle($request)
-    {
-        return Vehicle::where('make', $request->make)
-        ->where('model', $request->model)
-        ->where('year', $request->year)
-        ->where('fuel_type', $request->fuel_type)
-        ->where('cylinders', $request->cylinders)->pluck('id');
-        
-    }
+  
     public function getUserVehicles($id, Request $request) {
         //gets the user plus the vehicles
         $user_vehicles = UserVehicle::where('users_id', $id)->with('vehicle')->get();
@@ -104,7 +96,6 @@ class VehicleController extends Controller
         $user_vehicle->users_id = $request->users_id;
         $user_vehicle->vehicles_id = $vehicles_id;
         $user_vehicle->save();
-        // dd($user_vehicle->vehicles_id[0]);
         return response()->json([
             "status" => "success",
             "message" => "vehicle with id $vehicles_id successfully to user with id $request->users_id"
