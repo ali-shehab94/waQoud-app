@@ -27,7 +27,7 @@
 
 > The design was implemented on Figma and logo was created on Canva
 
-| <table>
+<table>
 
   <tr>
     <td><img src="./readme/landing.png" /></td>
