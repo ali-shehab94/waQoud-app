@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, SafeAreaView, FlatList } from 'react-native';
 import { UserContext } from '../../context/UserContext';
-// import { GasStation } from '../components/GasStation';
-import { TripCalculator } from './TripCalculator';
 import { MY_GOOGLE_API_KEY } from '../../config/env';
 import { MapModal } from '../components/MapModal';
 import { useState, useEffect, useContext } from 'react';

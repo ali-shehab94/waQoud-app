@@ -1,13 +1,8 @@
 import axios from 'axios';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import { format, compareAsc, formatDuration } from 'date-fns';
-
 import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 
 export const GasChart = () => {
     const date = new Date();
@@ -61,7 +56,6 @@ export const GasChart = () => {
         return _prices.map((price, index) => {
             let difference = prices && _prices[index].difference;
             difference = Math.round(difference);
-            // const difference = prices && _prices[index].price - (_prices[index + 1]?.price ?? 0);
 
             return (
                 <View key={price.id} style={styles.info}>

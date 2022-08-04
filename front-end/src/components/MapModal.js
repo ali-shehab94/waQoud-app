@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
-import MapView, { Callout, Circle, Marker } from 'react-native-maps';
-
-import { useState, useEffect } from 'react';
+import MapView, { Callout, Marker } from 'react-native-maps';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export const MapModal = ({ coords, clearData }) => {
@@ -35,6 +33,7 @@ export const MapModal = ({ coords, clearData }) => {
         </View>
     );
 };
+
 const styles = StyleSheet.create({
     container: {
         elevation: 10,

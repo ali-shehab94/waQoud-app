@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 
 export const WelcomeLogo = () => {
     return <Image source={require('../../assets/logos/logo-main.png')} style={styles.mainLogo} />;

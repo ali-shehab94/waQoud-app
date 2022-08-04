@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { UserContext } from '../../context/UserContext';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -8,9 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
 //screens
-import { useContext, createContext, useState } from 'react';
 import { Home } from '../screens/Home';
-import { Profile } from '../screens/Profile';
 import { VehicleTracker } from '../screens/VehicleTracker';
 import { StationsNearYou } from '../screens/StationsNearYou';
 import { TripCalculator } from '../screens/TripCalculator';

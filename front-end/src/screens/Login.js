@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 import { useState, useEffect, useContext } from 'react';
-import { AntDesign } from '@expo/vector-icons';
 import { RoundedButton } from '../components/RoundedButton';
 
 export const Login = ({ navigation }) => {

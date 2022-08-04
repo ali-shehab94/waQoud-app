@@ -5,7 +5,6 @@ import { UserContext } from '../../context/UserContext';
 import { RoundedButton } from '../components/RoundedButton';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState, useEffect, useContext } from 'react';
-import { AntDesign } from '@expo/vector-icons';
 import { GasChart } from '../components/GasChart';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -13,7 +12,6 @@ export const Home = () => {
     const [open, setOpen] = useState(false);
     const [vehicleValue, setVehicleValue] = useState(null);
     const [vehicle, setVehicle] = useState([]);
-    const [tripCost, setTripCost] = useState();
     const [gasTypesValue, setGasTypesValue] = useState(null);
 
     let newVehicle;
@@ -79,7 +77,6 @@ export const Home = () => {
                 setMake();
                 setModel();
                 setMpg();
-                setTripCost();
             })
             .catch((err) => {
                 console.log('error at add vehicle', err.response.data);

@@ -4,7 +4,6 @@ import { UserContext } from '../../context/UserContext';
 import * as Location from 'expo-location';
 import { MY_GOOGLE_API_KEY } from '../../config/env';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { Modal } from '../components/TripCalcModal';
