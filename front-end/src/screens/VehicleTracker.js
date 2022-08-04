@@ -12,6 +12,7 @@ export const VehicleTracker = () => {
     const [user, setUser] = useContext(UserContext);
     const [open, setOpen] = useState(false);
     const [step, setStep] = useState(0);
+    const [addedTracker, setAddedTracker] = useState(null);
     let path;
     const [trackers, setTrackers] = useState([]);
     const [vehicleName, setVehicleName] = useState('');
@@ -30,7 +31,7 @@ export const VehicleTracker = () => {
     useEffect(() => {
         getTrackers();
         getVehicleName();
-    }, []);
+    }, [addedTracker]);
 
     const handleTrackerValue = (val) => {
         setTrackerValue(val());
@@ -74,7 +75,7 @@ export const VehicleTracker = () => {
                     headers: { 'Content-type': 'application/json' },
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    setAdd(response.data);
                     setStep(0);
                     setModelName();
                     setLasts();
