@@ -25,8 +25,7 @@
 
 <img src="./readme/title3.svg" id='wireframes'/>
 
-> The design was implemented on Figma
-> The logo was created on Canva
+> The design was implemented on Figma and logo was created on Canva
 
 | <table>
 
