@@ -31,7 +31,7 @@
 | <table>
 
   <tr>
-    <td><img src="./readme/add-vehicle.gif" /></td>
+    <td><img src="./readme/" /></td>
     <td><img src="./readme/map.PNG" /></td>
     <td><img src="./readme/search.PNG"/></td>
     <td><img src="./readme/feed.PNG"/></td>
