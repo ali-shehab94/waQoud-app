@@ -7,11 +7,19 @@ import axios from 'axios';
 function LandingPage() {
     let navigate = useNavigate();
     return (
-        <div>
+        <div className='page-container'>
             <div className='nav-container'>
+                <div className='nav-bar'>
+                    <h3 className='nav-text'>Login as admin</h3>
+                    <img src={require('../assets/logos/no-border.png')} className='nav-logo' />
+                </div>
+            </div>
+            <div className='content-container'>
+                <div className='waqoud-info'>
+                    <h1>Welcome to waqoud.com</h1>
+                </div>
                 <div>
-                    <h3>Im an admin</h3>
-                    <img src={require('../assets/logos/no-border.png')} />
+                    <img className='logo-main' src={require('../assets/logos/logo-main.png')} />
                 </div>
             </div>
         </div>
