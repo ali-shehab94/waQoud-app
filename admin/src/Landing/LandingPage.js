@@ -5,6 +5,14 @@ import './LandingPage.css';
 import axios from 'axios';
 
 function LandingPage() {
+    const [isModalVisibile, setIsModalVisible] = useState(false);
+    const toggleModal = () => {
+        if (isModalVisibile) {
+            setIsModalVisible(false);
+        } else {
+            setIsModalVisible(true);
+        }
+    };
     let navigate = useNavigate();
     return (
         <div className='page-container'>
