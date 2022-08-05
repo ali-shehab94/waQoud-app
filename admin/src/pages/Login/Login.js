@@ -10,21 +10,32 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const data = {
+        email: email,
+        password: password,
+    };
+
     const handleLogin = async () => {
-        console.log('pressed');
-        try {
-            const response = await axios.post(`http://127.0.0.1:8000/api/login`, JSON.stringify({ email, password }), {
-                headers: { 'Content-type': 'application/json' },
-                withCredentials: true,
+        axios({
+            method: 'POST',
+            url: 'http://127.0.0.1:8000/api/login',
+            data: data,
+            password,
+            headers: { 'content-type': 'multipart/form-data' },
+        })
+            .then((response) => {
+                console.log(response.data);
+                if (response.data.user.user_type === 'admin') {
+                    localStorage.setItem('token', response.data.authorization.token);
+                    localStorage.setItem('name', response.data.user.user_name);
+                    console.log('admin');
+                } else {
+                    console.log('Not an admin');
+                }
+            })
+            .catch((error) => {
+                console.log('error', error);
             });
-            console.log(response.data.authorization.token);
-            console.log(response.data.user.first_name);
-            localStorage.setItem('token', response.data.authorization.token);
-            localStorage.setItem('name', response.data.user.first_name);
-            navigate('BottomTab');
-        } catch (error) {
-            console.log(error);
-        }
     };
 
     return (
