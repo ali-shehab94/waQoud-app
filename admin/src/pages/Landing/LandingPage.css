@@ -57,6 +57,8 @@
 
 .waqoud-info {
     width: 50%;
+    padding: 2em;
+    border-radius: 30px;
 }
 
 .waqoud-info:hover {
@@ -66,7 +68,7 @@
 }
 
 .waqoud-info h1 {
-    font-size: 4em;
+    font-size: 3.2em;
     color: #EDE8EA;
     font-family: "Righteous";
     margin-bottom: 20px;
