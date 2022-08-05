@@ -11,7 +11,7 @@ function LandingPage() {
             <div className='nav-container'>
                 <div>
                     <h3>Im an admin</h3>
-                    <img></img>
+                    <img src={require('../assets/logos/no-border.png')} />
                 </div>
             </div>
         </div>
