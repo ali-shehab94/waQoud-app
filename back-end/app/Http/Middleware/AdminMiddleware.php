@@ -22,7 +22,7 @@ class AdminMiddleware
         if ($user && $user->user_type == 'admin')
             return $next($request);
         return response()->json([
-            "message" => "Not an admin"
+            "message" => "User is not an admin"
         ], 401);
     }
 }

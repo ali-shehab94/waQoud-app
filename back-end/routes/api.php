@@ -6,7 +6,7 @@ use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\FuelController;
 use App\Http\Controllers\VehicleTrackerController;
 use App\Http\Controllers\LocationController;
-
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -37,5 +37,5 @@ Route::post('/get_trackers', [VehicleTrackerController::class, 'getTrackers']);
 
 Route::group(['middleware' => 'admin'], function($router) 
     {
-        Route::get('/get_users', [VehicleTrackerController::class, 'addBrakeTracker']);
+        Route::get('/get_users', [AdminController::class, 'getUsers']);
     });

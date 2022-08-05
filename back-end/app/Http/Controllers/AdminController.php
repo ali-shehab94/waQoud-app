@@ -12,5 +12,14 @@ use App\Models\FuelPrice;
 
 class AdminController extends Controller
 {
-    //
+    public function getUsers()
+    {
+        $users = User::all();
+        return response()->json([
+            "status" => "success",
+            "users" => $users
+        ]);
+    }
+
+   
 }
