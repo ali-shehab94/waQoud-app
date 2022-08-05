@@ -141,7 +141,7 @@ export const VehicleTracker = () => {
                             />
                         </View>
                         <View style={styles.addVehiclesTitle}>
-                            <Text style={{ fontSize: 40, fontFamily: 'Righteous_400Regular' }}>Add a vehicle</Text>
+                            <Text style={{ fontSize: 40, fontFamily: 'Righteous_400Regular' }}>Add a tracker</Text>
                         </View>
                         {step == 0 ? (
                             <View style={[styles.inputField, { marginTop: 50 }]}>
@@ -179,9 +179,9 @@ export const VehicleTracker = () => {
                         </View>
                     </View>
                 ) : trackers.length ? (
-                    trackers.map((tracker) => {
+                    trackers.map((tracker, index) => {
                         return (
-                            <View key={tracker.type} style={{ marginBottom: '5%' }}>
+                            <View key={index} style={{ marginBottom: '5%' }}>
                                 <View style={styles.tracker}>
                                     <View style={styles.trackerTitle}>
                                         {getIcon(tracker.type)}
