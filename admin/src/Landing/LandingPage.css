@@ -19,10 +19,11 @@
 }
 
 .nav-text {
-    color: white;
+    color: #EDE8EA;
     width: 90px;
     font-size: 24px;
     cursor: pointer;
+    font-family: "Righteous";
 }
 
 .nav-logo {
@@ -30,10 +31,36 @@
 }
 
 .content-container {
-    padding: 5vw;
-    padding-left: 10em;
-    padding-right: 10em;
+    padding: 6vw;
+    padding-left: 26em;
+    padding-right: 26em;
     display: flex;
     justify-content: space-between;
 
+}
+
+.logo-main {
+    width: 25em;
+    border-radius: 8px;
+}
+
+.logo-main:hover {
+    width: 30em;
+    transition:  ease 1s;
+}
+
+.waqoud-info {
+    width: 50%;
+}
+
+.waqoud-info h1 {
+    color: #EDE8EA;
+    font-family: "Righteous";
+    margin-bottom: 20px;
+}
+
+.waqoud-info p {
+    font-size: 20px;
+    font-family: "Righteous";
+    color: #EDE8EA
 }

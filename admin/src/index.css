@@ -3,3 +3,8 @@
   box-sizing: border-box;
   margin: 0;
 }
+
+@font-face {
+  font-family: Righteous;
+  src: url(../src//assets/fonts/Righteous-Regular.ttf);
+}
