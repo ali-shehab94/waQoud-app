@@ -26,6 +26,11 @@
     font-family: "Righteous";
 }
 
+.nav-text:hover {
+    font-size: 30px;
+    transition: ease 0.5s;
+}
+
 .nav-logo {
     width: 12vw;
 }
@@ -42,11 +47,12 @@
 .logo-main {
     width: 25em;
     border-radius: 8px;
+    box-shadow: 2px 4px 8px black;
 }
 
 .logo-main:hover {
     width: 30em;
-    transition:  ease 1s;
+    transition:  ease 0.5s;
 }
 
 .waqoud-info {
@@ -54,13 +60,14 @@
 }
 
 .waqoud-info h1 {
+    font-size: 4em;
     color: #EDE8EA;
     font-family: "Righteous";
     margin-bottom: 20px;
 }
 
 .waqoud-info p {
-    font-size: 20px;
+    font-size: 1.5em;
     font-family: "Righteous";
     color: #EDE8EA
 }
