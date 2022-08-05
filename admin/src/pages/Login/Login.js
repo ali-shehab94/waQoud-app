@@ -30,7 +30,7 @@ function Login() {
                     localStorage.setItem('name', response.data.user.user_name);
                     console.log('admin');
                 } else {
-                    console.log('Not an admin');
+                    alert('user is not an admin');
                 }
             })
             .catch((error) => {
