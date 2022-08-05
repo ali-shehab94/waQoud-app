@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class AuthAdmin
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,11 +18,13 @@ class AuthAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = User::find(Auth::user()->id);
-        if ($user->user_type == 'admin')
+        $user = Auth::user();
+        if ($user && $user->user_type == 'admin')
             return $next($request);
         return response()->json([
             "message" => "Not an admin"
         ], 401);
     }
 }
+
+

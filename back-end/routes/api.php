@@ -35,4 +35,7 @@ Route::post('/add_engine_oil_tracker', [VehicleTrackerController::class, 'addEng
 Route::post('/get_trackers', [VehicleTrackerController::class, 'getTrackers']);
 
 
-Route::post('/get_fav_location', [LocationController::class, 'getFavLocations']);
+Route::group(['middleware' => 'admin'], function($router) 
+    {
+        Route::get('/get_users', [VehicleTrackerController::class, 'addBrakeTracker']);
+    });
