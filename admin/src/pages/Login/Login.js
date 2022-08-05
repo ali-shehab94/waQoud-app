@@ -11,23 +11,20 @@ function Login() {
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
-        axios({
-            method: 'POST',
-            url: 'jdjnsjdcn',
-            headers: { 'content-type': 'multipart/form-data' },
-        })
-            .then((response) => {
-                if (response.data.user_type === 'admin') {
-                    localStorage.setItem('token', response.data.token);
-                    localStorage.setItem('name', response.data.user_name);
-                    navigate('/Main');
-                } else {
-                    alert('User is not an admin');
-                }
-            })
-            .catch((error) => {
-                console.log(error);
+        console.log('pressed');
+        try {
+            const response = await axios.post(`http://127.0.0.1:8000/api/login`, JSON.stringify({ email, password }), {
+                headers: { 'Content-type': 'application/json' },
+                withCredentials: true,
             });
+            console.log(response.data.authorization.token);
+            console.log(response.data.user.first_name);
+            localStorage.setItem('token', response.data.authorization.token);
+            localStorage.setItem('name', response.data.user.first_name);
+            navigate('BottomTab');
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -47,7 +44,9 @@ function Login() {
                                 <input onChange={(e) => setEmail(e.target.value)} className='input' placeholder='email' />
                                 <input onChange={(e) => setPassword(e.target.value)} className='input' placeholder='password' type={'password'} />
                             </div>
-                            <button className='submit'>Login</button>
+                            <button className='submit' onClick={handleLogin}>
+                                Login
+                            </button>
                         </div>
                     </div>
                 </div>
