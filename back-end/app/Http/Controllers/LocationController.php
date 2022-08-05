@@ -43,17 +43,5 @@ class LocationController extends Controller
         ]);
     }
 
-    // public function getGasStations()
-    // {
-    //     $all_stations = GasStation::all();
-    //     foreach ($all_stations as $station)
-    //     {
-            
-    //     }
-    //     $coordinates = array('lat' => $location->latitude, 'long' => $location->longitude);
-    //     return response()->json([
-    //         "status" => "success",
-    //         "location coordinates" => $coordinates
-    //     ]);
-    // }
+
 }
