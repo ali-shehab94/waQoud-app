@@ -40,4 +40,5 @@ Route::group(['middleware' => 'admin'], function($router)
         Route::get('/get_users', [AdminController::class, 'getUsers']);
         Route::get('/get_vehicles', [AdminController::class, 'getVehicles']);
         Route::delete('/delete_user/{id}', [AdminController::class, 'deleteUser']);
+        Route::delete('/delete_vehicle/{id}', [AdminController::class, 'deleteVehicle']);
     });
