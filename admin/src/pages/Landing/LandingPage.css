@@ -59,6 +59,12 @@
     width: 50%;
 }
 
+.waqoud-info:hover {
+    box-shadow: 1px 2px 50px black;
+    transition: ease 1.5s;
+
+}
+
 .waqoud-info h1 {
     font-size: 4em;
     color: #EDE8EA;
