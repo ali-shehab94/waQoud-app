@@ -26,7 +26,7 @@ class AdminController extends Controller
           $user = User::where('id', $id)->firstOrFail()->delete();
           return response()->json([
               "status" => "success",
-              "message" => "User Record deleted successfully"
+              "message" => "user record deleted successfully"
           ], 200);
        }
 
@@ -38,6 +38,15 @@ class AdminController extends Controller
             "vehicles" => $vehicles
         ], 200);
     }
+
+    public function deleteVehicle($id) 
+       {
+          $user = Vehicle::where('id', $id)->firstOrFail()->delete();
+          return response()->json([
+              "status" => "success",
+              "message" => "vehicle record deleted successfully"
+          ], 200);
+       }
 
 
 
