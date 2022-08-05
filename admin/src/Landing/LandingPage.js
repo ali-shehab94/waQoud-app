@@ -11,6 +11,7 @@ function LandingPage() {
             <div className='nav-container'>
                 <div>
                     <h3>Im an admin</h3>
+                    <img></img>
                 </div>
             </div>
         </div>
