@@ -18,8 +18,17 @@ class AdminController extends Controller
         return response()->json([
             "status" => "success",
             "users" => $users
-        ]);
+        ], 200);
     }
+
+    public function deleteUser($id) 
+       {
+          $user = User::where('id', $id)->firstOrFail()->delete();
+          return response()->json([
+              "status" => "success",
+              "message" => "User Record deleted successfully"
+          ], 200);
+       }
 
     public function getVehicles()
     {
@@ -27,7 +36,9 @@ class AdminController extends Controller
         return response()->json([
             "status" => "success",
             "vehicles" => $vehicles
-        ]);
+        ], 200);
     }
+
+
 
 }
