@@ -29,6 +29,7 @@ function Login() {
                     localStorage.setItem('token', response.data.authorization.token);
                     localStorage.setItem('name', response.data.user.user_name);
                     console.log('admin');
+                    navigate('/admin_panel');
                 } else {
                     alert('user is not an admin');
                 }
