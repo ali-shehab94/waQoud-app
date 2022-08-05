@@ -38,4 +38,5 @@ Route::post('/get_trackers', [VehicleTrackerController::class, 'getTrackers']);
 Route::group(['middleware' => 'admin'], function($router) 
     {
         Route::get('/get_users', [AdminController::class, 'getUsers']);
+        Route::get('/get_vehicles', [AdminController::class, 'getVehicles']);
     });

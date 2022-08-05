@@ -21,5 +21,13 @@ class AdminController extends Controller
         ]);
     }
 
-   
+    public function getVehicles()
+    {
+        $vehicles = Vehicle::all();
+        return response()->json([
+            "status" => "success",
+            "vehicles" => $vehicles
+        ]);
+    }
+
 }
