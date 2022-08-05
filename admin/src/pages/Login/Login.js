@@ -3,14 +3,14 @@ import Header from '../../components/Header';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 function Login() {
     let navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const signIn = async (e) => {
-        e.preventDefault();
+    const handleLogin = async () => {
         axios({
             method: 'POST',
             url: 'jdjnsjdcn',
@@ -40,14 +40,14 @@ function Login() {
                     }}
                 />
                 <div className='content-container'>
-                    <div className='sign-in-card'>
-                        <div className='form'>
-                            <h1>Sign In</h1>
-                            <div className='inputs'>
-                                <input onChange={(e) => setEmail(e.target.value)} className='input' placeholder='email'></input>
-                                <input onChange={(e) => setPassword(e.target.value)} className='input' placeholder='password' type={'password'}></input>
-                                <button className='buttonAuth'>Sign In</button>
+                    <div className='sign-in-container'>
+                        <div className='sign-in-card'>
+                            <div className='input-form'>
+                                <h1>Sign In</h1>
+                                <input onChange={(e) => setEmail(e.target.value)} className='input' placeholder='email' />
+                                <input onChange={(e) => setPassword(e.target.value)} className='input' placeholder='password' type={'password'} />
                             </div>
+                            <button className='submit'>Login</button>
                         </div>
                     </div>
                 </div>

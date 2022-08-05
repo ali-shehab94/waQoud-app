@@ -1,0 +1,26 @@
+
+.sign-in-container {
+    width: 100%;
+}
+
+.sign-in-card {
+    width: 40em;
+    border: 1px solid black;
+    margin: auto;
+    text-align: center;
+}
+
+
+
+.input-form {
+    display: flex;
+    gap: 3em;
+    flex-direction: column;
+    margin: auto;
+    width: 34%;
+    margin-bottom: 5em;
+}
+
+.input-form > input {
+    width: 100%;
+} 
