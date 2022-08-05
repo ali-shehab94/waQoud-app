@@ -8,3 +8,39 @@
   font-family: Righteous;
   src: url(../src//assets/fonts/Righteous-Regular.ttf);
 }
+.page-container {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #BE1931;
+}
+
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0F5F53;
+  box-shadow: 1px 2px 5px black;
+  padding: 2em;
+  padding-left: 10em;
+  padding-right: 10em;
+}
+
+.nav-text {
+  color: #EDE8EA;
+  width: 90px;
+  font-size: 24px;
+  cursor: pointer;
+  font-family: "Righteous";
+}
+
+.nav-text:hover {
+  font-size: 30px;
+  transition: ease 0.5s;
+}
+
+.nav-logo {
+  width: 12vw;
+}
