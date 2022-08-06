@@ -9,6 +9,7 @@ function AdminPanel() {
     let navigate = useNavigate();
     const token = localStorage.getItem('token');
     const [userId, setUserId] = useState();
+    const [vehicleId, setVehicleId] = useState();
     const handleLogout = () => {
         localStorage.clear();
         navigate('/');
@@ -117,6 +118,13 @@ function AdminPanel() {
                             {vehicles?.map((vehicle) => (
                                 <div className='vehicle-item' key={vehicle.id}>
                                     {vehicle.make.charAt(0).toUpperCase() + vehicle.make.substring(1) + ' ' + vehicle.model.charAt(0).toUpperCase() + vehicle.model.substring(1) + ' ' + vehicle.year}
+                                    <span className='delete-icon'>
+                                        <MdDeleteSweep
+                                            onClick={() => {
+                                                setVehicleId(vehicle.id);
+                                            }}
+                                        />
+                                    </span>
                                 </div>
                             ))}
                         </div>
