@@ -129,6 +129,9 @@ function AdminPanel() {
                             ))}
                         </div>
                     </div>
+                    <div className='count-box'>
+                        <h1>Count: {users?.length}</h1>
+                    </div>
                 </div>
                 <div className='admin-panel'>
                     <h1>Vehicles</h1>
@@ -147,6 +150,9 @@ function AdminPanel() {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                    <div className='count-box'>
+                        <h1>Count: {vehicles?.length}</h1>
                     </div>
                 </div>
             </div>
