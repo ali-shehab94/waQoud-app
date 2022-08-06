@@ -75,9 +75,9 @@ function AdminPanel() {
                     <h1>Users</h1>
                     <div className='app'>
                         <div className='scroller'>
-                            {users.map((user) => (
-                                <div className='item' key={user.id}>
-                                    {user.first_name + ' ' + user.last_name}{' '}
+                            {users?.map((user) => (
+                                <div className='user-item' key={user.id}>
+                                    <p>{user.first_name + ' ' + user.last_name} </p>
                                     <span className='delete-icon'>
                                         <MdDeleteSweep />
                                     </span>
@@ -90,9 +90,9 @@ function AdminPanel() {
                     <h1>Vehicles</h1>
                     <div className='app'>
                         <div className='scroller'>
-                            {vehicles.map((vehicle) => (
-                                <div className='item' key={vehicle.id}>
-                                    {vehicle.make + ' ' + vehicle.model + ' ' + vehicle.year}
+                            {vehicles?.map((vehicle) => (
+                                <div className='vehicle-item' key={vehicle.id}>
+                                    {vehicle.make.charAt(0).toUpperCase() + vehicle.make.substring(1) + ' ' + vehicle.model.charAt(0).toUpperCase() + vehicle.model.substring(1) + ' ' + vehicle.year}
                                 </div>
                             ))}
                         </div>

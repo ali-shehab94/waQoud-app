@@ -15,6 +15,7 @@
     background-color: #0F5F53;
     border-radius: 1px;
     box-shadow: 1px 2px 10px black;
+    padding: 7px;
 }
 
 .admin-panel h1 {
@@ -23,19 +24,45 @@
     font-size: 60px;
 }
 
-.item {
+.user-item {
+    display: flex;
+    justify-content: space-between;
     color: #EDE8EA;
     border-bottom: 1px solid #EDE8EA;
     font-size: 34px;
     font-family: "Helvetica";
-    cursor: pointer;
-    padding: 2px;
+
 }
 
-.item:hover {
+.user-item:hover {
     background-color: #FFAC33;
+}
+
+.vehicle-item:hover {
+    background-color: #FFAC33;
+}
+
+.user-item p {
+    cursor: pointer;
+}
+
+.vehicle-item {
+    display: flex;
+    justify-content: space-between;
+    color: #EDE8EA;
+    border-bottom: 1px solid #EDE8EA;
+    font-size: 25px;
+    font-family: "Helvetica";
+}
+
+.vehicle-item p {
+    cursor: pointer;
 }
 
 .scroller {
     
+}
+
+.delete-icon {
+    cursor: pointer;
 }
