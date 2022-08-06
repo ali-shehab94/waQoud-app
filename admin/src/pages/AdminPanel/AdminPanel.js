@@ -3,7 +3,7 @@ import Header from '../../components/Header';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminPanel.css';
-import { MdDeleteSweep } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 
 function AdminPanel() {
     let navigate = useNavigate();
@@ -79,6 +79,20 @@ function AdminPanel() {
             });
     };
 
+    const displayVehicles = async () => {
+        axios({
+            method: 'GET',
+            url: `http://127.0.0.1:8000/api/user_vehicles/${userId}`,
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log('error', error.response.data);
+            });
+    };
+
     const deleteVehicle = async () => {
         axios({
             method: 'DELETE',
@@ -103,9 +117,9 @@ function AdminPanel() {
                         <div className='scroller'>
                             {users?.map((user) => (
                                 <div className='user-item' key={user.id}>
-                                    <p>{user.first_name + ' ' + user.last_name}</p>
+                                    <p onClick={displayVehicles}>{user.first_name + ' ' + user.last_name}</p>
                                     <span className='delete-icon'>
-                                        <MdDeleteSweep
+                                        <MdDelete
                                             onClick={() => {
                                                 setUserId(user.id);
                                             }}
@@ -124,7 +138,7 @@ function AdminPanel() {
                                 <div className='vehicle-item' key={vehicle.id}>
                                     {vehicle.make.charAt(0).toUpperCase() + vehicle.make.substring(1) + ' ' + vehicle.model.charAt(0).toUpperCase() + vehicle.model.substring(1) + ' ' + vehicle.year}
                                     <span className='delete-icon'>
-                                        <MdDeleteSweep
+                                        <MdDelete
                                             onClick={() => {
                                                 setVehicleId(vehicle.id);
                                             }}

@@ -12,16 +12,17 @@
     padding: 3em;
 }
 
+
+
 .input-form {
     display: flex;
     gap: 3em;
     flex-direction: column;
-    height: 12em;
+    margin: auto;
     width: 34%;
     margin-bottom: 5em;
 }
 
 .input-form > input {
     width: 100%;
-    height: 5em;
 } 
