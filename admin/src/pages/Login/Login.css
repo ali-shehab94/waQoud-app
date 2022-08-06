@@ -5,9 +5,11 @@
 
 .sign-in-card {
     width: 40em;
-    border: 1px solid black;
+    border: 10px inset #FFAC33;
+    border-radius: 10px;
     margin: auto;
     text-align: center;
+    padding: 3em;
 }
 
 
