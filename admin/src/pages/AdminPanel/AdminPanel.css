@@ -9,18 +9,18 @@
 
 .app {
     width: 30em;
-    height: 20em;
+    height: 24em;
     border: 2px solid #FFAC33;
     overflow-y: scroll;
     background-color: #0F5F53;
     border-radius: 10px;
-    box-shadow: 1px 2px 10px black;}
+    box-shadow: 1px 2px 10px black;
+}
 
 .admin-panel h1 {
     color: #EDE8EA;
     font-family: "Righteous";
     font-size: 60px;
-    
 }
 
 .item {

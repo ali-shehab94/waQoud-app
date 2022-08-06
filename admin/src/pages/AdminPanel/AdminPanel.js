@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/Header';
 import { Navigate, useNavigate } from 'react-router-dom';
 import './AdminPanel.css';
@@ -10,6 +10,10 @@ function AdminPanel() {
         localStorage.clear();
         navigate('/');
     };
+
+    const [users, setUsers] = useState();
+    const [vehicles, setVehicles] = useState();
+
     const items = [
         { id: 1, name: 'John Doe' },
         { id: 2, name: 'Victor Wayne' },
