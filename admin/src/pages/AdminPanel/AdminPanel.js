@@ -8,7 +8,7 @@ import { MdDeleteSweep } from 'react-icons/md';
 function AdminPanel() {
     let navigate = useNavigate();
     const token = localStorage.getItem('token');
-
+    const [userId, setUserId] = useState();
     const handleLogout = () => {
         localStorage.clear();
         navigate('/');
@@ -20,7 +20,7 @@ function AdminPanel() {
     useEffect(() => {
         getUsers();
         getVehicles();
-    }, []);
+    }, [userId]);
 
     const getUsers = async () => {
         axios({
@@ -46,6 +46,26 @@ function AdminPanel() {
             .then((response) => {
                 console.log(response.data.vehicles);
                 setVehicles(response.data.vehicles);
+            })
+            .catch((error) => {
+                console.log('error', error.response.data);
+            });
+    };
+
+    useEffect(() => {
+        if (userId) {
+            deleteUser();
+        }
+    }, [userId]);
+
+    const deleteUser = async () => {
+        axios({
+            method: 'DELETE',
+            url: `http://127.0.0.1:8000/api/delete_user/${userId}`,
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((response) => {
+                console.log(response.data);
             })
             .catch((error) => {
                 console.log('error', error.response.data);
@@ -77,9 +97,13 @@ function AdminPanel() {
                         <div className='scroller'>
                             {users?.map((user) => (
                                 <div className='user-item' key={user.id}>
-                                    <p>{user.first_name + ' ' + user.last_name} </p>
+                                    <p>{user.first_name + ' ' + user.last_name}</p>
                                     <span className='delete-icon'>
-                                        <MdDeleteSweep />
+                                        <MdDeleteSweep
+                                            onClick={() => {
+                                                setUserId(user.id);
+                                            }}
+                                        />
                                     </span>
                                 </div>
                             ))}
