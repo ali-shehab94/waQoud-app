@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import { Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './AdminPanel.css';
 
 function AdminPanel() {
     let navigate = useNavigate();
+    const token = localStorage.getItem('token');
 
     const handleLogout = () => {
         localStorage.clear();
@@ -14,6 +16,23 @@ function AdminPanel() {
     const [users, setUsers] = useState();
     const [vehicles, setVehicles] = useState();
 
+    useEffect(() => {
+        getUsers();
+    });
+
+    const getUsers = async () => {
+        axios({
+            method: 'GET',
+            url: 'http://127.0.0.1:8000/api/get_users',
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log('error', error);
+            });
+    };
     const items = [
         { id: 1, name: 'John Doe' },
         { id: 2, name: 'Victor Wayne' },
