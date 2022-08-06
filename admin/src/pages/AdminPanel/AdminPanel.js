@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminPanel.css';
+import { MdDeleteSweep } from 'react-icons/md';
 
 function AdminPanel() {
     let navigate = useNavigate();
@@ -18,6 +19,7 @@ function AdminPanel() {
 
     useEffect(() => {
         getUsers();
+        getVehicles();
     }, []);
 
     const getUsers = async () => {
@@ -29,6 +31,21 @@ function AdminPanel() {
             .then((response) => {
                 console.log(response.data.users);
                 setUsers(response.data.users);
+            })
+            .catch((error) => {
+                console.log('error', error.response.data);
+            });
+    };
+
+    const getVehicles = async () => {
+        axios({
+            method: 'GET',
+            url: 'http://127.0.0.1:8000/api/get_vehicles',
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((response) => {
+                console.log(response.data.vehicles);
+                setVehicles(response.data.vehicles);
             })
             .catch((error) => {
                 console.log('error', error.response.data);
@@ -60,7 +77,10 @@ function AdminPanel() {
                         <div className='scroller'>
                             {users.map((user) => (
                                 <div className='item' key={user.id}>
-                                    {user.first_name + ' ' + user.last_name}
+                                    {user.first_name + ' ' + user.last_name}{' '}
+                                    <span className='delete-icon'>
+                                        <MdDeleteSweep />
+                                    </span>
                                 </div>
                             ))}
                         </div>
@@ -70,9 +90,9 @@ function AdminPanel() {
                     <h1>Vehicles</h1>
                     <div className='app'>
                         <div className='scroller'>
-                            {items.map((item) => (
-                                <div className='item' key={item.id}>
-                                    {item.name}
+                            {vehicles.map((vehicle) => (
+                                <div className='item' key={vehicle.id}>
+                                    {vehicle.make + ' ' + vehicle.model + ' ' + vehicle.year}
                                 </div>
                             ))}
                         </div>
