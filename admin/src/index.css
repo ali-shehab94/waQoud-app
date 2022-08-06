@@ -37,6 +37,10 @@
   font-family: "Righteous";
 }
 
+.app {
+  background-color: #FFAC33;
+}
+
 .nav-text:hover {
   font-size: 30px;
   transition: ease 0.5s;

@@ -30,7 +30,7 @@ function AdminPanel() {
         <div className='admin-panel-container'>
             <Header text='Logout' onClick={handleLogout} />
             <div className='content-container'>
-                <div className='users'>
+                <div className='admin-panel'>
                     <h1>Users</h1>
                     <div className='app'>
                         <div className='scroller'>
@@ -42,7 +42,7 @@ function AdminPanel() {
                         </div>
                     </div>
                 </div>
-                <div className='vehicles'>
+                <div className='admin-panel'>
                     <h1>Vehicles</h1>
                     <div className='app'>
                         <div className='scroller'>
