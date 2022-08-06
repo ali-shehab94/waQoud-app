@@ -92,21 +92,6 @@ function AdminPanel() {
                 console.log('error', error.response.data);
             });
     };
-    const items = [
-        { id: 1, name: 'John Doe' },
-        { id: 2, name: 'Victor Wayne' },
-        { id: 3, name: 'Jane Doe' },
-        { id: 4, name: 'John Doe' },
-        { id: 25, name: 'Victor Wayne' },
-        { id: 34, name: 'Jane Doe' },
-        { id: 14, name: 'John Doe' },
-        { id: 24, name: 'Victor Wayne' },
-        { id: 38, name: 'Jane Doe' },
-        { id: 5, name: 'Jane Doe' },
-        { id: 7, name: 'John Doe' },
-        { id: 79, name: 'Victor Wayne' },
-        { id: 77, name: 'Jane Doe' },
-    ];
 
     return (
         <div className='admin-panel-container'>
