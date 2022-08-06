@@ -18,7 +18,7 @@ function AdminPanel() {
 
     useEffect(() => {
         getUsers();
-    });
+    }, []);
 
     const getUsers = async () => {
         axios({
@@ -27,10 +27,11 @@ function AdminPanel() {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data.users);
+                setUsers(response.data.users);
             })
             .catch((error) => {
-                console.log('error', error);
+                console.log('error', error.response.data);
             });
     };
     const items = [
@@ -42,7 +43,7 @@ function AdminPanel() {
         { id: 34, name: 'Jane Doe' },
         { id: 14, name: 'John Doe' },
         { id: 24, name: 'Victor Wayne' },
-        { id: 34, name: 'Jane Doe' },
+        { id: 38, name: 'Jane Doe' },
         { id: 5, name: 'Jane Doe' },
         { id: 7, name: 'John Doe' },
         { id: 79, name: 'Victor Wayne' },
@@ -57,9 +58,9 @@ function AdminPanel() {
                     <h1>Users</h1>
                     <div className='app'>
                         <div className='scroller'>
-                            {items.map((item) => (
-                                <div className='item' key={item.id}>
-                                    {item.name}
+                            {users.map((user) => (
+                                <div className='item' key={user.id}>
+                                    {user.first_name + ' ' + user.last_name}
                                 </div>
                             ))}
                         </div>
