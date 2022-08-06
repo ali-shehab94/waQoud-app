@@ -59,10 +59,30 @@ function AdminPanel() {
         }
     }, [userId]);
 
+    useEffect(() => {
+        if (vehicleId) {
+            deleteVehicle();
+        }
+    }, [vehicleId]);
+
     const deleteUser = async () => {
         axios({
             method: 'DELETE',
             url: `http://127.0.0.1:8000/api/delete_user/${userId}`,
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log('error', error.response.data);
+            });
+    };
+
+    const deleteVehicle = async () => {
+        axios({
+            method: 'DELETE',
+            url: `http://127.0.0.1:8000/api/delete_vehicle/${vehicleId}`,
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
