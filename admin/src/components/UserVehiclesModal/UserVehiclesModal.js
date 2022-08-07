@@ -2,6 +2,7 @@ import React from 'react';
 import './UserVehiclesModal.css';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoCarSport } from 'react-icons/io5';
+
 function UserVehiclesModal({ data, clearData }) {
     return (
         <div className='container'>
@@ -13,6 +14,7 @@ function UserVehiclesModal({ data, clearData }) {
                     <h1>User Vehicles</h1>
                 </div>
                 <div className='vehicles-container'>
+                    {/* map vehicles brought from parent component */}
                     {data ? (
                         data.map((vehicle) => (
                             <div className='display-user-vehicles' key={vehicle[0].id}>
