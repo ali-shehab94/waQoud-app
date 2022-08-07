@@ -7,18 +7,14 @@
     left: 0px;
     justify-content: center;
     align-items: center;
-    border: 1px solid green;
 }
 
-.container:active {
-    visibility: visible;
-    opacity: 1;
-}
+
 
 .modal {
     width: 40%;
     height: 40%;
-    background-color: white;
+    background-color: #FFAC33;
     position: relative;
     border-radius: 5px;
 }
@@ -28,6 +24,13 @@
     top: 10px;
     right: 10px;
     cursor: pointer
+}
+
+.modal-title{
+    margin-top: 1em;
+    color: white;
+    font-family: "Righteous";
+    font-size: 20px;
 }
 
 .vehicles-container {

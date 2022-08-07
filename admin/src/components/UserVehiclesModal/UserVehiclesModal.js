@@ -9,6 +9,9 @@ function UserVehiclesModal({ data, clearData }) {
                 <div className='close' onClick={() => clearData()}>
                     <AiOutlineClose size={30} />
                 </div>
+                <div className='modal-title'>
+                    <h1>User Vehicles</h1>
+                </div>
                 <div className='vehicles-container'>
                     {data
                         ? data.map((vehicle) => (
