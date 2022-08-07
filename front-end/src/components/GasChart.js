@@ -50,23 +50,28 @@ export const GasChart = () => {
         return _prices;
     };
 
+    //price rows component
     const priceRows = () => {
         const _prices = getSelectedGasTypePrices();
 
         return _prices.map((price, index) => {
+            //get difference of every price and store it in difference variable
             let difference = prices && _prices[index].difference;
             difference = Math.round(difference);
 
             return (
                 <View key={price.id} style={styles.info}>
                     <View>
+                        {/* date of price change */}
                         <Text style={{ fontSize: 15, fontFamily: 'Righteous_400Regular' }}>{formatDate(price.created_at)}</Text>
                     </View>
                     <View style={styles.difference}>
                         <View>
+                            {/* difference in price change */}
                             <Text style={{ fontSize: 17, fontFamily: 'Righteous_400Regular' }}>{numberWithCommas(difference)}</Text>
                         </View>
                         <View>
+                            {/* visual cue to rise or drop in price */}
                             <Text>{difference > 0 ? <AntDesign name='arrowup' size={20} color='red' /> : <AntDesign name='arrowdown' size={20} color='green' />}</Text>
                         </View>
                     </View>
@@ -75,6 +80,7 @@ export const GasChart = () => {
         });
     };
 
+    //toggle style of selected box
     const getGasTypeStyle = (val) => {
         return {
             box: val === gasType ? styles.boxActive : styles.boxInactive,
@@ -103,6 +109,7 @@ export const GasChart = () => {
             <View style={styles.gasChart}>
                 <View style={styles.chartTop}>
                     <View style={styles.selectGas}>
+                        {/* tabs to select gas */}
                         <TouchableOpacity style={getGasTypeStyle('UNL95').box} onPress={() => setGasType('UNL95')}>
                             <Text style={getGasTypeStyle('UNL95').text}>UNL95</Text>
                         </TouchableOpacity>
@@ -114,6 +121,7 @@ export const GasChart = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.price}>
+                        {/* display current price */}
                         <Text style={styles.selectedPrice}>{prices && numberWithCommas(Math.round(getSelectedGasTypePrices()[0].price))}</Text>
                         <Text style={[styles.selectedPrice, { fontSize: 20, marginLeft: 5 }]}>/ 20L</Text>
                     </View>
