@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminPanel.css';
 import { MdDelete } from 'react-icons/md';
+import UserVehiclesModal from '../../components/UserVehiclesModal/UserVehiclesModal';
 
 function AdminPanel() {
     let navigate = useNavigate();
@@ -167,6 +168,7 @@ function AdminPanel() {
                     </div>
                 </div>
             </div>
+            <UserVehiclesModal />
         </div>
     );
 }
