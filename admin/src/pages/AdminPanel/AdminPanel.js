@@ -97,15 +97,15 @@ function AdminPanel() {
             });
     };
 
-    const deleteVehicle = async () => {
+    const deleteVehicle = async (id) => {
         axios({
             method: 'DELETE',
-            url: `http://127.0.0.1:8000/api/delete_vehicle/${vehicleId}`,
+            url: `http://127.0.0.1:8000/api/delete_vehicle/${id}`,
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
                 console.log(response.data);
-                setRemove(false);
+                setRemove(true);
             })
             .catch((error) => {
                 console.log('error', error.response.data);
