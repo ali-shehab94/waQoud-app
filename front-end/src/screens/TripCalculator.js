@@ -1,5 +1,5 @@
-import MapView, { Callout, Circle, Marker } from 'react-native-maps';
-import { StyleSheet, TextInput, Text, View, Dimensions, SafeAreaView } from 'react-native';
+import MapView, { Callout, Marker } from 'react-native-maps';
+import { StyleSheet, Text, View, Dimensions, SafeAreaView } from 'react-native';
 import { UserContext } from '../../context/UserContext';
 import * as Location from 'expo-location';
 import { MY_GOOGLE_API_KEY } from '../../config/env';
@@ -10,9 +10,8 @@ import { Modal } from '../components/TripCalcModal';
 
 export const TripCalculator = () => {
     const [user, setUser] = useContext(UserContext);
-
     const [pin, setPin] = useState();
-    const [region, setRegion] = useState({ latitude: 33.893743, longitude: 35.486086 });
+    const region = { latitude: 33.893743, longitude: 35.486086 };
     const [distance, setDistance] = useState();
     const [tripCost, setTripCost] = useState();
     const [userLocation, setUserLocation] = useState(null);
@@ -21,9 +20,12 @@ export const TripCalculator = () => {
         GetCurrentLocation();
     }, []);
 
+    //update user location whenever a change is detected
     useEffect(() => {
         setUser({ ...user, userLocation: userLocation });
     }, [userLocation]);
+
+    //calculate distance when a pin is set
     useEffect(() => {
         if (pin) {
             calculateDistance();
@@ -37,6 +39,7 @@ export const TripCalculator = () => {
         setTripCost();
     };
 
+    //prompt to get permission for location, then store in userLocation variable
     async function GetCurrentLocation() {
         let { status } = await Location.requestForegroundPermissionsAsync();
 
@@ -51,6 +54,7 @@ export const TripCalculator = () => {
         }
     }
 
+    //send coordinates to Google Distance Matrix API to calculate distance
     const calculateDistance = () => {
         axios
             .get(
@@ -64,6 +68,7 @@ export const TripCalculator = () => {
             });
     };
 
+    //send distance to backend to get trip cost
     const calculateTripCost = () => {
         axios
             .post(`/trip_cost`, JSON.stringify({ distance, vehicles_id: user.selectedVehicle }), {
