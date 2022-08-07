@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminPanel.css';
 import { MdDelete } from 'react-icons/md';
@@ -9,8 +9,6 @@ import UserVehiclesModal from '../../components/UserVehiclesModal/UserVehiclesMo
 function AdminPanel() {
     let navigate = useNavigate();
     const token = localStorage.getItem('token');
-    const [userId, setUserId] = useState();
-    const [vehicleId, setVehicleId] = useState();
     const [remove, setRemove] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [userVehicles, setUserVehicles] = useState();
@@ -36,6 +34,7 @@ function AdminPanel() {
         }
     }, [remove]);
 
+    //get users from database and store in users variable
     const getUsers = async () => {
         axios({
             method: 'GET',
@@ -50,6 +49,7 @@ function AdminPanel() {
             });
     };
 
+    //get vehicles from database and store them in vehicles variable
     const getVehicles = async () => {
         axios({
             method: 'GET',
@@ -68,18 +68,7 @@ function AdminPanel() {
         setIsModalOpen(false);
     };
 
-    // useEffect(() => {
-    //     if (userId) {
-    //         deleteUser();
-    //     }
-    // }, []);
-
-    // useEffect(() => {
-    //     if (vehicleId) {
-    //         deleteVehicle();
-    //     }
-    // }, []);
-
+    //delete a user
     const deleteUser = async (id) => {
         axios({
             method: 'DELETE',
@@ -94,6 +83,7 @@ function AdminPanel() {
             });
     };
 
+    //get vehicles owned by a user
     const displayUserVehicles = async (id) => {
         axios({
             method: 'GET',
@@ -108,6 +98,7 @@ function AdminPanel() {
             });
     };
 
+    //delete a vehicle from database
     const deleteVehicle = async (id) => {
         axios({
             method: 'DELETE',
