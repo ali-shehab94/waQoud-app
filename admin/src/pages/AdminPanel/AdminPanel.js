@@ -13,6 +13,7 @@ function AdminPanel() {
     const [vehicleId, setVehicleId] = useState();
     const [remove, setRemove] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [userVehicles, setUserVehicles] = useState();
 
     const openModal = () => {
         setIsModalOpen(!isModalOpen);
@@ -94,14 +95,15 @@ function AdminPanel() {
             });
     };
 
-    const displayVehicles = async (id) => {
+    const displayUserVehicles = async (id) => {
         axios({
             method: 'GET',
             url: `http://127.0.0.1:8000/api/user_vehicles/${id}`,
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                console.log(response.data);
+                setUserVehicles(response.data.user_vehicles);
+                console.log(response.data.user_vehicles);
             })
             .catch((error) => {
                 console.log('error', error.response.data);
@@ -136,7 +138,7 @@ function AdminPanel() {
                                     <p
                                         onClick={() => {
                                             openModal();
-                                            displayVehicles(user.id);
+                                            displayUserVehicles(user.id);
                                         }}
                                     >
                                         {user.first_name + ' ' + user.last_name}

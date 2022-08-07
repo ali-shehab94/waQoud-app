@@ -3,11 +3,11 @@ import './UserVehiclesModal.css';
 import { AiOutlineClose } from 'react-icons/ai';
 import { MdSignalCellularNodata } from 'react-icons/md';
 
-function UserVehiclesModal({ clearData }) {
+function UserVehiclesModal({ data, clearData }) {
     return (
         <div className='container'>
             <div className='modal'>
-                UserVehiclesModal
+                {data.map()}
                 <div className='close' onClick={() => clearData()}>
                     <AiOutlineClose size={30} />
                 </div>
