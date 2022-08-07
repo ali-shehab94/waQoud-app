@@ -89,7 +89,7 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 | Admin Panel |
 | ----------- |
 
-| <img src="./readme/webpage.gif" />
+| <img src="./readme/webpage1.gif" />
 
 <br><br>
 <img src="./readme/title6.svg" id='install'/>
