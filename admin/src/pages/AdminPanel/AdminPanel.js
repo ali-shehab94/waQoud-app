@@ -43,7 +43,6 @@ function AdminPanel() {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                console.log(response.data.users);
                 setUsers(response.data.users);
             })
             .catch((error) => {
@@ -58,7 +57,6 @@ function AdminPanel() {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                console.log(response.data.vehicles);
                 setVehicles(response.data.vehicles);
             })
             .catch((error) => {
@@ -89,8 +87,6 @@ function AdminPanel() {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                console.log(response.data);
-                console.log(users.id);
                 setUsers((_user) => _user.filter((users) => users.id !== id));
             })
             .catch((error) => {
@@ -106,7 +102,6 @@ function AdminPanel() {
         })
             .then((response) => {
                 setUserVehicles(response.data.user_vehicles);
-                console.log(response.data.user_vehicles);
             })
             .catch((error) => {
                 console.log('error', error.response.data);
@@ -120,7 +115,6 @@ function AdminPanel() {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                console.log(response.data);
                 setVehicles((_vehicles) => _vehicles.filter((vehicles) => vehicles.id !== id));
             })
             .catch((error) => {

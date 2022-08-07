@@ -27,11 +27,9 @@ function Login() {
             headers: { 'content-type': 'multipart/form-data' },
         })
             .then((response) => {
-                console.log(response.data);
                 if (response.data.user.user_type === 'admin') {
                     localStorage.setItem('token', response.data.authorization.token);
                     localStorage.setItem('name', response.data.user.user_name);
-                    console.log('admin');
                     navigate('/admin_panel');
                 } else {
                     alert('user is not an admin');
