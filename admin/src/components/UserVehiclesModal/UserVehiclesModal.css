@@ -29,3 +29,17 @@
     right: 10px;
     cursor: pointer
 }
+
+.vehicles-container {
+    margin-top: 3em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em
+}
+
+.display-user-vehicles {
+
+}

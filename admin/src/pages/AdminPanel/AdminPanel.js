@@ -181,7 +181,7 @@ function AdminPanel() {
                     </div>
                 </div>
             </div>
-            {isModalOpen && <UserVehiclesModal clearData={clearData} />}
+            {isModalOpen && <UserVehiclesModal clearData={clearData} data={userVehicles} />}
         </div>
     );
 }
