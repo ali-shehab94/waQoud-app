@@ -37,6 +37,7 @@ export const VehicleTracker = () => {
         setTrackerValue(val());
     };
 
+    //get all trackers (engine oil, wheels, or brakes) of a vehicle
     const getTrackers = () => {
         axios
             .post(`/get_trackers`, JSON.stringify({ users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
@@ -50,6 +51,7 @@ export const VehicleTracker = () => {
             });
     };
 
+    //step to switch from page to page in add vehicle
     const handleStep = () => {
         if (step < 3) {
             setStep(step + 1);
