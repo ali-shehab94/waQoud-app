@@ -14,7 +14,8 @@ function AdminPanel() {
     const [remove, setRemove] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [userVehicles, setUserVehicles] = useState();
-
+    const [users, setUsers] = useState();
+    const [vehicles, setVehicles] = useState();
     const openModal = () => {
         setIsModalOpen(!isModalOpen);
     };
@@ -23,9 +24,6 @@ function AdminPanel() {
         localStorage.clear();
         navigate('/');
     };
-
-    const [users, setUsers] = useState();
-    const [vehicles, setVehicles] = useState();
 
     useEffect(() => {
         if (!remove) {
@@ -88,7 +86,8 @@ function AdminPanel() {
         })
             .then((response) => {
                 console.log(response.data);
-                setRemove(false);
+                console.log(users.id);
+                setUsers((_user) => _user.filter((users) => users.id !== id));
             })
             .catch((error) => {
                 console.log('error', error.response.data);
@@ -118,7 +117,7 @@ function AdminPanel() {
         })
             .then((response) => {
                 console.log(response.data);
-                setRemove(true);
+                setVehicles((_vehicles) => _vehicles.filter((vehicles) => vehicles.id !== id));
             })
             .catch((error) => {
                 console.log('error', error.response.data);
