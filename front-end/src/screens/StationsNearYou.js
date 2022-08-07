@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, SafeAreaView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, FlatList } from 'react-native';
 import { UserContext } from '../../context/UserContext';
 import { MY_GOOGLE_API_KEY } from '../../config/env';
 import { MapModal } from '../components/MapModal';
@@ -7,7 +7,7 @@ import { Entypo } from '@expo/vector-icons';
 
 import axios from 'axios';
 
-export const StationsNearYou = (props) => {
+export const StationsNearYou = () => {
     const [selectedGasStation, setSelectedGasStation] = useState();
     const [user, setUser] = useContext(UserContext);
     const [userLocation, setUserLocation] = useState({ latitude: user.userLocation.latitude, longitude: user.userLocation.longitude });
@@ -28,6 +28,7 @@ export const StationsNearYou = (props) => {
         setSelectedGasStation();
     };
 
+    //calculate distance of of all gas stations that where retrieved from Google Places API
     const getDistance = async () => {
         let _gasStations = [...gasStations];
         for (const gasStation of _gasStations) {
@@ -45,6 +46,7 @@ export const StationsNearYou = (props) => {
         setDistances(_gasStations);
     };
 
+    //fetch gas stations that are within 1KM radius of current location
     const fetchGasStations = () => {
         axios
             .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${userLocation.latitude},${userLocation.longitude}&radius=1000&type=gas_station&key=${MY_GOOGLE_API_KEY}`)
