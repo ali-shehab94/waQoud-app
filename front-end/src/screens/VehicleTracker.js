@@ -53,9 +53,11 @@ export const VehicleTracker = () => {
 
     //step to switch from page to page in add vehicle
     const handleStep = () => {
+        //if step is not the last step which is 3, go to next
         if (step < 3) {
             setStep(step + 1);
         } else {
+            //check what is the tracker for according to user input
             if (trackerValue === 1) {
                 path = 'add_engine_oil_tracker';
             } else if (trackerValue === 2) {
@@ -63,12 +65,14 @@ export const VehicleTracker = () => {
             } else {
                 path = 'add_wheel_tracker';
             }
+            //API call to add a tracker
             axios
                 .post(`/${path}`, JSON.stringify({ model_name: modelName, lasts, installed_at: installedAt, users_id: user.user.id, vehicles_id: user.selectedVehicle }), {
                     headers: { 'Content-type': 'application/json' },
                 })
                 .then((response) => {
                     setAdd(response.data);
+                    //clear data from state variables
                     setStep(0);
                     setModelName();
                     setLasts();
@@ -81,6 +85,7 @@ export const VehicleTracker = () => {
         }
     };
 
+    //to display vehicle name in title
     const getVehicleName = () => {
         axios
             .get(`/vehicle_name?vehicle_id=${user.selectedVehicle}`)
@@ -96,6 +101,7 @@ export const VehicleTracker = () => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
+    //to decide which icon shall be displayed according to the tracker (engine oil, brakes, or wheels)
     const getIcon = (type) => {
         return type === 'engine_oils' ? (
             <FontAwesome5 name='oil-can' size={40} color='black' />
@@ -106,6 +112,7 @@ export const VehicleTracker = () => {
         );
     };
 
+    //get a displayable name for tracker
     const getTrackerName = (type) => {
         if (type === 'engine_oils') {
             return 'Engine Oil';
@@ -119,6 +126,7 @@ export const VehicleTracker = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
+                {/* title */}
                 {user.selectedVehicle ? (
                     <Text style={styles.vehicleName}>{vehicleName.charAt(0).toUpperCase() + vehicleName.substring(1)}</Text>
                 ) : (
@@ -126,6 +134,7 @@ export const VehicleTracker = () => {
                 )}
             </View>
             <View>
+                {/* if the button add tracker is clicked, is creating becomes true and add tracker component is displayed */}
                 {isCreating ? (
                     <View style={styles.addVehiclesPage}>
                         <View>
@@ -181,6 +190,7 @@ export const VehicleTracker = () => {
                         </View>
                     </View>
                 ) : trackers.length ? (
+                    // mapping through trackers
                     trackers.map((tracker, index) => {
                         return (
                             <View key={index} style={{ marginBottom: '5%' }}>
@@ -200,6 +210,7 @@ export const VehicleTracker = () => {
                     })
                 ) : null}
 
+                {/* add tracker button */}
                 {!isCreating ? (
                     <TouchableOpacity style={styles.addTracker} onPress={() => setIsCreating(true)}>
                         <Text style={styles.smallText}>New Tracker</Text>
