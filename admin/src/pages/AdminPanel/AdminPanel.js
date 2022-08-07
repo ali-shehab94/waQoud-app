@@ -21,7 +21,7 @@ function AdminPanel() {
     useEffect(() => {
         getUsers();
         getVehicles();
-    }, [userId]);
+    }, []);
 
     const getUsers = async () => {
         axios({
@@ -53,22 +53,22 @@ function AdminPanel() {
             });
     };
 
-    useEffect(() => {
-        if (userId) {
-            deleteUser();
-        }
-    }, [userId]);
+    // useEffect(() => {
+    //     if (userId) {
+    //         deleteUser();
+    //     }
+    // }, []);
 
-    useEffect(() => {
-        if (vehicleId) {
-            deleteVehicle();
-        }
-    }, [vehicleId]);
+    // useEffect(() => {
+    //     if (vehicleId) {
+    //         deleteVehicle();
+    //     }
+    // }, []);
 
-    const deleteUser = async () => {
+    const deleteUser = async (id) => {
         axios({
             method: 'DELETE',
-            url: `http://127.0.0.1:8000/api/delete_user/${userId}`,
+            url: `http://127.0.0.1:8000/api/delete_user/${id}`,
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
@@ -121,7 +121,7 @@ function AdminPanel() {
                                     <span className='delete-icon'>
                                         <MdDelete
                                             onClick={() => {
-                                                setUserId(user.id);
+                                                deleteUser(user.id);
                                             }}
                                         />
                                     </span>
