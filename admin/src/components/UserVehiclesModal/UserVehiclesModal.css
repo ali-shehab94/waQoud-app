@@ -29,7 +29,7 @@
 .modal-title{
     margin-top: 1em;
     color: white;
-    font-family: "Righteous";
+    font-family: "Helvetica";
     font-size: 20px;
 }
 
@@ -40,9 +40,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1em
+    gap: 1em;
+    overflow-y: scroll;
+}
+
+.vehicle {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    font-size: 20px;
 }
 
 .display-user-vehicles {
-
 }
