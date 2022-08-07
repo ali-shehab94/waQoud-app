@@ -21,6 +21,12 @@
 -   As a user, I want to keep maintenance records of all my vehicles in one place
 -   As a user, I want to know how many gas stations are around me and view their locations
 
+### Admin Stories
+
+-   As an admin, I want to view and delete users that registered to the app
+-   As an admin, I want to view and delete vehicles stored in the database
+-   As an admin, I want to view the vehicles of each user
+
 <br><br>
 
 <img src="./readme/title3.svg" id='wireframes'/>
@@ -79,6 +85,11 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 | Calculate Trip Cost by Search                     | Vehicle Tracker                     | Gas Station Nearby                                |
 | ------------------------------------------------- | ----------------------------------- | ------------------------------------------------- |
 | <img src="./readme/calculate-trip-by-name.gif" /> | <img src="./readme/tracker.gif"  /> | <img src="./readme/navigate-to-gas-station.gif"/> |
+
+| Register |
+| -------- |
+
+| <img src="./readme/webpage.gif" />
 
 <br><br>
 <img src="./readme/title6.svg" id='install'/>
