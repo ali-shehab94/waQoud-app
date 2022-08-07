@@ -12,6 +12,12 @@ function AdminPanel() {
     const [userId, setUserId] = useState();
     const [vehicleId, setVehicleId] = useState();
     const [remove, setRemove] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
+
     const handleLogout = () => {
         localStorage.clear();
         navigate('/');
@@ -55,6 +61,10 @@ function AdminPanel() {
             .catch((error) => {
                 console.log('error', error.response.data);
             });
+    };
+
+    const clearData = () => {
+        setIsModalOpen(false);
     };
 
     // useEffect(() => {
@@ -125,6 +135,7 @@ function AdminPanel() {
                                 <div className='user-item' key={user.id}>
                                     <p
                                         onClick={() => {
+                                            openModal();
                                             displayVehicles(user.id);
                                         }}
                                     >
@@ -168,7 +179,7 @@ function AdminPanel() {
                     </div>
                 </div>
             </div>
-            <UserVehiclesModal />
+            {isModalOpen && <UserVehiclesModal clearData={clearData} />}
         </div>
     );
 }

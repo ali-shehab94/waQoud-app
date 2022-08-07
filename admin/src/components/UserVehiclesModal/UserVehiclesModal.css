@@ -7,7 +7,12 @@
     left: 0px;
     justify-content: center;
     align-items: center;
-    border: 1px solid green
+    border: 1px solid green;
+}
+
+.container:active {
+    visibility: visible;
+    opacity: 1;
 }
 
 .modal {
