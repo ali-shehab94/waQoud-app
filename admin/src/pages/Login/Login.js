@@ -53,8 +53,8 @@ function Login() {
                         <div className='sign-in-card'>
                             <div className='input-form'>
                                 <h1>Sign In</h1>
-                                <input onChange={(e) => setEmail(e.target.value)} className='input' placeholder='email' />
-                                <input onChange={(e) => setPassword(e.target.value)} className='input' placeholder='password' type={'password'} />
+                                <input onChange={(e) => setEmail(e.target.value)} className='input' placeholder='Email' />
+                                <input onChange={(e) => setPassword(e.target.value)} className='input' placeholder='Password' type={'password'} />
                                 <button className='submit' onClick={handleLogin}>
                                     Login
                                 </button>
