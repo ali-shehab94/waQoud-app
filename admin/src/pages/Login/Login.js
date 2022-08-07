@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
+    useEffect(() => {
+        document.title = 'Login';
+    });
     let navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

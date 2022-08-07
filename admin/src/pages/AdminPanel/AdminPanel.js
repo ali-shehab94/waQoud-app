@@ -26,6 +26,10 @@ function AdminPanel() {
     };
 
     useEffect(() => {
+        document.title = 'Admin Panel';
+    });
+
+    useEffect(() => {
         if (!remove) {
             getUsers();
             getVehicles();

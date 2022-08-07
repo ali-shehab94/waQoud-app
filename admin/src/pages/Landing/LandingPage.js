@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import Header from '../../components/Header';
-import Login from '../Login/Login';
-import axios from 'axios';
 
 function LandingPage() {
     let navigate = useNavigate();
+    useEffect(() => {
+        document.title = 'Landing Page';
+    });
     return (
         <div className='page-container'>
             <Header
