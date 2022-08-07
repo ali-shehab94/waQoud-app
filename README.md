@@ -67,7 +67,7 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 
 -   [Google Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/overview) was used to calculate distance between two coordinates.
 
--   [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview) was used to get nearby gas stations, and for autocomplete to when searching places.
+-   [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview) was used to get nearby gas stations, and to autocomplete when searching places.
 
 <br><br>
 <img src="./readme/title5.svg" id='implementation'/>
@@ -86,10 +86,9 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 | ------------------------------------------------- | ----------------------------------- | ------------------------------------------------- |
 | <img src="./readme/calculate-trip-by-name.gif" /> | <img src="./readme/tracker.gif"  /> | <img src="./readme/navigate-to-gas-station.gif"/> |
 
-| Admin Panel |
-| ----------- |
-
-<img src="./readme/webpage1.gif" />
+| Admin Panel                         |
+| ----------------------------------- |
+| <img src="./readme/webpage1.gif" /> |
 
 <br><br>
 <img src="./readme/title6.svg" id='install'/>
