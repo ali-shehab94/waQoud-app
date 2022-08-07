@@ -16,7 +16,7 @@ class CreateUsersVehiclesTable extends Migration
         Schema::create('users_vehicles', function (Blueprint $table) {
             $table->id();
             $table->integer('users_id');
-            $table->integer('vehicles_id');
+            $table->integer('vehicles_id')->onDelete('cascade');
             $table->integer('brakes_id')->nullable();
             $table->integer('wheels_id')->nullable();
             $table->integer('engine_oils_id')->nullable();
