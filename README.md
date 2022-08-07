@@ -86,8 +86,8 @@ Here's a brief high-level overview of the tech stack used to build waQoud:
 | ------------------------------------------------- | ----------------------------------- | ------------------------------------------------- |
 | <img src="./readme/calculate-trip-by-name.gif" /> | <img src="./readme/tracker.gif"  /> | <img src="./readme/navigate-to-gas-station.gif"/> |
 
-| Register |
-| -------- |
+| Admin Panel |
+| ----------- |
 
 | <img src="./readme/webpage.gif" />
 
