@@ -10,6 +10,7 @@ function AdminPanel() {
     const token = localStorage.getItem('token');
     const [userId, setUserId] = useState();
     const [vehicleId, setVehicleId] = useState();
+    const [remove, setRemove] = useState(false);
     const handleLogout = () => {
         localStorage.clear();
         navigate('/');
@@ -19,9 +20,11 @@ function AdminPanel() {
     const [vehicles, setVehicles] = useState();
 
     useEffect(() => {
-        getUsers();
-        getVehicles();
-    }, []);
+        if (!remove) {
+            getUsers();
+            getVehicles();
+        }
+    }, [remove]);
 
     const getUsers = async () => {
         axios({
@@ -73,16 +76,17 @@ function AdminPanel() {
         })
             .then((response) => {
                 console.log(response.data);
+                setRemove(false);
             })
             .catch((error) => {
                 console.log('error', error.response.data);
             });
     };
 
-    const displayVehicles = async () => {
+    const displayVehicles = async (id) => {
         axios({
             method: 'GET',
-            url: `http://127.0.0.1:8000/api/user_vehicles/${userId}`,
+            url: `http://127.0.0.1:8000/api/user_vehicles/${id}`,
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
@@ -101,6 +105,7 @@ function AdminPanel() {
         })
             .then((response) => {
                 console.log(response.data);
+                setRemove(false);
             })
             .catch((error) => {
                 console.log('error', error.response.data);
@@ -117,7 +122,13 @@ function AdminPanel() {
                         <div className='scroller'>
                             {users?.map((user) => (
                                 <div className='user-item' key={user.id}>
-                                    <p onClick={displayVehicles}>{user.first_name + ' ' + user.last_name}</p>
+                                    <p
+                                        onClick={() => {
+                                            displayVehicles(user.id);
+                                        }}
+                                    >
+                                        {user.first_name + ' ' + user.last_name}
+                                    </p>
                                     <span className='delete-icon'>
                                         <MdDelete
                                             onClick={() => {
@@ -143,7 +154,7 @@ function AdminPanel() {
                                     <span className='delete-icon'>
                                         <MdDelete
                                             onClick={() => {
-                                                setVehicleId(vehicle.id);
+                                                deleteVehicle(vehicle.id);
                                             }}
                                         />
                                     </span>
